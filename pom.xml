@@ -17,6 +17,7 @@
 
     <modules>
         <module>train-member</module>
+        <module>train-common</module>
     </modules>
 
     <properties>
@@ -32,6 +33,12 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.train</groupId>
+                <artifactId>train-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>

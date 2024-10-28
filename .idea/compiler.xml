@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="train-common" />
         <module name="train-member" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="TrainSystem" options="" />
+      <module name="train-common" options="-parameters" />
       <module name="train-member" options="-parameters" />
       <module name="train-memer" options="-parameters" />
     </option>
