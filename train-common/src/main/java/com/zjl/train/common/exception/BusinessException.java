@@ -1,5 +1,9 @@
 package com.zjl.train.common.exception;
 
+/**
+ * 自定义异常类，用于抛出自定义异常
+ * Created By Zhangjilin 2024/10/29
+ */
 public class BusinessException extends RuntimeException{
 
     private BusinessExceptionEnum businessExceptionEnum;

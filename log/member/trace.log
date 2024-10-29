@@ -966,3 +966,88 @@ java.lang.RuntimeException: 手机号已被注册！
 2024-10-29 20:11:35.967 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :44   [32m                  [0;39m 业务异常：
 com.zjl.train.common.exception.BusinessException: null
 2024-10-29 20:11:35.986 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [com.zjl.train.common.exception.BusinessException]
+2024-10-29 20:14:07.143 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-29 20:14:07.159 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:14:07.160 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-10-29 20:14:07.160 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Destroying Spring FrameworkServlet 'dispatcherServlet'
+2024-10-29 20:14:07.161 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [HikariPool-4 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
+2024-10-29 20:14:07.161 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:14:07.162 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:14:07.163 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-4 - Shutdown initiated...
+2024-10-29 20:14:07.164 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-4 - Shutdown completed.
+2024-10-29 20:14:08.593 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 38668 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-10-29 20:14:08.593 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-10-29 20:14:08.791 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=de315175-94c4-3ccd-9b30-cc05f0a50597
+2024-10-29 20:14:08.863 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-10-29 20:14:08.864 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:14:08.864 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-10-29 20:14:08.864 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-10-29 20:14:08.887 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-10-29 20:14:08.887 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 292 ms
+2024-10-29 20:14:09.091 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-10-29 20:14:09.173 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-10-29 20:14:10.515 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:14:10.550 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:14:10.557 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-10-29 20:14:11.908 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:14:11.916 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.709 seconds (process running for 23109.706)
+2024-10-29 20:14:11.918 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-10-29 20:14:11.919 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-10-29 20:14:11.919 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-10-29 20:33:54.524 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 2 class path changes (0 additions, 2 deletions, 0 modifications)
+2024-10-29 20:33:54.546 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:54.546 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-10-29 20:33:54.548 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:54.549 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:55.929 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 38668 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-10-29 20:33:55.929 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-10-29 20:33:56.085 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=de315175-94c4-3ccd-9b30-cc05f0a50597
+2024-10-29 20:33:56.159 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-10-29 20:33:56.160 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:56.160 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-10-29 20:33:56.160 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-10-29 20:33:56.182 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-10-29 20:33:56.182 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 251 ms
+2024-10-29 20:33:56.352 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-10-29 20:33:56.427 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-10-29 20:33:57.665 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:33:57.677 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:57.680 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-10-29 20:33:57.869 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
+2024-10-29 20:33:58.864 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:33:58.868 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.259 seconds (process running for 24296.657)
+2024-10-29 20:33:58.868 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-10-29 20:33:58.869 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-10-29 20:33:58.869 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-10-29 20:33:58.889 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:58.889 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-10-29 20:33:58.891 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:33:58.892 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:34:00.251 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 38668 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-10-29 20:34:00.261 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-10-29 20:34:00.429 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=de315175-94c4-3ccd-9b30-cc05f0a50597
+2024-10-29 20:34:00.517 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-10-29 20:34:00.517 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:34:00.518 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-10-29 20:34:00.518 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-10-29 20:34:00.545 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-10-29 20:34:00.545 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 282 ms
+2024-10-29 20:34:00.765 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-10-29 20:34:00.858 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-10-29 20:34:02.130 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:34:02.144 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-10-29 20:34:02.151 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-10-29 20:34:03.411 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-10-29 20:34:03.414 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.47 seconds (process running for 24301.204)
+2024-10-29 20:34:03.415 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-10-29 20:34:03.416 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-10-29 20:34:03.416 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
