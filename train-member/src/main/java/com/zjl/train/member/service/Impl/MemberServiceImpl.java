@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.zjl.train.member.entity.Member;
 import com.zjl.train.member.entity.MemberExample;
 import com.zjl.train.member.mapper.MemberMapper;
+import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,12 @@ public class MemberServiceImpl implements MemberService {
 
     /**
      * 会员注册实现类 Created By Zhangjilin 2024/10/29
-     * @param mobile 手机号
+     * @param request 封装完成的请求体
      * @return
      */
     @Override
-    public Long register(String mobile) {
+    public Long register(MemberRegisterReq request) {
+        String mobile = request.getMobile();
         // 注册之前，先检查手机号有没有注册过
         MemberExample memberExample = new MemberExample();
         memberExample.createCriteria().andMobileEqualTo(mobile);

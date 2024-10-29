@@ -1,5 +1,6 @@
 package com.zjl.train.member.service;
 
+import com.zjl.train.member.req.MemberRegisterReq;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,5 +15,5 @@ public interface MemberService {
      * Created By Zhangjilin 2024/10/29
      * 会员注册方法
      */
-    Long register(String mobile);
+    Long register(MemberRegisterReq request);
 }

@@ -1,4 +1,4 @@
-package com.zjl.train.aspect;
+package com.zjl.train.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
