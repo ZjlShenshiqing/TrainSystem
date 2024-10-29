@@ -1,5 +1,8 @@
 package com.zjl.train.member.entity;
 
+/**
+ * Mybatis Generator 生成类 2024/10/29
+ */
 public class Member {
     private Long id;
 

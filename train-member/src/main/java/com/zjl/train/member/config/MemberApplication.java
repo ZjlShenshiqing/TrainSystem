@@ -8,6 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
+/**
+ * 会员模块启动类
+ * Created By Zhangjilin 2024/10/29
+ */
 @SpringBootApplication
 @ComponentScan("com.zjl")
 @MapperScan("com.zjl.train.member.mapper")

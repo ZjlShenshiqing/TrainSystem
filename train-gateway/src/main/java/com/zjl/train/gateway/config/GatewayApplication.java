@@ -7,6 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
+/**
+ * 网关模块启动类
+ * Created By Zhangjilin 2024/10/29
+ */
 @SpringBootApplication
 @ComponentScan("com.zjl")
 public class GatewayApplication {

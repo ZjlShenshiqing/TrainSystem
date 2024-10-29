@@ -19,6 +19,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * AOP方法调用日志
+ * Created By Zhangjilin 2024/10/29
+ */
 @Aspect
 @Component
 public class LogAspect {
