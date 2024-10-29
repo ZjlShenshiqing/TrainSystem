@@ -19,6 +19,7 @@
         <module>train-member</module>
         <module>train-common</module>
         <module>train-gateway</module>
+        <module>generator</module>
     </modules>
 
     <properties>
