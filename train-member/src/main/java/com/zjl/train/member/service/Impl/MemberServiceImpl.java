@@ -1,6 +1,8 @@
 package com.zjl.train.member.service.Impl;
 
 import cn.hutool.core.collection.CollUtil;
+import com.zjl.train.common.exception.BusinessException;
+import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.member.entity.Member;
 import com.zjl.train.member.entity.MemberExample;
 import com.zjl.train.member.mapper.MemberMapper;
@@ -42,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
         // 判断list是否为空
         if (CollUtil.isNotEmpty(list)) {
             // return list.get(0).getId();
-            throw new RuntimeException("手机号已被注册！");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
