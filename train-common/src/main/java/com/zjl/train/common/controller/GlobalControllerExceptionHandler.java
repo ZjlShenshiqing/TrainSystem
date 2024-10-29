@@ -2,6 +2,7 @@ package com.zjl.train.common.controller;
 
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.resp.CommonResp;
+import org.springframework.validation.BindException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -44,6 +45,23 @@ public class GlobalControllerExceptionHandler {
         LOG.error("业务异常：{}", e.getBusinessExceptionEnum().getDescription());
         commonResp.setSuccess(false);
         commonResp.setMessage(e.getBusinessExceptionEnum().getDescription());
+        return commonResp;
+    }
+
+    /**
+     * 校验异常统一处理
+     * Created By Zhangjilin 2024/10/29
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    public CommonResp exceptionHandler(BindException e) {
+        CommonResp commonResp = new CommonResp();
+        LOG.error("校验异常：{}", e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
+        commonResp.setSuccess(false);
+        // 打印注解上面的参数
+        commonResp.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         return commonResp;
     }
 }

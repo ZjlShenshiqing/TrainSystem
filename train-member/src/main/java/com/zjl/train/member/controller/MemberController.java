@@ -4,8 +4,12 @@ package com.zjl.train.member.controller;
 import com.zjl.train.common.resp.CommonResp;
 import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 会员模块控制层
@@ -27,7 +31,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public CommonResp<Long> register(MemberRegisterReq request) {
+    public CommonResp<Long> register(@Valid MemberRegisterReq request) {
         Long register = memberService.register(request);
         return new CommonResp<>(register);
     }
