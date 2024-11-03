@@ -8,6 +8,7 @@ import com.zjl.train.member.entity.MemberExample;
 import com.zjl.train.member.mapper.MemberMapper;
 import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.service.MemberService;
+import com.zjl.train.member.util.SnowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
         }
 
         Member member = new Member();
-        member.setId(System.currentTimeMillis());
+        member.setId(SnowUtil.getSnowflakeNextId());
         member.setMobile(mobile);
         memberMapper.insert(member);
         return member.getId();
