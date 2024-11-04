@@ -2,8 +2,10 @@ package com.zjl.train.member.controller;
 
 
 import com.zjl.train.common.resp.CommonResp;
+import com.zjl.train.member.req.MemberLoginReq;
 import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.req.MemberSendCodeReq;
+import com.zjl.train.member.response.MemberLoginResponse;
 import com.zjl.train.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,17 @@ public class MemberController {
     public CommonResp<Long> sendCode(@Valid MemberSendCodeReq request) {
         memberService.sendCode(request);
         return new CommonResp<>();
+    }
+
+    /**
+     * 登录
+     * Create By Zhangjilin 2024/11/04
+     * @param request
+     * @return
+     */
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResponse> sendCode(@Valid MemberLoginReq request) {
+        MemberLoginResponse login = memberService.login(request);
+        return new CommonResp<>(login);
     }
 }

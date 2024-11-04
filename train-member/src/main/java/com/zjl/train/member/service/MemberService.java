@@ -1,7 +1,9 @@
 package com.zjl.train.member.service;
 
+import com.zjl.train.member.req.MemberLoginReq;
 import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.req.MemberSendCodeReq;
+import com.zjl.train.member.response.MemberLoginResponse;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,4 +25,10 @@ public interface MemberService {
      * 发送短信验证码方法
      */
     void sendCode(MemberSendCodeReq request);
+
+    /**
+     * Create By Zhangjilin 2024/11/04
+     * 登录方法
+     */
+    MemberLoginResponse login(MemberLoginReq request);
 }

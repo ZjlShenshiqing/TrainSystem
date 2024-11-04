@@ -3,35 +3,21 @@
   <a-row class="login" type="flex" justify="center" align="middle">
     <a-col :xs="22" :sm="18" :md="12" :lg="8" class="login-main">
       <h1 class="login-title"><rocket-two-tone />&nbsp;12306售票系统</h1>
-      <a-form
-          :model="loginForm"
-          name="basic"
-          autocomplete="off"
-      >
-        <a-form-item
-            label=""
-            name="mobile"
-            :rules="[{ required: true, message: '请输入手机号!' }]"
-        >
-          <a-input v-model:value="loginForm.mobile" placeholder="请输入您的手机号"/>
+      <a-form :model="loginForm" name="basic" autocomplete="off">
+        <a-form-item label="" name="mobile" :rules="[{ required: true, message: '请输入手机号!' }]">
+          <a-input v-model:value="loginForm.mobile" placeholder="请输入您的手机号" class="input-field" />
         </a-form-item>
 
-        <a-form-item
-            label=""
-            name="code"
-            :rules="[{ required: true, message: '请输入验证码!' }]"
-        >
-          <a-input v-model:value="loginForm.code" placeholder="请输入验证码">
-            <template #addonAfter>
-              <a @click="sendCode" class="get-code-button">获取验证码</a>
-            </template>
-          </a-input>
+        <a-form-item label="" name="code" :rules="[{ required: true, message: '请输入验证码!' }]">
+          <a-input-group compact>
+            <a-input v-model:value="loginForm.code" placeholder="请输入验证码" class="input-field code-input" style="width: 70%; border-top-left-radius: 20px; border-bottom-left-radius: 20px;" />
+            <a-button @click="sendCode" class="get-code-button" style="width: 30%; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">获取验证码</a-button>
+          </a-input-group>
         </a-form-item>
 
         <a-form-item>
           <a-button type="primary" block class="login-button" @click="login">登录</a-button>
         </a-form-item>
-
       </a-form>
     </a-col>
   </a-row>
@@ -41,7 +27,7 @@
 import { defineComponent, reactive } from 'vue';
 import axios from 'axios';
 import { notification } from 'ant-design-vue';
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 import store from "@/store";
 
 export default defineComponent({
@@ -73,13 +59,12 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({ description: '登录成功！' });
-          // 登录成功，跳到控台主页
           router.push("/welcome");
           store.commit("setMember", data.content);
         } else {
           notification.error({ description: data.message });
         }
-      })
+      });
     };
 
     return {
@@ -111,21 +96,39 @@ export default defineComponent({
   overflow: hidden;
 }
 
+.input-field {
+  border-radius: 20px;
+  height: 40px;
+  font-size: 16px;
+}
+
+.get-code-button {
+  height: 40px;
+  font-size: 16px;
+  color: #1890ff;
+  font-weight: 500;
+  transition: color 0.3s, background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f2f5;
+}
+
+.get-code-button:hover {
+  color: #40a9ff;
+  background-color: rgba(64, 169, 255, 0.1);
+}
+
 .login-button {
+  border-radius: 20px;
   transition: background-color 0.3s, transform 0.3s;
+  font-size: 16px;
+  height: 40px;
 }
 
 .login-button:hover {
   background-color: #40a9ff;
   transform: translateY(-2px);
-}
-
-.get-code-button {
-  transition: color 0.3s;
-}
-
-.get-code-button:hover {
-  color: #40a9ff;
 }
 
 .login {

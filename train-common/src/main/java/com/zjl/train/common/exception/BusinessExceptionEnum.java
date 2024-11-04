@@ -6,7 +6,11 @@ package com.zjl.train.common.exception;
  */
 public enum BusinessExceptionEnum {
 
-    MEMBER_MOBILE_EXIST("手机号已注册");
+    MEMBER_MOBILE_EXIST("手机号已注册"),
+    MEMBER_MOBILE_NOT_EXIST("请先获取短信验证码!"),
+    MEMBER_MOBILE_CODE_ERROR("验证码错误，请重新输入！"),
+    SMS_CODE_EXPIRED("验证码已过期，请重新获取"),
+    INVALID_SMS_CODE("验证码输入错误！");
 
     private String description;
 
