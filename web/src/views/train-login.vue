@@ -26,7 +26,7 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import axios from 'axios';
-import { notification } from 'ant-design-vue';
+import { notification } from 'ant-design-vue'; // 引入弹窗组件
 import { useRouter } from 'vue-router';
 import store from "@/store";
 

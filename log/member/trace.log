@@ -294,3 +294,27 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2024-11-05 12:58:41.148 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
 2024-11-05 12:58:41.162 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"content":{"id":1853637701102866432,"mobile":"13410591469"},"success":true}
 2024-11-05 12:58:41.162 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：101 ms -------------
+2024-11-05 15:15:51.962 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=57s292ms783µs100ns).
+2024-11-05 15:38:34.103 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m11s811ms55µs600ns).
+2024-11-05 15:51:01.104 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2m56s864ms405µs900ns).
+2024-11-05 16:03:14.727 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m2s498ms780µs100ns).
+2024-11-05 16:17:30.714 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=9m15s882ms388µs500ns).
+2024-11-05 16:53:13.709 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m12s635ms44µs200ns).
+2024-11-05 17:48:04.963 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m20s448ms939µs400ns).
+2024-11-05 17:57:56.438 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m51s360ms750µs300ns).
+2024-11-05 18:11:01.975 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m5s333ms788µs800ns).
+2024-11-05 18:30:57.514 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m25s248ms86µs900ns).
+2024-11-05 18:33:28.846 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
+2024-11-05 18:33:28.850 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-05 18:33:28.851 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-05 18:33:28.851 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
+2024-11-05 18:33:28.853 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-05 18:33:28.896 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-05 18:33:28.899 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
+2024-11-05 18:33:28.949 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
+2024-11-05 18:33:28.951 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-05 18:33:28.952 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
+2024-11-05 18:33:28.953 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
+2024-11-05 18:33:28.954 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: zr38
+2024-11-05 18:33:28.974 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
+2024-11-05 18:33:28.974 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：128 ms -------------
