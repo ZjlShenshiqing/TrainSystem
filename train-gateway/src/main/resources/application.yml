@@ -1,11 +1,21 @@
 server:
-  port: 8000
+  port: 8000  # 设置网关服务的端口号为8000
 
 spring:
   cloud:
     gateway:
       routes:
-        - id: member
-          uri: http://127.0.0.1:8001
+        - id: member  # 路由ID，用于标识这个路由规则
+          uri: http://127.0.0.1:8001  # 指定请求将转发到的目标URI（在这里是http://127.0.0.1:8001）
           predicates:
-            - Path=/member/**
+            - Path=/member/**  # 匹配路径为/member/**的请求，并应用此路由
+
+    # 全局跨域配置，允许跨域访问
+    globalcors:
+      cors-configurations:
+        '[/**]':  # 匹配所有路径
+          allowedOriginPatterns: "*"  # 允许所有来源的请求（'*' 表示不限制来源）
+          allowedHeaders: "*"  # 允许所有的请求头
+          allowedMethods: "*"  # 允许所有的HTTP方法（如GET, POST, PUT, DELETE等）
+          allowCredentials: true  # 允许请求中携带凭证（如Cookie、Authorization header等）
+          maxAge: 3600  # 设置预检请求的缓存时间（单位：秒），此处设置为1小时

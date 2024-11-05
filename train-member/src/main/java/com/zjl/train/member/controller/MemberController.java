@@ -9,10 +9,7 @@ import com.zjl.train.member.response.MemberLoginResponse;
 import com.zjl.train.member.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 会员模块控制层
@@ -52,7 +49,7 @@ public class MemberController {
      * @return
      */
     @PostMapping("/send-code")
-    public CommonResp<Long> sendCode(@Valid MemberSendCodeReq request) {
+    public CommonResp<Long> sendCode(@Valid @RequestBody MemberSendCodeReq request) {
         memberService.sendCode(request);
         return new CommonResp<>();
     }

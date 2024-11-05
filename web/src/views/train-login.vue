@@ -47,7 +47,7 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({ description: '发送验证码成功！' });
-          loginForm.code = "8888";
+          // loginForm.code = "8888";
         } else {
           notification.error({ description: data.message });
         }
