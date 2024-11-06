@@ -1,17 +1,19 @@
-2024-11-05 10:37:03.309 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m                  [0;39m 系统异常：
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:261)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:126)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:504)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1274)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1056)
+2024-11-06 13:05:53.263 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m                  [0;39m 系统异常：
+org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.zjl.train.common.resp.CommonResp<java.lang.Long> com.zjl.train.member.controller.MemberController.sendCode(com.zjl.train.member.req.MemberSendCodeReq)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:166)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:181)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:148)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:895)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:705)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
@@ -47,6 +49,3 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:12:48.294 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[手机号] 不能为空！
-2024-11-05 11:16:57.958 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[手机号] 不能为空！
-2024-11-05 11:17:31.275 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[短信验证码] 不能为空！

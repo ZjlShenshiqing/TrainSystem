@@ -1,19 +1,41 @@
-2024-11-05 09:39:20.392 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11h8m39s50ms665µs700ns).
-2024-11-05 09:46:04.067 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m13s648ms713µs200ns).
-2024-11-05 10:37:03.309 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m                  [0;39m 系统异常：
-org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:261)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:126)
-	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
-	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:504)
-	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1274)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1056)
+2024-11-06 09:48:38.312 INFO  io.lettuce.core.protocol.ConnectionWatchdog       :171  [32m                  [0;39m Reconnecting, last destination was 192.168.10.100/<unresolved>:6379
+2024-11-06 09:48:38.554 WARN  io.lettuce.core.protocol.ConnectionWatchdog       :105  [32m                  [0;39m Cannot reconnect to [192.168.10.100/<unresolved>:6379]: No route to host: no further information: /192.168.10.100:6379
+io.netty.channel.AbstractChannel$AnnotatedNoRouteToHostException: No route to host: no further information: /192.168.10.100:6379
+Caused by: java.net.NoRouteToHostException: No route to host: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-06 09:48:47.177 INFO  io.lettuce.core.protocol.ConnectionWatchdog       :171  [32m                  [0;39m Reconnecting, last destination was 192.168.10.100/<unresolved>:6379
+2024-11-06 09:48:47.206 INFO  io.lettuce.core.protocol.ReconnectionHandler      :174  [32m                  [0;39m Reconnected to 192.168.10.100/<unresolved>:6379
+2024-11-06 09:48:50.346 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15h6m27s740ms285µs400ns).
+2024-11-06 09:54:06.769 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2m16s364ms721µs800ns).
+2024-11-06 10:06:42.073 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=5m35s199ms190µs300ns).
+2024-11-06 13:05:53.263 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m                  [0;39m 系统异常：
+org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.zjl.train.common.resp.CommonResp<java.lang.Long> com.zjl.train.member.controller.MemberController.sendCode(com.zjl.train.member.req.MemberSendCodeReq)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:166)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:181)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:148)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:895)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:705)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
 	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
 	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
@@ -49,272 +71,85 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:842)
-2024-11-05 10:37:03.333 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2024-11-05 11:12:48.294 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[手机号] 不能为空！
-2024-11-05 11:12:48.297 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'memberSendCodeReq' on field 'mobile': rejected value [null]; codes [NotBlank.memberSendCodeReq.mobile,NotBlank.mobile,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberSendCodeReq.mobile,mobile]; arguments []; default message [mobile]]; default message [[手机号] 不能为空！]]
-2024-11-05 11:16:57.958 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[手机号] 不能为空！
-2024-11-05 11:16:57.959 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 1 errors<EOL>Field error in object 'memberSendCodeReq' on field 'mobile': rejected value [null]; codes [NotBlank.memberSendCodeReq.mobile,NotBlank.mobile,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberSendCodeReq.mobile,mobile]; arguments []; default message [mobile]]; default message [[手机号] 不能为空！]]
-2024-11-05 11:16:58.614 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-05 11:16:58.644 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:16:58.645 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
-2024-11-05 11:16:58.648 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-11-05 11:16:58.655 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:16:58.656 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-nioEventLoop-4-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/sun.nio.ch.WEPoll.wait(Native Method)
- java.base@17.0.12/sun.nio.ch.WEPollSelectorImpl.doSelect(WEPollSelectorImpl.java:111)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:146)
- app//io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:68)
- app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:879)
- app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:526)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:16:58.656 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-nioEventLoop-4-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/sun.nio.ch.WEPoll.wait(Native Method)
- java.base@17.0.12/sun.nio.ch.WEPollSelectorImpl.doSelect(WEPollSelectorImpl.java:111)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:146)
- app//io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:68)
- app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:879)
- app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:526)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:16:58.656 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-eventExecutorLoop-1-2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:506)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:3465)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3436)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1623)
- java.base@17.0.12/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435)
- app//io.netty.util.concurrent.SingleThreadEventExecutor.takeTask(SingleThreadEventExecutor.java:244)
- app//io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:64)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:16:58.657 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-eventExecutorLoop-1-3] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:506)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:3465)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3436)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1623)
- java.base@17.0.12/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435)
- app//io.netty.util.concurrent.SingleThreadEventExecutor.takeTask(SingleThreadEventExecutor.java:244)
- app//io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:64)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 11:16:58.659 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:16:58.661 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:16:58.668 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-1 - Shutdown initiated...
-2024-11-05 11:16:58.672 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-1 - Shutdown completed.
-2024-11-05 11:17:00.205 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 32008 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-05 11:17:00.206 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-05 11:17:00.353 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-05 11:17:00.353 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-05 11:17:00.354 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
-2024-11-05 11:17:00.381 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=9bc98284-97b0-38fd-b24e-1d52163781d2
-2024-11-05 11:17:00.457 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-05 11:17:00.458 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:17:00.458 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-05 11:17:00.459 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-05 11:17:00.481 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-05 11:17:00.481 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 272 ms
-2024-11-05 11:17:00.701 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-05 11:17:00.794 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-05 11:17:02.001 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 11:17:02.015 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:17:02.018 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-05 11:17:03.194 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 11:17:03.198 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.274 seconds (process running for 60479.294)
-2024-11-05 11:17:03.200 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
-2024-11-05 11:17:03.200 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-05 11:17:03.201 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-05 11:17:10.958 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
-2024-11-05 11:17:10.991 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 22448 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-05 11:17:10.992 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-05 11:17:11.019 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-05 11:17:11.019 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-05 11:17:11.413 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-05 11:17:11.415 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-05 11:17:11.432 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
-2024-11-05 11:17:11.554 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=9bc98284-97b0-38fd-b24e-1d52163781d2
-2024-11-05 11:17:12.072 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-05 11:17:12.080 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:17:12.081 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-05 11:17:12.081 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-05 11:17:12.135 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-05 11:17:12.135 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1115 ms
-2024-11-05 11:17:12.795 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-05 11:17:12.968 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-05 11:17:14.151 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 11:17:14.198 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-05 11:17:14.217 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-05 11:17:15.391 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 11:17:15.403 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 5.909 seconds (process running for 6.329)
-2024-11-05 11:17:15.405 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-05 11:17:15.406 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-05 11:17:20.797 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-05 11:17:20.798 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-05 11:17:20.799 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
-2024-11-05 11:17:20.899 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
-2024-11-05 11:17:20.899 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-05 11:17:20.900 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-05 11:17:20.900 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
-2024-11-05 11:17:20.939 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-05 11:17:20.973 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m                  [0;39m HikariPool-1 - Starting...
-2024-11-05 11:17:21.410 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m                  [0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@306417a2
-2024-11-05 11:17:21.411 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m                  [0;39m HikariPool-1 - Start completed.
-2024-11-05 11:17:21.417 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-05 11:17:21.432 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
-2024-11-05 11:17:21.484 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 0
-2024-11-05 11:17:21.501 INFO  com.zjl.train.member.config.MemberApplication     :86   [32m                  [0;39m 手机号不存在，则插入一条记录
-2024-11-05 11:17:21.524 DEBUG com.zjl.train.member.mapper.MemberMapper.insert   :137  [32m                  [0;39m ==>  Preparing: insert into member (id, mobile) values (?, ?)
-2024-11-05 11:17:21.524 DEBUG com.zjl.train.member.mapper.MemberMapper.insert   :137  [32m                  [0;39m ==> Parameters: 1853637701102866432(Long), 13410591469(String)
-2024-11-05 11:17:21.580 DEBUG com.zjl.train.member.mapper.MemberMapper.insert   :137  [32m                  [0;39m <==    Updates: 1
-2024-11-05 11:17:21.582 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: nvl2
-2024-11-05 11:17:21.914 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
-2024-11-05 11:17:21.914 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：1017 ms -------------
-2024-11-05 11:17:31.275 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :61   [32m                  [0;39m 校验异常：[短信验证码] 不能为空！
-2024-11-05 11:17:31.288 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.validation.BindException: org.springframework.validation.BeanPropertyBindingResult: 2 errors<EOL>Field error in object 'memberLoginReq' on field 'code': rejected value [null]; codes [NotBlank.memberLoginReq.code,NotBlank.code,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberLoginReq.code,code]; arguments []; default message [code]]; default message [[短信验证码] 不能为空！]<EOL>Field error in object 'memberLoginReq' on field 'mobile': rejected value [null]; codes [NotBlank.memberLoginReq.mobile,NotBlank.mobile,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [memberLoginReq.mobile,mobile]; arguments []; default message [mobile]]; default message [[手机号] 不能为空！]]
-2024-11-05 11:33:21.499 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m29s759ms739µs).
-2024-11-05 12:16:09.122 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=36m47s544ms944µs900ns).
-2024-11-05 12:51:59.879 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=30m50s681ms924µs).
-2024-11-05 12:58:18.270 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-05 12:58:18.286 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
-2024-11-05 12:58:18.287 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
-2024-11-05 12:58:18.288 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-11-05 12:58:18.291 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 12:58:18.291 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-nioEventLoop-4-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/sun.nio.ch.WEPoll.wait(Native Method)
- java.base@17.0.12/sun.nio.ch.WEPollSelectorImpl.doSelect(WEPollSelectorImpl.java:111)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:129)
- java.base@17.0.12/sun.nio.ch.SelectorImpl.select(SelectorImpl.java:146)
- app//io.netty.channel.nio.SelectedSelectionKeySetSelector.select(SelectedSelectionKeySetSelector.java:68)
- app//io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:879)
- app//io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:526)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 12:58:18.291 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [lettuce-eventExecutorLoop-1-1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.park(LockSupport.java:341)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode.block(AbstractQueuedSynchronizer.java:506)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.unmanagedBlock(ForkJoinPool.java:3465)
- java.base@17.0.12/java.util.concurrent.ForkJoinPool.managedBlock(ForkJoinPool.java:3436)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1623)
- java.base@17.0.12/java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:435)
- app//io.netty.util.concurrent.SingleThreadEventExecutor.takeTask(SingleThreadEventExecutor.java:244)
- app//io.netty.util.concurrent.DefaultEventExecutor.run(DefaultEventExecutor.java:64)
- app//io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
- app//io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
- app//io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-05 12:58:18.292 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
-2024-11-05 12:58:18.293 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
-2024-11-05 12:58:18.296 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-1 - Shutdown initiated...
-2024-11-05 12:58:18.298 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-1 - Shutdown completed.
-2024-11-05 12:58:19.669 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 22448 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-05 12:58:19.670 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-05 12:58:19.782 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-05 12:58:19.782 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-05 12:58:19.783 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 0 ms. Found 0 Redis repository interfaces.
-2024-11-05 12:58:19.807 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=9bc98284-97b0-38fd-b24e-1d52163781d2
-2024-11-05 12:58:19.860 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-05 12:58:19.862 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-05 12:58:19.862 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-05 12:58:19.862 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-05 12:58:19.879 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-05 12:58:19.879 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 208 ms
-2024-11-05 12:58:20.045 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-05 12:58:20.132 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-05 12:58:21.318 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 12:58:21.334 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-05 12:58:21.337 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-05 12:58:21.858 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-05 12:58:21.859 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-05 12:58:21.859 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 0 ms
-2024-11-05 12:58:21.870 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
-2024-11-05 12:58:21.871 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-05 12:58:21.871 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-05 12:58:21.871 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
-2024-11-05 12:58:21.872 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-05 12:58:21.876 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m                  [0;39m HikariPool-2 - Starting...
-2024-11-05 12:58:22.297 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m                  [0;39m HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4c1eb20d
-2024-11-05 12:58:22.297 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m                  [0;39m HikariPool-2 - Start completed.
-2024-11-05 12:58:22.297 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-05 12:58:22.298 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
-2024-11-05 12:58:22.345 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
-2024-11-05 12:58:22.346 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-05 12:58:22.348 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
-2024-11-05 12:58:22.349 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
-2024-11-05 12:58:22.350 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: 6vnq
-2024-11-05 12:58:22.390 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
-2024-11-05 12:58:22.390 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：520 ms -------------
-2024-11-05 12:58:22.697 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-05 12:58:22.700 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.24 seconds (process running for 6073.626)
-2024-11-05 12:58:22.701 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
-2024-11-05 12:58:22.701 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-05 12:58:22.702 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-05 12:58:41.061 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
-2024-11-05 12:58:41.061 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
-2024-11-05 12:58:41.062 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-05 12:58:41.062 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
-2024-11-05 12:58:41.062 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"code":"6vnq","mobile":"13410591469"}]
-2024-11-05 12:58:41.119 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-05 12:58:41.121 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
-2024-11-05 12:58:41.147 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
-2024-11-05 12:58:41.148 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-05 12:58:41.148 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
-2024-11-05 12:58:41.162 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"content":{"id":1853637701102866432,"mobile":"13410591469"},"success":true}
-2024-11-05 12:58:41.162 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：101 ms -------------
-2024-11-05 15:15:51.962 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=57s292ms783µs100ns).
-2024-11-05 15:38:34.103 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m11s811ms55µs600ns).
-2024-11-05 15:51:01.104 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2m56s864ms405µs900ns).
-2024-11-05 16:03:14.727 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m2s498ms780µs100ns).
-2024-11-05 16:17:30.714 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=9m15s882ms388µs500ns).
-2024-11-05 16:53:13.709 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m12s635ms44µs200ns).
-2024-11-05 17:48:04.963 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m20s448ms939µs400ns).
-2024-11-05 17:57:56.438 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m51s360ms750µs300ns).
-2024-11-05 18:11:01.975 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m5s333ms788µs800ns).
-2024-11-05 18:30:57.514 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m25s248ms86µs900ns).
-2024-11-05 18:33:28.846 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
-2024-11-05 18:33:28.850 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-05 18:33:28.851 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-05 18:33:28.851 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
-2024-11-05 18:33:28.853 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-05 18:33:28.896 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-05 18:33:28.899 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
-2024-11-05 18:33:28.949 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
-2024-11-05 18:33:28.951 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-05 18:33:28.952 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
-2024-11-05 18:33:28.953 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
-2024-11-05 18:33:28.954 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: zr38
-2024-11-05 18:33:28.974 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
-2024-11-05 18:33:28.974 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：128 ms -------------
+2024-11-06 13:05:53.277 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.zjl.train.common.resp.CommonResp<java.lang.Long> com.zjl.train.member.controller.MemberController.sendCode(com.zjl.train.member.req.MemberSendCodeReq)]
+2024-11-06 13:06:12.989 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m                  [0;39m 系统异常：
+org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.zjl.train.common.resp.CommonResp<java.lang.Long> com.zjl.train.member.controller.MemberController.sendCode(com.zjl.train.member.req.MemberSendCodeReq)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:166)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:136)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:181)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:148)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-06 13:06:12.991 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m                  [0;39m Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.zjl.train.common.resp.CommonResp<java.lang.Long> com.zjl.train.member.controller.MemberController.sendCode(com.zjl.train.member.req.MemberSendCodeReq)]
+2024-11-06 13:44:42.499 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2m52s876ms551µs900ns).
+2024-11-06 14:59:01.783 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
+2024-11-06 14:59:01.787 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-06 14:59:01.787 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-06 14:59:01.789 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
+2024-11-06 14:59:01.790 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-06 14:59:01.907 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-06 14:59:01.910 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
+2024-11-06 14:59:01.970 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
+2024-11-06 14:59:01.972 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-06 14:59:01.972 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
+2024-11-06 14:59:01.973 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
+2024-11-06 14:59:01.974 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: fg5o
+2024-11-06 14:59:01.987 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
+2024-11-06 14:59:01.987 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：204 ms -------------
+2024-11-06 14:59:07.122 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
+2024-11-06 14:59:07.123 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-06 14:59:07.123 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-06 14:59:07.124 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
+2024-11-06 14:59:07.124 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-06 14:59:07.194 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-06 14:59:07.195 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
+2024-11-06 14:59:07.233 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
+2024-11-06 14:59:07.233 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-06 14:59:07.233 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
+2024-11-06 14:59:07.233 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
+2024-11-06 14:59:07.234 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: w3mh
+2024-11-06 14:59:07.235 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
+2024-11-06 14:59:07.236 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：114 ms -------------

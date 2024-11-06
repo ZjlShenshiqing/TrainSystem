@@ -11,11 +11,11 @@ spring:
             - Path=/member/**  # 匹配路径为/member/**的请求，并应用此路由
 
     # 全局跨域配置，允许跨域访问
-    globalcors:
-      cors-configurations:
-        '[/**]':  # 匹配所有路径
-          allowedOriginPatterns: "*"  # 允许所有来源的请求（'*' 表示不限制来源）
-          allowedHeaders: "*"  # 允许所有的请求头
-          allowedMethods: "*"  # 允许所有的HTTP方法（如GET, POST, PUT, DELETE等）
-          allowCredentials: true  # 允许请求中携带凭证（如Cookie、Authorization header等）
-          maxAge: 3600  # 设置预检请求的缓存时间（单位：秒），此处设置为1小时
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:9001"  # Vue 项目访问的来源
+            allowedHeaders: "*"
+            allowedMethods: "*"
+            allowCredentials: true
+            maxAge: 3600
