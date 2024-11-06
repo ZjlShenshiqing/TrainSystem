@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.member.config.MemberApplication;
@@ -23,6 +24,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -141,6 +143,11 @@ public class MemberServiceImpl implements MemberService {
 
         // 验证通过，返回用户信息（头像，昵称）
         MemberLoginResponse memberLoginResponse = BeanUtil.copyProperties(memberFromDB, MemberLoginResponse.class);
+        Map<String, Object> map = BeanUtil.beanToMap(memberLoginResponse);
+        String key = "a7sD9f0G5hQ3jK1L!xZ@";  // 示例密钥
+        // 使用工具类生成token
+        String token = JWTUtil.createToken(map, key.getBytes());
+        memberLoginResponse.setToken(token);
         return memberLoginResponse;
     }
 

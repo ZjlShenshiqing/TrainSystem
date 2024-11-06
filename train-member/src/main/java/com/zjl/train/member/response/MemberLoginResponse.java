@@ -5,9 +5,20 @@ package com.zjl.train.member.response;
  * Created By Zhangjilin 2024/11/04
  */
 public class MemberLoginResponse {
+
     private Long id;
 
     private String mobile;
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;
@@ -27,13 +38,10 @@ public class MemberLoginResponse {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", mobile=").append(mobile);
-        sb.append("]");
-        return sb.toString();
+        return "MemberLoginResponse{" +
+                "id=" + id +
+                ", mobile='" + mobile + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
 }
