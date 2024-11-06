@@ -153,3 +153,29 @@ org.springframework.http.converter.HttpMessageNotReadableException: Required req
 2024-11-06 14:59:07.234 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: w3mh
 2024-11-06 14:59:07.235 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
 2024-11-06 14:59:07.236 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：114 ms -------------
+2024-11-06 16:01:12.313 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
+2024-11-06 16:01:12.315 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-06 16:01:12.316 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-06 16:01:12.316 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
+2024-11-06 16:01:12.317 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-06 16:01:12.384 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-06 16:01:12.385 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
+2024-11-06 16:01:12.425 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
+2024-11-06 16:01:12.426 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-06 16:01:12.426 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
+2024-11-06 16:01:12.427 INFO  com.zjl.train.member.config.MemberApplication     :92   [32m                  [0;39m 手机号存在，不插入记录
+2024-11-06 16:01:12.427 INFO  com.zjl.train.member.config.MemberApplication     :97   [32m                  [0;39m 生成短信验证码: dlvd
+2024-11-06 16:01:12.435 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"success":true}
+2024-11-06 16:01:12.435 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：123 ms -------------
+2024-11-06 16:01:26.830 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m                  [0;39m ------------- 开始 -------------
+2024-11-06 16:01:26.830 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m                  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
+2024-11-06 16:01:26.830 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m                  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-06 16:01:26.830 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m                  [0;39m 远程地址: 127.0.0.1
+2024-11-06 16:01:26.830 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m                  [0;39m 请求参数: [{"code":"dlvd","mobile":"13410591469"}]
+2024-11-06 16:01:26.893 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-06 16:01:26.893 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m ==> Parameters: 13410591469(String)
+2024-11-06 16:01:26.940 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==    Columns: id, mobile
+2024-11-06 16:01:26.941 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m                  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-06 16:01:26.941 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m                  [0;39m <==      Total: 1
+2024-11-06 16:01:26.948 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m                  [0;39m 返回结果: {"content":{"id":1853637701102866432,"mobile":"13410591469"},"success":true}
+2024-11-06 16:01:26.948 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m                  [0;39m ------------- 结束 耗时：118 ms -------------
