@@ -27,6 +27,7 @@
 import { defineComponent, reactive } from 'vue';
 import axios from 'axios';
 import { notification } from 'ant-design-vue'; // 引入弹窗组件
+// 实现路由跳转，需要用到全局路由组件
 import { useRouter } from 'vue-router';
 import store from "@/store";
 
@@ -59,7 +60,8 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({ description: '登录成功！' });
-          router.push("/welcome");
+          // 登录成功，跳转到控制台主页
+          router.push("/");
           store.commit("setMember", data.content);
         } else {
           notification.error({ description: data.message });
