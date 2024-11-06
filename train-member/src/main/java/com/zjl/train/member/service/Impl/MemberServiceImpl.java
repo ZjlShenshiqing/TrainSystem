@@ -4,9 +4,10 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.jwt.JWTUtil;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
+import com.zjl.train.common.util.JwtUtil;
+import com.zjl.train.common.util.SnowUtil;
 import com.zjl.train.member.config.MemberApplication;
 import com.zjl.train.member.entity.Member;
 import com.zjl.train.member.entity.MemberExample;
@@ -16,7 +17,6 @@ import com.zjl.train.member.req.MemberRegisterReq;
 import com.zjl.train.member.req.MemberSendCodeReq;
 import com.zjl.train.member.response.MemberLoginResponse;
 import com.zjl.train.member.service.MemberService;
-import com.zjl.train.member.util.SnowUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -143,10 +142,8 @@ public class MemberServiceImpl implements MemberService {
 
         // 验证通过，返回用户信息（头像，昵称）
         MemberLoginResponse memberLoginResponse = BeanUtil.copyProperties(memberFromDB, MemberLoginResponse.class);
-        Map<String, Object> map = BeanUtil.beanToMap(memberLoginResponse);
-        String key = "a7sD9f0G5hQ3jK1L!xZ@";  // 示例密钥
         // 使用工具类生成token
-        String token = JWTUtil.createToken(map, key.getBytes());
+        String token = JwtUtil.createToken(memberLoginResponse.getId(), memberLoginResponse.getMobile());
         memberLoginResponse.setToken(token);
         return memberLoginResponse;
     }

@@ -1,4 +1,4 @@
-package com.zjl.train.member.util;
+package com.zjl.train.common.util;
 
 import cn.hutool.core.util.IdUtil;
 
