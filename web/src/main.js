@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import Antd from 'ant-design-vue';
+import Antd, {notification} from 'ant-design-vue';
 import store from './store';
 import 'ant-design-vue/dist/antd.css';
 import * as Icons from '@ant-design/icons-vue';
@@ -11,7 +11,14 @@ import axios from "axios";
 axios.interceptors.request.use(
     function (config) {
         console.log("请求参数：", config); // 打印请求的配置信息
-        // 可以在这里添加 token 或者修改请求头
+        // 添加token
+        const token = store.state.member.token;
+        // 通过有值，就会通过判断
+        if (token) {
+            config.headers.token = token;
+            // config 是 Axios 在发送请求时的配置信息对象，其中包含请求的 URL、方法、请求头、请求参数等信息。
+            console.log("请求headers增加token", token);
+        }
         return config;
     },
     function (error) {
@@ -29,6 +36,17 @@ axios.interceptors.response.use(
     },
     function (error) {
         console.log("返回错误：", error); // 打印错误信息
+        // 针对401错误做特殊的处理
+        const response = error.response;
+        const status = response.status;
+        if (status == 401) {
+            console.log("未登录或超时，跳到登录页");
+            // 将token置空
+            store.commit("setMember", {});
+            // 弹窗，给用户提示
+            notification.error({ description: "未登录或超时" });
+            router.push('/login');
+        }
         return Promise.reject(error);
     }
 );
