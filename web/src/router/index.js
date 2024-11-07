@@ -26,6 +26,7 @@ const router = createRouter({
   routes
 })
 
+// Vue Router 路由守卫
 // 增加路由跳转拦截,url发生变化时，进行拦截
 router.beforeEach((to, from, next) => {
   // 要不要对meta.loginRequire属性做监控拦截
