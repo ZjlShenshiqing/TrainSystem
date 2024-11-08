@@ -7,7 +7,7 @@ import com.zjl.train.member.response.MemberLoginResponse;
 import org.springframework.stereotype.Service;
 
 /**
- * 服务层接口
+ * 会员服务层接口
  * Created By Zhangjilin 2024/10/29
  */
 @Service

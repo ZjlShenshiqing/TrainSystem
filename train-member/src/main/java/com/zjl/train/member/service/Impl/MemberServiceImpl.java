@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 服务层实现类
+ * 会员服务层实现类
  * Created By Zhangjilin 2024/10/29
  */
 @Service

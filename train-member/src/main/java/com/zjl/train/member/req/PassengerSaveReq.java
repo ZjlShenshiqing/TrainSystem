@@ -1,11 +1,12 @@
-package com.zjl.train.member.entity;
+package com.zjl.train.member.req;
 
 import java.util.Date;
 
 /**
- * Mybatis Generator 生成Passenger实体类 2024/11/08
+ * 新增，保存 封装请求参数的DTO
+ * Created By Zhangjilin 2024/11/08
  */
-public class Passenger {
+public class PassengerSaveReq {
     private Long id;
 
     private Long memberId;

@@ -1,6 +1,1 @@
-GET http://localhost:8001/member/hello
-Accept: application/json
-
-
-
-###
+### 改动：使用postman测试
