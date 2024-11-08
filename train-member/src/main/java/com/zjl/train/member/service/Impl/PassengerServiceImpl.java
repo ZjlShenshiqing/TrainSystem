@@ -2,6 +2,7 @@ package com.zjl.train.member.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import com.zjl.train.common.context.LoginMemberContext;
 import com.zjl.train.common.util.SnowUtil;
 import com.zjl.train.member.entity.Passenger;
 import com.zjl.train.member.mapper.PassengerMapper;
@@ -25,6 +26,7 @@ public class PassengerServiceImpl implements PassengerService {
         DateTime now = DateTime.now();
         // 将请求信息拷贝成实体类
         Passenger passenger = BeanUtil.copyProperties(request, Passenger.class);
+        passenger.setMemberId(LoginMemberContext.getId());
         passenger.setId(SnowUtil.getSnowflakeNextId());
         passenger.setCreateTime(now);
         passenger.setUpdateTime(now);

@@ -52,6 +52,7 @@ public class JwtUtil {
         return validate;
     }
 
+    // 从 JWT token 中提取用户数据或其他信息
     public static JSONObject getJSONObject(String token) {
         GlobalBouncyCastleProvider.setUseBouncyCastle(false);
         JWT jwt = JWTUtil.parseToken(token).setKey(key.getBytes());
