@@ -13,11 +13,16 @@ const routes = [
     meta: {
       loginRequire: true
     },
-    children: [{
-      path: 'welcome',
-      name: 'welcome',
-      component: () => import('../views/main/train-welcome.vue')
-    }]
+    children: [
+      {
+        path: 'welcome',
+        name: 'welcome',
+        component: () => import('../views/main/train-welcome.vue')
+      },
+      {
+        path: 'passenger',
+        component: () => import('../views/main/train-passenger.vue')
+      }]
   },
   {
     path: '', // 外层空路径配置
