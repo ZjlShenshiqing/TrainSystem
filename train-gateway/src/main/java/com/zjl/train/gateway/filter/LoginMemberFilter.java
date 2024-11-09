@@ -25,10 +25,10 @@ public class LoginMemberFilter implements Ordered, GlobalFilter {
         String path = exchange.getRequest().getURI().getPath();
 
         // 排除不需要拦截的请求
-        if (path.contains("/admin")
+        if (path.matches(".*/admin/.*")
                 || path.equals("/hello")
-                || path.contains("/member/member/login")
-                || path.contains("/member/member/send-code")) {
+                || path.matches(".*/member/.*/login")
+                || path.matches(".*/member/.*/send-code")) {
             LOG.info("不需要登录验证：{}", path);
             return chain.filter(exchange);
         } else {

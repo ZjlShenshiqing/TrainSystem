@@ -1,21 +1,25 @@
 server:
-  port: 8000  # 设置网关服务的端口号为8000
+  port: 8000  # 设置网关服务的端口号为 8000
 
 spring:
   cloud:
     gateway:
       routes:
-        - id: member  # 路由ID，用于标识这个路由规则
-          uri: http://127.0.0.1:8001  # 指定请求将转发到的目标URI（在这里是http://127.0.0.1:8001）
+        - id: member  # 路由 ID，用于标识这个路由规则
+          uri: http://127.0.0.1:8001  # 指定请求将转发到的目标 URI
           predicates:
-            - Path=/member/**  # 匹配路径为/member/**的请求，并应用此路由
+            - Path=/member/**  # 匹配路径为 /member/** 的请求，并应用此路由
 
-    # 全局跨域配置，允许跨域访问
+      # 全局跨域配置，允许跨域访问
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://localhost:9001"  # Vue 项目访问的来源
-            allowedHeaders: "*"
-            allowedMethods: "*"
-            allowCredentials: true
-            maxAge: 3600
+            allowed-origins:
+              - "http://localhost:9001"
+              - "http://localhost:9000"
+              - "http://192.168.10.8:9000"
+            allowed-headers: "*"
+            allowed-methods: "*"
+            allow-credentials: true
+            max-age: 3600
+

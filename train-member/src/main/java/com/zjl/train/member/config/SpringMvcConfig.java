@@ -14,22 +14,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class SpringMvcConfig implements WebMvcConfigurer {
-    @Resource
-    MemberInterceptor memberInterceptor;
 
     @Resource
-    LogInterceptor logInterceptor;
+    private MemberInterceptor memberInterceptor;
+
+    @Resource
+    private LogInterceptor logInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(logInterceptor).addPathPatterns("/**");
-
+        // 先注册 MemberInterceptor，再注册 LogInterceptor
         registry.addInterceptor(memberInterceptor)
-            .addPathPatterns("/**")
-            .excludePathPatterns(
-                    "/member/member/send-code",
-                    "member/member/login"
-            );
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        "/member/member/send-code",
+                        "/member/member/login",
+                        "/member/**/send-code",
+                        "/member/**/login"
+                );
+
+        registry.addInterceptor(logInterceptor).addPathPatterns("/**");
     }
 }

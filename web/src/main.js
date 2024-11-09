@@ -31,22 +31,31 @@ axios.interceptors.request.use(
 // 响应拦截器
 axios.interceptors.response.use(
     function (response) {
-        console.log("返回结果：", response); // 打印响应的结果
+        console.log("返回结果：", response); // 打印响应结果
         return response;
     },
     function (error) {
         console.log("返回错误：", error); // 打印错误信息
-        // 针对401错误做特殊的处理
-        const response = error.response;
-        const status = response.status;
-        if (status == 401) {
-            console.log("未登录或超时，跳到登录页");
-            // 将token置空
-            store.commit("setMember", {});
-            // 弹窗，给用户提示
-            notification.error({ description: "未登录或超时" });
-            router.push('/login');
+
+        // 检查 error.response 是否存在
+        if (error.response) {
+            const status = error.response.status;
+            console.log("错误状态码：", status);
+
+            // 处理 401 未登录或登录超时
+            if (status === 401) {
+                console.log("未登录或超时，跳到登录页");
+                store.commit("setMember", {}); // 清空用户信息
+                notification.error({ description: "未登录或登录超时" });
+                router.push('/login');
+            }
+        } else {
+            // 没有响应，可能是网络错误或服务器不可达
+            console.error("请求失败，没有收到服务器响应");
+            notification.error({ description: "网络错误，请检查您的网络连接" });
         }
+
+        // 返回错误信息
         return Promise.reject(error);
     }
 );

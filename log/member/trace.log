@@ -22,3 +22,455 @@
 2024-11-09 10:38:01.268 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 6.587 seconds (process running for 7.169)
 2024-11-09 10:38:01.270 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
 2024-11-09 10:38:01.270 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-09 12:22:24.035 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09 12:22:24.035 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
+2024-11-09 12:22:24.036 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
+2024-11-09 12:22:24.054 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m17311261440501qo  [0;39m 获取会员登录token：null
+2024-11-09 12:22:24.183 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m17311261440501qo  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:22:24.219 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17311261440501qo  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:22:31.269 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m17311261512696ib  [0;39m 获取会员登录token：null
+2024-11-09 12:22:31.270 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m17311261512696ib  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:22:31.272 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17311261512696ib  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:29:33.325 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m1731126573325zsq  [0;39m 获取会员登录token：null
+2024-11-09 12:29:33.326 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731126573325zsq  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:29:33.328 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731126573325zsq  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:31:17.896 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
+2024-11-09 12:31:17.928 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 25868 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-09 12:31:17.929 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-09 12:31:17.960 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-09 12:31:17.960 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-09 12:31:18.367 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-09 12:31:18.369 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-09 12:31:18.389 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-09 12:31:18.508 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=a31f80f3-4bde-3413-a507-2bbed1fc456c
+2024-11-09 12:31:19.006 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-09 12:31:19.013 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-09 12:31:19.013 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-09 12:31:19.013 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-09 12:31:19.057 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-09 12:31:19.057 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1096 ms
+2024-11-09 12:31:19.662 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-09 12:31:19.856 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-09 12:31:21.055 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-09 12:31:21.087 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-09 12:31:21.101 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-09 12:31:22.293 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-09 12:31:22.301 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 5.898 seconds (process running for 6.318)
+2024-11-09 12:31:22.303 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-09 12:31:22.304 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-09 12:31:30.621 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09 12:31:30.621 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
+2024-11-09 12:31:30.622 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
+2024-11-09 12:31:30.637 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m1731126690633eww  [0;39m 获取会员登录token：null
+2024-11-09 12:31:30.751 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731126690633eww  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:31:30.799 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731126690633eww  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:40:36.599 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m17311272365998vh  [0;39m 获取会员登录token：null
+2024-11-09 12:40:36.600 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m17311272365998vh  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:40:36.602 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17311272365998vh  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:41:43.854 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m1731127303854lqh  [0;39m 获取会员登录token：null
+2024-11-09 12:41:43.855 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731127303854lqh  [0;39m 系统异常：
+java.lang.IllegalArgumentException: Token String must be not blank!
+	at cn.hutool.core.lang.Assert.lambda$notBlank$5(Assert.java:340)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:319)
+	at cn.hutool.core.lang.Assert.notBlank(Assert.java:340)
+	at cn.hutool.jwt.JWT.parse(JWT.java:95)
+	at cn.hutool.jwt.JWT.<init>(JWT.java:85)
+	at cn.hutool.jwt.JWT.of(JWT.java:66)
+	at cn.hutool.jwt.JWTUtil.parseToken(JWTUtil.java:73)
+	at com.zjl.train.common.util.JwtUtil.getJSONObject(JwtUtil.java:58)
+	at com.zjl.train.common.Interceptor.MemberInterceptor.preHandle(MemberInterceptor.java:32)
+	at org.springframework.web.servlet.HandlerExecutionChain.applyPreHandle(HandlerExecutionChain.java:146)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1075)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2024-11-09 12:41:43.856 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731127303854lqh  [0;39m Resolved [java.lang.IllegalArgumentException: Token String must be not blank!]
+2024-11-09 12:49:24.969 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
+2024-11-09 12:49:25.000 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 26504 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-09 12:49:25.000 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-09 12:49:25.032 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-11-09 12:49:25.032 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-11-09 12:49:25.466 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-09 12:49:25.468 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-09 12:49:25.486 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-09 12:49:25.612 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=a31f80f3-4bde-3413-a507-2bbed1fc456c
+2024-11-09 12:49:26.104 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-09 12:49:26.112 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-09 12:49:26.112 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-09 12:49:26.112 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-09 12:49:26.155 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-09 12:49:26.156 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1123 ms
+2024-11-09 12:49:26.779 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-09 12:49:26.958 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-09 12:49:28.159 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-09 12:49:28.194 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-09 12:49:28.209 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-09 12:49:29.416 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-09 12:49:29.424 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 5.948 seconds (process running for 6.357)
+2024-11-09 12:49:29.426 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-09 12:49:29.427 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-09 12:49:32.256 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-09 12:49:32.256 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
+2024-11-09 12:49:32.257 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
+2024-11-09 12:49:32.409 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731127772272z0w  [0;39m ------------- 开始 -------------
+2024-11-09 12:49:32.409 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731127772272z0w  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-09 12:49:32.409 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731127772272z0w  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-09 12:49:32.410 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731127772272z0w  [0;39m 远程地址: 127.0.0.1
+2024-11-09 12:49:32.487 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731127772272z0w  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-09 12:49:32.548 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m1731127772272z0w  [0;39m HikariPool-1 - Starting...
+2024-11-09 12:49:34.051 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731127774050y68  [0;39m ------------- 开始 -------------
+2024-11-09 12:49:34.051 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731127774050y68  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-09 12:49:34.051 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731127774050y68  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-09 12:49:34.051 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731127774050y68  [0;39m 远程地址: 127.0.0.1
+2024-11-09 12:49:34.052 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731127774050y68  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-09 12:49:41.907 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m1731127772272z0w  [0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5832abfa
+2024-11-09 12:49:41.909 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m1731127772272z0w  [0;39m HikariPool-1 - Start completed.
+2024-11-09 12:49:41.916 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127772272z0w  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-09 12:49:41.935 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127772272z0w  [0;39m ==> Parameters: 13410591469(String)
+2024-11-09 12:49:41.963 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127772272z0w  [0;39m <==    Columns: id, mobile
+2024-11-09 12:49:41.964 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127772272z0w  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-09 12:49:41.965 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127772272z0w  [0;39m <==      Total: 1
+2024-11-09 12:49:41.970 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127774050y68  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-09 12:49:41.971 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127774050y68  [0;39m ==> Parameters: 13410591469(String)
+2024-11-09 12:49:41.973 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m1731127772272z0w  [0;39m 手机号存在，不插入记录
+2024-11-09 12:49:41.974 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m1731127772272z0w  [0;39m 生成短信验证码: iskk
+2024-11-09 12:49:41.982 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127774050y68  [0;39m <==    Columns: id, mobile
+2024-11-09 12:49:41.983 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127774050y68  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-09 12:49:41.983 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127774050y68  [0;39m <==      Total: 1
+2024-11-09 12:49:41.983 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m1731127774050y68  [0;39m 手机号存在，不插入记录
+2024-11-09 12:49:41.983 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m1731127774050y68  [0;39m 生成短信验证码: egeg
+2024-11-09 12:49:42.345 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731127772272z0w  [0;39m 返回结果: {"success":true}
+2024-11-09 12:49:42.345 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731127774050y68  [0;39m 返回结果: {"success":true}
+2024-11-09 12:49:42.345 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731127772272z0w  [0;39m ------------- 结束 耗时：9937 ms -------------
+2024-11-09 12:49:42.345 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731127774050y68  [0;39m ------------- 结束 耗时：8294 ms -------------
+2024-11-09 12:50:17.697 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m17311278176948uj  [0;39m ------------- 开始 -------------
+2024-11-09 12:50:17.697 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m17311278176948uj  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
+2024-11-09 12:50:17.698 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m17311278176948uj  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-09 12:50:17.698 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m17311278176948uj  [0;39m 远程地址: 127.0.0.1
+2024-11-09 12:50:17.699 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m17311278176948uj  [0;39m 请求参数: [{"code":"egeg","mobile":"13410591469"}]
+2024-11-09 12:50:17.713 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17311278176948uj  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-09 12:50:17.713 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17311278176948uj  [0;39m ==> Parameters: 13410591469(String)
+2024-11-09 12:50:17.727 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17311278176948uj  [0;39m <==    Columns: id, mobile
+2024-11-09 12:50:17.727 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17311278176948uj  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-09 12:50:17.727 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17311278176948uj  [0;39m <==      Total: 1
+2024-11-09 12:50:17.733 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :45   [32m17311278176948uj  [0;39m 业务异常：验证码输入错误！
+2024-11-09 12:50:17.735 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17311278176948uj  [0;39m Resolved [com.zjl.train.common.exception.BusinessException]
+2024-11-09 12:50:31.179 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731127831178hzs  [0;39m ------------- 开始 -------------
+2024-11-09 12:50:31.179 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731127831178hzs  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
+2024-11-09 12:50:31.179 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731127831178hzs  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-09 12:50:31.179 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731127831178hzs  [0;39m 远程地址: 127.0.0.1
+2024-11-09 12:50:31.179 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731127831178hzs  [0;39m 请求参数: [{"mobile":"13410591469"}]
+2024-11-09 12:50:31.194 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127831178hzs  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-09 12:50:31.195 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127831178hzs  [0;39m ==> Parameters: 13410591469(String)
+2024-11-09 12:50:31.207 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127831178hzs  [0;39m <==    Columns: id, mobile
+2024-11-09 12:50:31.207 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127831178hzs  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-09 12:50:31.207 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127831178hzs  [0;39m <==      Total: 1
+2024-11-09 12:50:31.207 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m1731127831178hzs  [0;39m 手机号存在，不插入记录
+2024-11-09 12:50:31.208 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m1731127831178hzs  [0;39m 生成短信验证码: jjly
+2024-11-09 12:50:31.210 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731127831178hzs  [0;39m 返回结果: {"success":true}
+2024-11-09 12:50:31.210 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731127831178hzs  [0;39m ------------- 结束 耗时：31 ms -------------
+2024-11-09 12:50:44.228 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731127844222emu  [0;39m ------------- 开始 -------------
+2024-11-09 12:50:44.231 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731127844222emu  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
+2024-11-09 12:50:44.234 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731127844222emu  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
+2024-11-09 12:50:44.235 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731127844222emu  [0;39m 远程地址: 127.0.0.1
+2024-11-09 12:50:44.238 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731127844222emu  [0;39m 请求参数: [{"code":"jjly","mobile":"13410591469"}]
+2024-11-09 12:50:44.265 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127844222emu  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
+2024-11-09 12:50:44.268 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127844222emu  [0;39m ==> Parameters: 13410591469(String)
+2024-11-09 12:50:44.287 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127844222emu  [0;39m <==    Columns: id, mobile
+2024-11-09 12:50:44.290 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731127844222emu  [0;39m <==        Row: 1853637701102866432, 13410591469
+2024-11-09 12:50:44.292 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731127844222emu  [0;39m <==      Total: 1
+2024-11-09 12:50:44.609 INFO  com.zjl.train.common.util.JwtUtil                 :26   [32m1731127844222emu  [0;39m 开始生成JWT token，id：1853637701102866432，mobile：13410591469
+2024-11-09 12:50:45.465 INFO  com.zjl.train.common.util.JwtUtil                 :41   [32m1731127844222emu  [0;39m 生成JWT token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzExMjc4NDUsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTE3MTA0NSwiaWF0IjoxNzMxMTI3ODQ1fQ.N6kHh9kekvq-9h7f-sldosLCEsGf8CovS7ztdYSBnlM
+2024-11-09 12:50:45.472 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731127844222emu  [0;39m 返回结果: {"content":{"id":1853637701102866432,"mobile":"13410591469","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzExMjc4NDUsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTE3MTA0NSwiaWF0IjoxNzMxMTI3ODQ1fQ.N6kHh9kekvq-9h7f-sldosLCEsGf8CovS7ztdYSBnlM"},"success":true}
+2024-11-09 12:50:45.473 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731127844222emu  [0;39m ------------- 结束 耗时：1245 ms -------------
