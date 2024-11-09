@@ -21,10 +21,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref, watch} from "vue";
+import router from "@/router";
 // 定义响应式变量 selectedKeys2 和 openKeys
-const selectedKeys2 = ref(['1']); // 默认选中项，例如 ['1']
+const selectedKeys2 = ref([]); // 默认选中项
 const openKeys = ref(['sub1']); // 默认展开项，例如 ['sub1']
+// 监视当前路由的变化，当有变化就执行当前回调函数
+watch(() => router.currentRoute.value.path, (newValue) => {
+  console.log('watch', newValue);
+  selectedKeys2.value = [];
+  selectedKeys2.value.push(newValue);
+},{immediate: true})
 </script>
 
 <style scoped>

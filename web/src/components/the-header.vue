@@ -28,12 +28,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import store from "@/store";
+import router from "@/router";
   // 使用 ref 定义响应式数据
-  const selectedKeys1 = ref(['1']); // 默认选中第一项
+  const selectedKeys1 = ref([]); // 默认选中第一项
   // 不用设置成响应式变量，因为不会修改member
   let member = store.state.member;
+  // 监视当前路由的变化，当有变化就执行当前回调函数
+  watch(() => router.currentRoute.value.path, (newValue) => {
+    console.log('watch', newValue);
+    selectedKeys1.value = [];
+    selectedKeys1.value.push(newValue);
+  },{immediate: true})
 </script>
 
 <style scoped>
