@@ -7,17 +7,21 @@ const routes = [
     component: () => import('../views/train-login.vue')
   },
   {
-    path: '/welcome',
-    name: 'welcome',
-    component: () => import('../views/train-welcome.vue')
-  },
-  {
     path: '/',
     name: 'main',
     component: () => import('../views/train-main.vue'),
     meta: {
       loginRequire: true
     },
+    children: [{
+      path: 'welcome',
+      name: 'welcome',
+      component: () => import('../views/main/train-welcome.vue')
+    }]
+  },
+  {
+    path: '', // 外层空路径配置
+    redirect: '/welcome'
   }
 ]
 

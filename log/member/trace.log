@@ -782,3 +782,4 @@ Caused by: java.lang.ClassNotFoundException: com.zjl.train.common.Interceptor.Me
 2024-11-08 23:09:20.939 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
 2024-11-08 23:09:20.947 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 6.161 seconds (process running for 8.37)
 2024-11-08 23:09:20.950 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-08 23:09:20.950 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello

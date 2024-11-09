@@ -1,23 +1,27 @@
 <template>
   <a-layout id="components-layout-demo-top-side-2">
+    <!-- Header 部分 -->
     <the-header-view></the-header-view>
+
+    <!-- 主布局部分 -->
     <a-layout>
+      <!-- Sider 侧边栏部分 -->
       <the-sider-view></the-sider-view>
+
+      <!-- 内容布局 -->
       <a-layout style="padding: 0 24px 24px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
+        <!-- 内容区域 -->
         <a-layout-content
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
         >
-          Content
+          <!-- 子路由页面会在这里渲染 -->
+          <router-view></router-view>
         </a-layout-content>
       </a-layout>
     </a-layout>
   </a-layout>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import TheHeaderView from "@/components/the-header.vue";
