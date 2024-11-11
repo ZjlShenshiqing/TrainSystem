@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjl.train.member.mapper.PassengerCustomizableMapper">
+    <select id="selectByMemberIdAndIdCard" resultType="com.zjl.train.member.entity.Passenger">
+        SELECT *
+        FROM passenger
+        WHERE member_id = #{memberId}
+          AND id_card = #{idCard}
+    </select>
+</mapper>

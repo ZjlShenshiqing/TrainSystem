@@ -2,8 +2,9 @@ package com.zjl.train.member.mapper;
 
 import com.zjl.train.member.entity.Passenger;
 import com.zjl.train.member.entity.PassengerExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PassengerMapper {
     long countByExample(PassengerExample example);

@@ -31,9 +31,9 @@ public class LoginMemberFilter implements Ordered, GlobalFilter {
                 || path.matches(".*/member/.*/send-code")) {
             LOG.info("不需要登录验证：{}", path);
             return chain.filter(exchange);
-        } else {
-            LOG.info("需要登录验证");
         }
+
+        LOG.info("需要登录验证");
 
         // 获取header的token参数
         String token = exchange.getRequest().getHeaders().getFirst("token");
@@ -49,12 +49,13 @@ public class LoginMemberFilter implements Ordered, GlobalFilter {
         boolean validate = JwtUtil.validate(token);
         if (validate) {
             LOG.info("token有效，放行该请求");
+            // 返回过滤器链继续处理请求
+            return chain.filter(exchange);
         } else {
             LOG.warn("token无效，请求被拦截");
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
-        return null;
     }
 
     /**

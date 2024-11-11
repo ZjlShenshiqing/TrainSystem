@@ -26,7 +26,7 @@ public class MemberInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 获取header的token参数
         String token = request.getHeader("token");
-        if (StrUtil.isBlank(token)) {
+        if (StrUtil.isNotBlank(token)) {
             LOG.info("获取会员登录token：{}", token);
             // 解析token，将token变成会员信息
             JSONObject loginMember = JwtUtil.getJSONObject(token);
