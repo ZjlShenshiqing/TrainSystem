@@ -1,10 +1,12 @@
 package com.zjl.train.member.req;
 
+import com.zjl.train.common.request.PageRequest;
+
 /**
  * 新增，保存 封装请求参数的DTO
  * Created By Zhangjilin 2024/11/08
  */
-public class PassengerQueryReq {
+public class PassengerQueryReq extends PageRequest {
 
     private Long memberId;
 

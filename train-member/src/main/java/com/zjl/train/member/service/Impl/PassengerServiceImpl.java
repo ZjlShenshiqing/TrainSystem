@@ -75,7 +75,7 @@ public class PassengerServiceImpl implements PassengerService {
             criteria.andMemberIdEqualTo(request.getMemberId());
         }
         // 分页：参数1：查第几页 ，参数2：查第几条
-        PageHelper.startPage(1,2);
+        PageHelper.startPage(request.getPage(),request.getSize());
         List<Passenger> passengers = passengerMapper.selectByExample(passengerExample);
         List<PassengerQueryResponse> queryResponses = BeanUtil.copyToList(passengers, PassengerQueryResponse.class);
         return queryResponses;
