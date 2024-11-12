@@ -1,934 +1,108 @@
-2024-11-11 10:02:59.705 WARN  com.zaxxer.hikari.pool.HikariPool                 :804  [32m                  [0;39m HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=11h38m41s161ms637µs800ns).
-2024-11-11 10:08:01.814 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
-2024-11-11 10:08:01.830 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
-2024-11-11 10:08:01.830 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
-2024-11-11 10:08:01.830 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-11-11 10:08:01.832 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-11 10:08:01.832 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
-2024-11-11 10:08:01.833 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
-2024-11-11 10:08:01.834 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-2 - Shutdown initiated...
-2024-11-11 10:08:01.835 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-2 - Shutdown completed.
-2024-11-11 10:08:03.110 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 17648 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 10:08:03.110 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 10:08:03.239 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 10:08:03.239 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 10:08:03.240 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
-2024-11-11 10:08:03.266 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=a45650b0-97ed-327d-bf8e-a16063e80def
-2024-11-11 10:08:03.329 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 10:08:03.330 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 10:08:03.330 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 10:08:03.330 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 10:08:03.356 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 10:08:03.356 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 244 ms
-2024-11-11 10:08:03.475 WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext:592  [32m                  [0;39m Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'passengerController': Unsatisfied dependency expressed through field 'passengerService': Error creating bean with name 'passengerServiceImpl' defined in file [D:\Train12306\TrainSystem\train-member\target\classes\com\zjl\train\member\service\Impl\PassengerServiceImpl.class]: Post-processing of merged bean definition failed
-2024-11-11 10:08:03.477 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
-2024-11-11 10:08:03.482 INFO  o.s.b.a.logging.ConditionEvaluationReportLogger   :82   [32m                  [0;39m 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-11-11 10:08:03.495 ERROR org.springframework.boot.SpringApplication        :820  [32m                  [0;39m Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'passengerController': Unsatisfied dependency expressed through field 'passengerService': Error creating bean with name 'passengerServiceImpl' defined in file [D:\Train12306\TrainSystem\train-member\target\classes\com\zjl\train\member\service\Impl\PassengerServiceImpl.class]: Post-processing of merged bean definition failed
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:712)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:692)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:127)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:481)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1397)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:961)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:915)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:432)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at com.zjl.train.member.config.MemberApplication.main(MemberApplication.java:24)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'passengerServiceImpl' defined in file [D:\Train12306\TrainSystem\train-member\target\classes\com\zjl\train\member\service\Impl\PassengerServiceImpl.class]: Post-processing of merged bean definition failed
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:576)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1405)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1325)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:709)
-	... 23 common frames omitted
-Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.zjl.train.member.service.Impl.PassengerServiceImpl] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@4acf3bf5]
-	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:740)
-	at org.springframework.util.ReflectionUtils.doWithLocalFields(ReflectionUtils.java:672)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.buildResourceMetadata(CommonAnnotationBeanPostProcessor.java:340)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.findResourceMetadata(CommonAnnotationBeanPostProcessor.java:321)
-	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessMergedBeanDefinition(CommonAnnotationBeanPostProcessor.java:277)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyMergedBeanDefinitionPostProcessors(AbstractAutowireCapableBeanFactory.java:1082)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:573)
-	... 32 common frames omitted
-Caused by: java.lang.NoClassDefFoundError: com/zjl/train/member/mapper/PassengerMapper
-	at java.base/java.lang.Class.getDeclaredFields0(Native Method)
-	at java.base/java.lang.Class.privateGetDeclaredFields(Class.java:3297)
-	at java.base/java.lang.Class.getDeclaredFields(Class.java:2371)
-	at org.springframework.util.ReflectionUtils.getDeclaredFields(ReflectionUtils.java:735)
-	... 38 common frames omitted
-Caused by: java.lang.ClassNotFoundException: com.zjl.train.member.mapper.PassengerMapper
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:467)
-	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-	... 42 common frames omitted
-2024-11-11 18:09:45.462 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 17648 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 18:09:45.463 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 18:09:45.638 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 18:09:45.638 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 18:09:45.640 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
-2024-11-11 18:09:45.668 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
-2024-11-11 18:09:45.745 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 18:09:45.749 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:09:45.749 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 18:09:45.749 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 18:09:45.769 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 18:09:45.769 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 301 ms
-2024-11-11 18:09:45.974 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-11 18:09:46.068 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-11 18:09:47.247 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:09:47.276 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:09:47.283 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-11 18:09:48.599 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:09:48.604 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.406 seconds (process running for 71564.071)
-2024-11-11 18:09:48.606 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
-2024-11-11 18:09:48.606 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-11 18:09:48.606 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-11 18:09:55.528 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-11 18:09:55.528 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-11 18:09:55.528 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 0 ms
-2024-11-11 18:09:55.543 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m17313197955291z0  [0;39m ------------- 开始 -------------
-2024-11-11 18:09:55.544 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m17313197955291z0  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-11 18:09:55.544 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m17313197955291z0  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-11 18:09:55.544 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m17313197955291z0  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:09:55.546 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m17313197955291z0  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-11 18:09:55.577 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m17313197955291z0  [0;39m HikariPool-3 - Starting...
-2024-11-11 18:10:00.379 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731319800378rd2  [0;39m ------------- 开始 -------------
-2024-11-11 18:10:00.379 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731319800378rd2  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-11 18:10:00.379 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731319800378rd2  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-11 18:10:00.379 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731319800378rd2  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:10:00.379 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731319800378rd2  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-11 18:10:05.006 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m17313197955291z0  [0;39m HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7fded075
-2024-11-11 18:10:05.006 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m17313197955291z0  [0;39m HikariPool-3 - Start completed.
-2024-11-11 18:10:05.006 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313197955291z0  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-11 18:10:05.008 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313197955291z0  [0;39m ==> Parameters: 13410591469(String)
-2024-11-11 18:10:05.044 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17313197955291z0  [0;39m <==    Columns: id, mobile
-2024-11-11 18:10:05.044 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17313197955291z0  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-11 18:10:05.045 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313197955291z0  [0;39m <==      Total: 1
-2024-11-11 18:10:05.045 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319800378rd2  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-11 18:10:05.045 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319800378rd2  [0;39m ==> Parameters: 13410591469(String)
-2024-11-11 18:10:05.046 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m17313197955291z0  [0;39m 手机号存在，不插入记录
-2024-11-11 18:10:05.046 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m17313197955291z0  [0;39m 生成短信验证码: a0ff
-2024-11-11 18:10:05.073 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319800378rd2  [0;39m <==    Columns: id, mobile
-2024-11-11 18:10:05.073 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319800378rd2  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-11 18:10:05.073 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319800378rd2  [0;39m <==      Total: 1
-2024-11-11 18:10:05.073 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m1731319800378rd2  [0;39m 手机号存在，不插入记录
-2024-11-11 18:10:05.073 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m1731319800378rd2  [0;39m 生成短信验证码: myk4
-2024-11-11 18:10:05.390 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731319800378rd2  [0;39m 返回结果: {"success":true}
-2024-11-11 18:10:05.390 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m17313197955291z0  [0;39m 返回结果: {"success":true}
-2024-11-11 18:10:05.390 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731319800378rd2  [0;39m ------------- 结束 耗时：5011 ms -------------
-2024-11-11 18:10:05.390 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m17313197955291z0  [0;39m ------------- 结束 耗时：9847 ms -------------
-2024-11-11 18:10:16.600 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m17313198165977e1  [0;39m ------------- 开始 -------------
-2024-11-11 18:10:16.600 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m17313198165977e1  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
-2024-11-11 18:10:16.600 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m17313198165977e1  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-11 18:10:16.600 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m17313198165977e1  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:10:16.601 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m17313198165977e1  [0;39m 请求参数: [{"code":"myk4","mobile":"13410591469"}]
-2024-11-11 18:10:16.637 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313198165977e1  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-11 18:10:16.638 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313198165977e1  [0;39m ==> Parameters: 13410591469(String)
-2024-11-11 18:10:16.668 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17313198165977e1  [0;39m <==    Columns: id, mobile
-2024-11-11 18:10:16.668 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m17313198165977e1  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-11 18:10:16.668 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m17313198165977e1  [0;39m <==      Total: 1
-2024-11-11 18:10:16.674 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :45   [32m17313198165977e1  [0;39m 业务异常：验证码输入错误！
-2024-11-11 18:10:16.675 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17313198165977e1  [0;39m Resolved [com.zjl.train.common.exception.BusinessException]
-2024-11-11 18:10:18.433 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731319818432ida  [0;39m ------------- 开始 -------------
-2024-11-11 18:10:18.433 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731319818432ida  [0;39m 请求地址: http://127.0.0.1:8001/member/member/send-code POST
-2024-11-11 18:10:18.434 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731319818432ida  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-11 18:10:18.434 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731319818432ida  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:10:18.434 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731319818432ida  [0;39m 请求参数: [{"mobile":"13410591469"}]
-2024-11-11 18:10:18.466 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319818432ida  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-11 18:10:18.467 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319818432ida  [0;39m ==> Parameters: 13410591469(String)
-2024-11-11 18:10:18.502 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319818432ida  [0;39m <==    Columns: id, mobile
-2024-11-11 18:10:18.503 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319818432ida  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-11 18:10:18.503 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319818432ida  [0;39m <==      Total: 1
-2024-11-11 18:10:18.503 INFO  com.zjl.train.member.config.MemberApplication     :93   [32m1731319818432ida  [0;39m 手机号存在，不插入记录
-2024-11-11 18:10:18.503 INFO  com.zjl.train.member.config.MemberApplication     :98   [32m1731319818432ida  [0;39m 生成短信验证码: 4tyb
-2024-11-11 18:10:18.505 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731319818432ida  [0;39m 返回结果: {"success":true}
-2024-11-11 18:10:18.505 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731319818432ida  [0;39m ------------- 结束 耗时：72 ms -------------
-2024-11-11 18:10:30.930 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731319830930jxu  [0;39m ------------- 开始 -------------
-2024-11-11 18:10:30.931 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731319830930jxu  [0;39m 请求地址: http://127.0.0.1:8001/member/member/login POST
-2024-11-11 18:10:30.931 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731319830930jxu  [0;39m 类名方法: com.zjl.train.member.controller.MemberController.sendCode
-2024-11-11 18:10:30.931 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731319830930jxu  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:10:30.931 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731319830930jxu  [0;39m 请求参数: [{"code":"4tyb","mobile":"13410591469"}]
-2024-11-11 18:10:30.970 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319830930jxu  [0;39m ==>  Preparing: select id, mobile from member WHERE ( mobile = ? )
-2024-11-11 18:10:30.971 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319830930jxu  [0;39m ==> Parameters: 13410591469(String)
-2024-11-11 18:10:30.999 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319830930jxu  [0;39m <==    Columns: id, mobile
-2024-11-11 18:10:30.999 TRACE c.z.t.member.mapper.MemberMapper.selectByExample  :143  [32m1731319830930jxu  [0;39m <==        Row: 1853637701102866432, 13410591469
-2024-11-11 18:10:30.999 DEBUG c.z.t.member.mapper.MemberMapper.selectByExample  :137  [32m1731319830930jxu  [0;39m <==      Total: 1
-2024-11-11 18:10:31.004 INFO  com.zjl.train.common.util.JwtUtil                 :26   [32m1731319830930jxu  [0;39m 开始生成JWT token，id：1853637701102866432，mobile：13410591469
-2024-11-11 18:10:31.012 INFO  com.zjl.train.common.util.JwtUtil                 :41   [32m1731319830930jxu  [0;39m 生成JWT token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:10:31.013 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731319830930jxu  [0;39m 返回结果: {"content":{"id":1853637701102866432,"mobile":"13410591469","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM"},"success":true}
-2024-11-11 18:10:31.013 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731319830930jxu  [0;39m ------------- 结束 耗时：83 ms -------------
-2024-11-11 18:10:53.485 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m                  [0;39m 获取会员登录token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:10:53.485 INFO  com.zjl.train.common.util.JwtUtil                 :63   [32m                  [0;39m 根据token获取原始内容：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:10:53.485 INFO  com.zjl.train.common.context.LoginMemberContext   :33   [32m                  [0;39m 当前登录会员：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:10:53.489 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731319853486d6i  [0;39m ------------- 开始 -------------
-2024-11-11 18:10:53.489 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731319853486d6i  [0;39m 请求地址: http://127.0.0.1:8001/member/passenger/save POST
-2024-11-11 18:10:53.489 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731319853486d6i  [0;39m 类名方法: com.zjl.train.member.controller.PassengerController.savePassenger
-2024-11-11 18:10:53.489 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731319853486d6i  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:10:53.490 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731319853486d6i  [0;39m 请求参数: [{"idCard":"440388888888888888","name":"张济霖","type":"1"}]
-2024-11-11 18:10:53.538 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731319853486d6i  [0;39m ==>  Preparing: SELECT * FROM passenger WHERE member_id = ? AND id_card = ?
-2024-11-11 18:10:53.539 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731319853486d6i  [0;39m ==> Parameters: 1853637701102866432(Long), 440388888888888888(String)
-2024-11-11 18:10:53.587 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731319853486d6i  [0;39m <==    Columns: id, member_id, name, id_card, type, create_time, update_time
-2024-11-11 18:10:53.587 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731319853486d6i  [0;39m <==        Row: 1855617281451757568, 1853637701102866432, 张济霖, 440388888888888888, 1, 2024-11-10 22:23:30.172, 2024-11-10 22:23:30.172
-2024-11-11 18:10:53.588 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731319853486d6i  [0;39m <==      Total: 1
-2024-11-11 18:10:53.588 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731319853486d6i  [0;39m ==>  Preparing: update passenger set member_id = ?, `name` = ?, id_card = ?, `type` = ?, create_time = ?, update_time = ? where id = ?
-2024-11-11 18:10:53.589 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731319853486d6i  [0;39m ==> Parameters: 1853637701102866432(Long), 张济霖(String), null, 1(String), null, 2024-11-11 18:10:53.49(Timestamp), 1855617281451757568(Long)
-2024-11-11 18:10:53.648 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731319853486d6i  [0;39m 系统异常：
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]
-### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline
-### The error occurred while setting parameters
-### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?
-### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-; Column 'id_card' cannot be null
-	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
-	at jdk.proxy2/jdk.proxy2.$Proxy87.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy7/jdk.proxy7.$Proxy131.updateByPrimaryKey(Unknown Source)
-	at com.zjl.train.member.service.Impl.PassengerServiceImpl.save(PassengerServiceImpl.java:55)
-	at com.zjl.train.member.controller.PassengerController.savePassenger(PassengerController.java:26)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)
-	at com.zjl.train.common.aspect.LogAspect.doAround(LogAspect.java:87)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:633)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:623)
-	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703)
-	at com.zjl.train.member.controller.PassengerController$$SpringCGLIB$$0.savePassenger(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at jdk.internal.reflect.GeneratedMethodAccessor28.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at jdk.proxy4/jdk.proxy4.$Proxy121.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:64)
-	at jdk.proxy2/jdk.proxy2.$Proxy119.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
-	... 85 common frames omitted
-2024-11-11 18:10:53.650 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731319853486d6i  [0;39m Resolved [org.springframework.dao.DataIntegrityViolationException: <EOL><EOL>### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL><EOL>### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]<EOL><EOL>### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?<EOL><EOL>### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL>; Column 'id_card' cannot be null]
-2024-11-11 18:13:48.483 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m                  [0;39m 获取会员登录token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:13:48.484 INFO  com.zjl.train.common.util.JwtUtil                 :63   [32m                  [0;39m 根据token获取原始内容：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:13:48.484 INFO  com.zjl.train.common.context.LoginMemberContext   :33   [32m                  [0;39m 当前登录会员：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:13:48.485 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731320028484toq  [0;39m ------------- 开始 -------------
-2024-11-11 18:13:48.485 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731320028484toq  [0;39m 请求地址: http://127.0.0.1:8001/member/passenger/save POST
-2024-11-11 18:13:48.485 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731320028484toq  [0;39m 类名方法: com.zjl.train.member.controller.PassengerController.savePassenger
-2024-11-11 18:13:48.485 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731320028484toq  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:13:48.486 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731320028484toq  [0;39m 请求参数: [{"idCard":"44037689766","name":"张济霖","type":"1"}]
-2024-11-11 18:13:48.522 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320028484toq  [0;39m ==>  Preparing: SELECT * FROM passenger WHERE member_id = ? AND id_card = ?
-2024-11-11 18:13:48.522 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320028484toq  [0;39m ==> Parameters: 1853637701102866432(Long), 44037689766(String)
-2024-11-11 18:13:48.582 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320028484toq  [0;39m <==    Columns: id, member_id, name, id_card, type, create_time, update_time
-2024-11-11 18:13:48.582 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320028484toq  [0;39m <==        Row: 1855605932185227264, 1853637701102866432, 张济霖, 44037689766, 1, 2024-11-10 21:38:24.381, 2024-11-10 21:38:24.381
-2024-11-11 18:13:48.582 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320028484toq  [0;39m <==      Total: 1
-2024-11-11 18:13:48.583 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320028484toq  [0;39m ==>  Preparing: update passenger set member_id = ?, `name` = ?, id_card = ?, `type` = ?, create_time = ?, update_time = ? where id = ?
-2024-11-11 18:13:48.583 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320028484toq  [0;39m ==> Parameters: 1853637701102866432(Long), 张济霖(String), null, 1(String), null, 2024-11-11 18:13:48.486(Timestamp), 1855605932185227264(Long)
-2024-11-11 18:13:48.655 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731320028484toq  [0;39m 系统异常：
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]
-### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline
-### The error occurred while setting parameters
-### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?
-### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-; Column 'id_card' cannot be null
-	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
-	at jdk.proxy2/jdk.proxy2.$Proxy87.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy7/jdk.proxy7.$Proxy131.updateByPrimaryKey(Unknown Source)
-	at com.zjl.train.member.service.Impl.PassengerServiceImpl.save(PassengerServiceImpl.java:55)
-	at com.zjl.train.member.controller.PassengerController.savePassenger(PassengerController.java:26)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)
-	at com.zjl.train.common.aspect.LogAspect.doAround(LogAspect.java:87)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:633)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:623)
-	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703)
-	at com.zjl.train.member.controller.PassengerController$$SpringCGLIB$$0.savePassenger(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at jdk.internal.reflect.GeneratedMethodAccessor28.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at jdk.proxy4/jdk.proxy4.$Proxy121.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:64)
-	at jdk.proxy2/jdk.proxy2.$Proxy119.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
-	... 85 common frames omitted
-2024-11-11 18:13:48.658 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731320028484toq  [0;39m Resolved [org.springframework.dao.DataIntegrityViolationException: <EOL><EOL>### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL><EOL>### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]<EOL><EOL>### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?<EOL><EOL>### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL>; Column 'id_card' cannot be null]
-2024-11-11 18:17:56.479 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-3 - Shutdown initiated...
-2024-11-11 18:17:56.481 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-3 - Shutdown completed.
-2024-11-11 18:18:03.953 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
-2024-11-11 18:18:03.986 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 30764 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 18:18:03.987 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 18:18:04.017 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-11 18:18:04.017 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-11 18:18:04.464 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 18:18:04.466 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 18:18:04.486 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
-2024-11-11 18:18:04.639 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
-2024-11-11 18:18:05.212 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 18:18:05.220 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:18:05.221 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 18:18:05.221 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 18:18:05.279 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 18:18:05.279 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1260 ms
-2024-11-11 18:18:05.944 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-11 18:18:06.118 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-11 18:18:07.307 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:18:07.348 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:18:07.362 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-11 18:18:08.639 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:18:08.647 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 6.227 seconds (process running for 6.682)
-2024-11-11 18:18:08.650 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-11 18:18:08.650 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-11 18:18:10.340 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-11 18:18:10.340 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-11 18:18:10.341 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
-2024-11-11 18:18:10.358 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m                  [0;39m 获取会员登录token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:18:10.563 INFO  com.zjl.train.common.util.JwtUtil                 :63   [32m                  [0;39m 根据token获取原始内容：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:18:10.567 INFO  com.zjl.train.common.context.LoginMemberContext   :33   [32m                  [0;39m 当前登录会员：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:18:10.692 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m17313202906030m8  [0;39m ------------- 开始 -------------
-2024-11-11 18:18:10.693 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m17313202906030m8  [0;39m 请求地址: http://127.0.0.1:8001/member/passenger/save POST
-2024-11-11 18:18:10.693 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m17313202906030m8  [0;39m 类名方法: com.zjl.train.member.controller.PassengerController.savePassenger
-2024-11-11 18:18:10.693 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m17313202906030m8  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:18:10.738 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m17313202906030m8  [0;39m 请求参数: [{"idCard":"44037689766","name":"张济霖","type":"1"}]
-2024-11-11 18:18:10.758 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m17313202906030m8  [0;39m HikariPool-1 - Starting...
-2024-11-11 18:18:11.183 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m17313202906030m8  [0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b137b4d
-2024-11-11 18:18:11.184 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m17313202906030m8  [0;39m HikariPool-1 - Start completed.
-2024-11-11 18:18:11.192 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m17313202906030m8  [0;39m ==>  Preparing: SELECT * FROM passenger WHERE member_id = ? AND id_card = ?
-2024-11-11 18:18:11.217 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m17313202906030m8  [0;39m ==> Parameters: 1853637701102866432(Long), 44037689766(String)
-2024-11-11 18:18:11.274 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m17313202906030m8  [0;39m <==    Columns: id, member_id, name, id_card, type, create_time, update_time
-2024-11-11 18:18:11.275 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m17313202906030m8  [0;39m <==        Row: 1855605932185227264, 1853637701102866432, 张济霖, 44037689766, 1, 2024-11-10 21:38:24.381, 2024-11-10 21:38:24.381
-2024-11-11 18:18:11.276 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m17313202906030m8  [0;39m <==      Total: 1
-2024-11-11 18:18:11.281 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m17313202906030m8  [0;39m ==>  Preparing: update passenger set member_id = ?, `name` = ?, id_card = ?, `type` = ?, create_time = ?, update_time = ? where id = ?
-2024-11-11 18:18:11.281 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m17313202906030m8  [0;39m ==> Parameters: 1853637701102866432(Long), 张济霖(String), null, 1(String), null, 2024-11-11 18:18:10.739(Timestamp), 1855605932185227264(Long)
-2024-11-11 18:18:11.427 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m17313202906030m8  [0;39m 系统异常：
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]
-### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline
-### The error occurred while setting parameters
-### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?
-### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-; Column 'id_card' cannot be null
-	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
-	at jdk.proxy2/jdk.proxy2.$Proxy87.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy3/jdk.proxy3.$Proxy89.updateByPrimaryKey(Unknown Source)
-	at com.zjl.train.member.service.Impl.PassengerServiceImpl.save(PassengerServiceImpl.java:55)
-	at com.zjl.train.member.controller.PassengerController.savePassenger(PassengerController.java:26)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)
-	at com.zjl.train.common.aspect.LogAspect.doAround(LogAspect.java:87)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:633)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:623)
-	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703)
-	at com.zjl.train.member.controller.PassengerController$$SpringCGLIB$$0.savePassenger(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at jdk.proxy4/jdk.proxy4.$Proxy122.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:64)
-	at jdk.proxy2/jdk.proxy2.$Proxy120.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
-	... 85 common frames omitted
-2024-11-11 18:18:11.456 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m17313202906030m8  [0;39m Resolved [org.springframework.dao.DataIntegrityViolationException: <EOL><EOL>### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL><EOL>### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]<EOL><EOL>### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?<EOL><EOL>### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL>; Column 'id_card' cannot be null]
-2024-11-11 18:19:32.900 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-1 - Shutdown initiated...
-2024-11-11 18:19:32.907 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-1 - Shutdown completed.
-2024-11-11 18:19:36.991 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
-2024-11-11 18:19:37.018 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 33900 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 18:19:37.019 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 18:19:37.048 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-11 18:19:37.048 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-11 18:19:37.475 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 18:19:37.477 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 18:19:37.496 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
-2024-11-11 18:19:37.627 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
-2024-11-11 18:19:38.109 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 18:19:38.116 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:19:38.116 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 18:19:38.117 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 18:19:38.162 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 18:19:38.163 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1114 ms
-2024-11-11 18:19:38.744 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-11 18:19:38.906 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-11 18:19:40.098 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:19:40.131 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:19:40.144 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-11 18:19:41.356 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:19:41.364 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 5.922 seconds (process running for 6.315)
-2024-11-11 18:19:41.366 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-11 18:19:41.367 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-11 18:20:06.110 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-11 18:20:06.111 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-11 18:20:06.112 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
-2024-11-11 18:20:06.126 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m                  [0;39m 获取会员登录token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:20:06.252 INFO  com.zjl.train.common.util.JwtUtil                 :63   [32m                  [0;39m 根据token获取原始内容：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:20:06.254 INFO  com.zjl.train.common.context.LoginMemberContext   :33   [32m                  [0;39m 当前登录会员：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:20:06.359 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731320406276w7c  [0;39m ------------- 开始 -------------
-2024-11-11 18:20:06.360 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731320406276w7c  [0;39m 请求地址: http://127.0.0.1:8001/member/passenger/save POST
-2024-11-11 18:20:06.360 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731320406276w7c  [0;39m 类名方法: com.zjl.train.member.controller.PassengerController.savePassenger
-2024-11-11 18:20:06.360 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731320406276w7c  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:20:06.398 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731320406276w7c  [0;39m 请求参数: [{"idCard":"44037689766","name":"张济霖","type":"1"}]
-2024-11-11 18:20:06.414 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m1731320406276w7c  [0;39m HikariPool-1 - Starting...
-2024-11-11 18:20:06.844 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m1731320406276w7c  [0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7e7271c4
-2024-11-11 18:20:06.845 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m1731320406276w7c  [0;39m HikariPool-1 - Start completed.
-2024-11-11 18:20:06.852 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320406276w7c  [0;39m ==>  Preparing: SELECT * FROM passenger WHERE member_id = ? AND id_card = ?
-2024-11-11 18:20:06.867 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320406276w7c  [0;39m ==> Parameters: 1853637701102866432(Long), 44037689766(String)
-2024-11-11 18:20:06.927 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320406276w7c  [0;39m <==    Columns: id, member_id, name, id_card, type, create_time, update_time
-2024-11-11 18:20:06.928 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320406276w7c  [0;39m <==        Row: 1855605932185227264, 1853637701102866432, 张济霖, 44037689766, 1, 2024-11-10 21:38:24.381, 2024-11-10 21:38:24.381
-2024-11-11 18:20:06.929 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320406276w7c  [0;39m <==      Total: 1
-2024-11-11 18:20:06.934 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320406276w7c  [0;39m ==>  Preparing: update passenger set member_id = ?, `name` = ?, id_card = ?, `type` = ?, create_time = ?, update_time = ? where id = ?
-2024-11-11 18:20:06.935 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320406276w7c  [0;39m ==> Parameters: 1853637701102866432(Long), 44037689766(String), null, 1(String), null, 2024-11-11 18:20:06.399(Timestamp), 1855605932185227264(Long)
-2024-11-11 18:20:07.030 ERROR c.z.t.c.c.GlobalControllerExceptionHandler        :31   [32m1731320406276w7c  [0;39m 系统异常：
-org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]
-### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline
-### The error occurred while setting parameters
-### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?
-### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-; Column 'id_card' cannot be null
-	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
-	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
-	at jdk.proxy2/jdk.proxy2.$Proxy87.update(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:288)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:145)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy3/jdk.proxy3.$Proxy89.updateByPrimaryKey(Unknown Source)
-	at com.zjl.train.member.service.Impl.PassengerServiceImpl.save(PassengerServiceImpl.java:56)
-	at com.zjl.train.member.controller.PassengerController.savePassenger(PassengerController.java:26)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:58)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89)
-	at com.zjl.train.common.aspect.LogAspect.doAround(LogAspect.java:87)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:633)
-	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:623)
-	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:752)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:703)
-	at com.zjl.train.member.controller.PassengerController$$SpringCGLIB$$0.savePassenger(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1080)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:973)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:906)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:880)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1739)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
-	at jdk.proxy4/jdk.proxy4.$Proxy122.execute(Unknown Source)
-	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
-	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
-	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
-	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
-	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:64)
-	at jdk.proxy2/jdk.proxy2.$Proxy120.update(Unknown Source)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:194)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
-	... 85 common frames omitted
-2024-11-11 18:20:07.049 WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver   :207  [32m1731320406276w7c  [0;39m Resolved [org.springframework.dao.DataIntegrityViolationException: <EOL><EOL>### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL><EOL>### The error may exist in file [D:\Train12306\TrainSystem\train-member\target\classes\mapper\PassengerMapper.xml]<EOL><EOL>### The error may involve com.zjl.train.member.mapper.PassengerMapper.updateByPrimaryKey-Inline<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: update passenger     set member_id = ?,       `name` = ?,       id_card = ?,       `type` = ?,       create_time = ?,       update_time = ?     where id = ?<EOL><EOL>### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'id_card' cannot be null<EOL>; Column 'id_card' cannot be null]
-2024-11-11 18:20:30.458 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-1 - Shutdown initiated...
-2024-11-11 18:20:30.462 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-1 - Shutdown completed.
-2024-11-11 18:20:34.689 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 8.0.0.Final
-2024-11-11 18:20:34.721 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 18:20:34.722 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 18:20:34.754 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-11-11 18:20:34.754 INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor :250  [32m                  [0;39m For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-11-11 18:20:35.173 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 18:20:35.175 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 18:20:35.193 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
-2024-11-11 18:20:35.328 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
-2024-11-11 18:20:35.826 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 18:20:35.833 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:20:35.834 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 18:20:35.835 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 18:20:35.880 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 18:20:35.880 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1125 ms
-2024-11-11 18:20:36.503 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-11 18:20:36.666 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-11 18:20:37.856 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:20:37.897 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:20:37.911 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-11 18:20:39.094 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:20:39.102 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 5.899 seconds (process running for 6.281)
-2024-11-11 18:20:39.104 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-11 18:20:39.104 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
-2024-11-11 18:20:43.368 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-11 18:20:43.369 INFO  org.springframework.web.servlet.DispatcherServlet :525  [32m                  [0;39m Initializing Servlet 'dispatcherServlet'
-2024-11-11 18:20:43.370 INFO  org.springframework.web.servlet.DispatcherServlet :547  [32m                  [0;39m Completed initialization in 1 ms
-2024-11-11 18:20:43.384 INFO  com.zjl.train.common.context.LoginMemberContext   :30   [32m                  [0;39m 获取会员登录token：eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MzEzMTk4MzEsIm1vYmlsZSI6IjEzNDEwNTkxNDY5IiwiaWQiOjE4NTM2Mzc3MDExMDI4NjY0MzIsImV4cCI6MTczMTM2MzAzMSwiaWF0IjoxNzMxMzE5ODMxfQ.6yckskPxHZyDLkdWWlhtujldZqOjyvRZR_qSKLUv9iM
-2024-11-11 18:20:43.518 INFO  com.zjl.train.common.util.JwtUtil                 :63   [32m                  [0;39m 根据token获取原始内容：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:20:43.521 INFO  com.zjl.train.common.context.LoginMemberContext   :33   [32m                  [0;39m 当前登录会员：{"mobile":"13410591469","id":1853637701102866432}
-2024-11-11 18:20:43.629 INFO  com.zjl.train.common.aspect.LogAspect             :56   [32m1731320443542i5v  [0;39m ------------- 开始 -------------
-2024-11-11 18:20:43.629 INFO  com.zjl.train.common.aspect.LogAspect             :57   [32m1731320443542i5v  [0;39m 请求地址: http://127.0.0.1:8001/member/passenger/save POST
-2024-11-11 18:20:43.630 INFO  com.zjl.train.common.aspect.LogAspect             :58   [32m1731320443542i5v  [0;39m 类名方法: com.zjl.train.member.controller.PassengerController.savePassenger
-2024-11-11 18:20:43.630 INFO  com.zjl.train.common.aspect.LogAspect             :59   [32m1731320443542i5v  [0;39m 远程地址: 127.0.0.1
-2024-11-11 18:20:43.667 INFO  com.zjl.train.common.aspect.LogAspect             :81   [32m1731320443542i5v  [0;39m 请求参数: [{"idCard":"44037689766","name":"张济霖","type":"1"}]
-2024-11-11 18:20:43.683 INFO  com.zaxxer.hikari.HikariDataSource                :110  [32m1731320443542i5v  [0;39m HikariPool-1 - Starting...
-2024-11-11 18:20:44.136 INFO  com.zaxxer.hikari.pool.HikariPool                 :565  [32m1731320443542i5v  [0;39m HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b137b4d
-2024-11-11 18:20:44.138 INFO  com.zaxxer.hikari.HikariDataSource                :123  [32m1731320443542i5v  [0;39m HikariPool-1 - Start completed.
-2024-11-11 18:20:44.144 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320443542i5v  [0;39m ==>  Preparing: SELECT * FROM passenger WHERE member_id = ? AND id_card = ?
-2024-11-11 18:20:44.163 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320443542i5v  [0;39m ==> Parameters: 1853637701102866432(Long), 44037689766(String)
-2024-11-11 18:20:44.210 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320443542i5v  [0;39m <==    Columns: id, member_id, name, id_card, type, create_time, update_time
-2024-11-11 18:20:44.211 TRACE c.z.t.m.m.P.selectByMemberIdAndIdCard             :143  [32m1731320443542i5v  [0;39m <==        Row: 1855605932185227264, 1853637701102866432, 张济霖, 44037689766, 1, 2024-11-10 21:38:24.381, 2024-11-10 21:38:24.381
-2024-11-11 18:20:44.212 DEBUG c.z.t.m.m.P.selectByMemberIdAndIdCard             :137  [32m1731320443542i5v  [0;39m <==      Total: 1
-2024-11-11 18:20:44.217 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320443542i5v  [0;39m ==>  Preparing: update passenger set member_id = ?, `name` = ?, id_card = ?, `type` = ?, create_time = ?, update_time = ? where id = ?
-2024-11-11 18:20:44.218 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320443542i5v  [0;39m ==> Parameters: 1853637701102866432(Long), 张济霖(String), 44037689766(String), 1(String), null, 2024-11-11 18:20:43.668(Timestamp), 1855605932185227264(Long)
-2024-11-11 18:20:44.295 DEBUG c.z.t.m.mapper.PassengerMapper.updateByPrimaryKey :137  [32m1731320443542i5v  [0;39m <==    Updates: 1
-2024-11-11 18:20:44.296 INFO  com.zjl.train.common.aspect.LogAspect             :93   [32m1731320443542i5v  [0;39m 返回结果: {"success":true}
-2024-11-11 18:20:44.297 INFO  com.zjl.train.common.aspect.LogAspect             :94   [32m1731320443542i5v  [0;39m ------------- 结束 耗时：669 ms -------------
-2024-11-11 18:23:20.288 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-11-11 18:23:20.303 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:23:20.304 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
-2024-11-11 18:23:20.305 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Destroying Spring FrameworkServlet 'dispatcherServlet'
-2024-11-11 18:23:20.306 WARN  org.apache.catalina.loader.WebappClassLoaderBase  :173  [32m                  [0;39m The web application [member] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2024-11-11 18:23:20.307 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:23:20.308 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:23:20.310 INFO  com.zaxxer.hikari.HikariDataSource                :350  [32m                  [0;39m HikariPool-1 - Shutdown initiated...
-2024-11-11 18:23:20.315 INFO  com.zaxxer.hikari.HikariDataSource                :352  [32m                  [0;39m HikariPool-1 - Shutdown completed.
-2024-11-11 18:23:21.592 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
-2024-11-11 18:23:21.592 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
-2024-11-11 18:23:21.708 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
-2024-11-11 18:23:21.708 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-11-11 18:23:21.710 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
-2024-11-11 18:23:21.733 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
-2024-11-11 18:23:21.785 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
-2024-11-11 18:23:21.786 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:23:21.786 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
-2024-11-11 18:23:21.786 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
-2024-11-11 18:23:21.805 INFO  o.a.c.c.C.[Tomcat].[localhost].[/member]          :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
-2024-11-11 18:23:21.806 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 212 ms
-2024-11-11 18:23:21.995 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
-2024-11-11 18:23:22.084 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
-2024-11-11 18:23:23.279 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:23:23.292 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
-2024-11-11 18:23:23.295 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
-2024-11-11 18:23:24.488 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
-2024-11-11 18:23:24.492 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.129 seconds (process running for 171.671)
-2024-11-11 18:23:24.494 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
-2024-11-11 18:23:24.494 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
-2024-11-11 18:23:24.494 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-12 20:26:11.042 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2024-11-12 20:26:11.103 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:26:11.104 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-11-12 20:26:11.114 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:26:11.116 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:26:12.524 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-12 20:26:12.524 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-12 20:26:12.641 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-12 20:26:12.641 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-12 20:26:12.642 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-11-12 20:26:12.665 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=ab97a937-4a29-36de-a7ea-a5e0c6cedf09
+2024-11-12 20:26:12.736 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-12 20:26:12.736 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:26:12.736 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-12 20:26:12.736 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-12 20:26:12.757 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-12 20:26:12.758 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 233 ms
+2024-11-12 20:26:12.967 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-12 20:26:13.069 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-12 20:26:14.313 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:26:14.324 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:26:14.327 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-12 20:26:15.554 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:26:15.557 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.29 seconds (process running for 93959.629)
+2024-11-12 20:26:15.558 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-11-12 20:26:15.559 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-12 20:26:15.559 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-12 20:29:40.509 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 4 class path changes (4 additions, 0 deletions, 0 modifications)
+2024-11-12 20:29:40.524 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:29:40.524 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-11-12 20:29:40.526 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:29:40.527 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:29:41.777 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-12 20:29:41.787 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-12 20:29:41.905 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-12 20:29:41.905 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-12 20:29:41.906 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-11-12 20:29:41.929 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
+2024-11-12 20:29:41.993 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-12 20:29:41.993 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:29:41.994 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-12 20:29:41.994 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-12 20:29:42.014 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-12 20:29:42.014 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 224 ms
+2024-11-12 20:29:42.203 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-12 20:29:42.283 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-12 20:29:43.464 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:29:43.476 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:29:43.479 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-12 20:29:44.674 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:29:44.677 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.107 seconds (process running for 94168.749)
+2024-11-12 20:29:44.677 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-11-12 20:29:44.678 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-12 20:29:44.678 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-12 20:30:49.623 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-11-12 20:30:49.641 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:30:49.641 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-11-12 20:30:49.642 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:30:49.643 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:30:50.897 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-12 20:30:50.898 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-12 20:30:50.995 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-12 20:30:50.995 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-12 20:30:50.996 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 0 ms. Found 0 Redis repository interfaces.
+2024-11-12 20:30:51.014 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
+2024-11-12 20:30:51.064 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-12 20:30:51.064 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:30:51.064 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-12 20:30:51.064 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-12 20:30:51.082 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-12 20:30:51.082 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 183 ms
+2024-11-12 20:30:51.242 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-12 20:30:51.330 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-12 20:30:52.526 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:30:52.540 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:30:52.543 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-12 20:30:53.724 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:30:53.728 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.043 seconds (process running for 94237.8)
+2024-11-12 20:30:53.729 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-11-12 20:30:53.729 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-12 20:30:53.729 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello
+2024-11-12 20:31:45.425 INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener:211  [32m                  [0;39m Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-11-12 20:31:45.448 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Pausing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:31:45.449 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Stopping service [Tomcat]
+2024-11-12 20:31:45.450 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Stopping ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:31:45.451 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Destroying ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:31:46.882 INFO  com.zjl.train.member.config.MemberApplication     :51   [32m                  [0;39m Starting MemberApplication using Java 17.0.12 with PID 4172 (D:\Train12306\TrainSystem\train-member\target\classes started by zjl in D:\Train12306\TrainSystem)
+2024-11-12 20:31:46.882 INFO  com.zjl.train.member.config.MemberApplication     :630  [32m                  [0;39m No active profile set, falling back to 1 default profile: "default"
+2024-11-12 20:31:47.009 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :294  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-12 20:31:47.009 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :138  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-12 20:31:47.010 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :208  [32m                  [0;39m Finished Spring Data repository scanning in 1 ms. Found 0 Redis repository interfaces.
+2024-11-12 20:31:47.043 INFO  o.springframework.cloud.context.scope.GenericScope:282  [32m                  [0;39m BeanFactory id=6e012034-9a05-3a77-8276-be7986f146fc
+2024-11-12 20:31:47.112 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :114  [32m                  [0;39m Tomcat initialized with port(s): 8001 (http)
+2024-11-12 20:31:47.112 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:31:47.112 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2024-11-12 20:31:47.112 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-11-12 20:31:47.135 INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/member]        :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2024-11-12 20:31:47.135 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :291  [32m                  [0;39m Root WebApplicationContext: initialization completed in 252 ms
+2024-11-12 20:31:47.396 WARN  o.s.core.LocalVariableTableParameterNameDiscoverer:123  [32m                  [0;39m Using deprecated '-debug' fallback for parameter name resolution. Compile the affected code with '-parameters' instead or avoid its introspection: com.github.pagehelper.autoconfigure.PageHelperStandardProperties
+2024-11-12 20:31:47.524 INFO  o.s.b.d.autoconfigure.OptionalLiveReloadServer    :59   [32m                  [0;39m LiveReload server is running on port 35729
+2024-11-12 20:31:48.838 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:31:48.849 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8001"]
+2024-11-12 20:31:48.852 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :226  [32m                  [0;39m Tomcat started on port(s): 8001 (http) with context path '/member'
+2024-11-12 20:31:50.062 INFO  org.springframework.cloud.commons.util.InetUtils  :170  [32m                  [0;39m Cannot determine local hostname
+2024-11-12 20:31:50.066 INFO  com.zjl.train.member.config.MemberApplication     :57   [32m                  [0;39m Started MemberApplication in 4.56 seconds (process running for 94294.138)
+2024-11-12 20:31:50.066 INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener :63   [32m                  [0;39m Condition evaluation unchanged
+2024-11-12 20:31:50.066 INFO  com.zjl.train.member.config.MemberApplication     :25   [32m                  [0;39m 启动成功！
+2024-11-12 20:31:50.067 INFO  com.zjl.train.member.config.MemberApplication     :26   [32m                  [0;39m 测试地址：	http://127.0.0.1:8001/member/hello

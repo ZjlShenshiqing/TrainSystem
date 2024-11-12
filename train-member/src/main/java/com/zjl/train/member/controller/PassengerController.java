@@ -1,14 +1,16 @@
 package com.zjl.train.member.controller;
 
+import com.zjl.train.common.context.LoginMemberContext;
 import com.zjl.train.common.resp.CommonResp;
+import com.zjl.train.member.req.PassengerQueryReq;
 import com.zjl.train.member.req.PassengerSaveReq;
+import com.zjl.train.member.response.PassengerQueryResponse;
 import com.zjl.train.member.service.PassengerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 乘车人模块控制层
@@ -25,5 +27,12 @@ public class PassengerController {
     public CommonResp<Object> savePassenger(@Valid @RequestBody PassengerSaveReq req) {
         passengerService.save(req);
         return new CommonResp<>();
+    }
+
+    @GetMapping("/query-list")
+    public CommonResp<List<PassengerQueryResponse>> queryPassengerList(@Valid PassengerQueryReq req) {
+        req.setMemberId(LoginMemberContext.getId());
+        List<PassengerQueryResponse> passergerList = passengerService.queryList(req);
+        return new CommonResp<>(passergerList);
     }
 }

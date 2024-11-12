@@ -2,15 +2,21 @@ package com.zjl.train.member.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.util.ObjectUtil;
 import com.zjl.train.common.context.LoginMemberContext;
 import com.zjl.train.common.util.SnowUtil;
 import com.zjl.train.member.entity.Passenger;
+import com.zjl.train.member.entity.PassengerExample;
 import com.zjl.train.member.mapper.PassengerCustomizableMapper;
 import com.zjl.train.member.mapper.PassengerMapper;
+import com.zjl.train.member.req.PassengerQueryReq;
 import com.zjl.train.member.req.PassengerSaveReq;
+import com.zjl.train.member.response.PassengerQueryResponse;
 import com.zjl.train.member.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 乘车人服务层实现类
@@ -55,6 +61,21 @@ public class PassengerServiceImpl implements PassengerService {
             existingPassenger.setUpdateTime(now);
             passengerMapper.updateByPrimaryKey(existingPassenger);
         }
+    }
+
+    @Override
+    public List<PassengerQueryResponse> queryList(PassengerQueryReq request) {
+        // 查询条件类
+        PassengerExample passengerExample = new PassengerExample();
+        // 创造条件，会重复用到，所以需要提取出来
+        PassengerExample.Criteria criteria = passengerExample.createCriteria();
+        if (ObjectUtil.isNotNull(request.getMemberId())) {
+            // 创建一个查询条件：where memberId...
+            criteria.andMemberIdEqualTo(request.getMemberId());
+        }
+        List<Passenger> passengers = passengerMapper.selectByExample(passengerExample);
+        List<PassengerQueryResponse> queryResponses = BeanUtil.copyToList(passengers, PassengerQueryResponse.class);
+        return queryResponses;
     }
 
 }
