@@ -3,6 +3,7 @@ package com.zjl.train.member.service.Impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
 import com.zjl.train.common.context.LoginMemberContext;
 import com.zjl.train.common.util.SnowUtil;
 import com.zjl.train.member.entity.Passenger;
@@ -73,9 +74,10 @@ public class PassengerServiceImpl implements PassengerService {
             // 创建一个查询条件：where memberId...
             criteria.andMemberIdEqualTo(request.getMemberId());
         }
+        // 分页：参数1：查第几页 ，参数2：查第几条
+        PageHelper.startPage(1,2);
         List<Passenger> passengers = passengerMapper.selectByExample(passengerExample);
         List<PassengerQueryResponse> queryResponses = BeanUtil.copyToList(passengers, PassengerQueryResponse.class);
         return queryResponses;
     }
-
 }
