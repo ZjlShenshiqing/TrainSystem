@@ -4,7 +4,9 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zjl.train.common.context.LoginMemberContext;
+import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
 import com.zjl.train.member.entity.Passenger;
 import com.zjl.train.member.entity.PassengerExample;
@@ -65,7 +67,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public List<PassengerQueryResponse> queryList(PassengerQueryReq request) {
+    public PageResp<PassengerQueryResponse> queryList(PassengerQueryReq request) {
         // 查询条件类
         PassengerExample passengerExample = new PassengerExample();
         // 创造条件，会重复用到，所以需要提取出来
@@ -77,7 +79,17 @@ public class PassengerServiceImpl implements PassengerService {
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
         List<Passenger> passengers = passengerMapper.selectByExample(passengerExample);
+
+        // 获取总条数
+        PageInfo<Passenger> pageInfo = new PageInfo<>(passengers);
+
+        // 封装成查询的响应值
         List<PassengerQueryResponse> queryResponses = BeanUtil.copyToList(passengers, PassengerQueryResponse.class);
-        return queryResponses;
+        PageResp<PassengerQueryResponse> passengerPageResp = new PageResp<>();
+
+        // 将查询的响应值和总条数封装成分页的响应值
+        passengerPageResp.setTotal(pageInfo.getTotal());
+        passengerPageResp.setList(queryResponses);
+        return passengerPageResp;
     }
 }

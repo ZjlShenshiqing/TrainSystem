@@ -1,11 +1,10 @@
 package com.zjl.train.member.service;
 
+import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.member.req.PassengerQueryReq;
 import com.zjl.train.member.req.PassengerSaveReq;
 import com.zjl.train.member.response.PassengerQueryResponse;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 乘客服务层接口
@@ -24,5 +23,5 @@ public interface PassengerService {
      * Created By Zhangjilin 2024/11/11
      * 查询列表：查询乘车人列表
      */
-    public List<PassengerQueryResponse> queryList(PassengerQueryReq request);
+    public PageResp<PassengerQueryResponse> queryList(PassengerQueryReq request);
 }
