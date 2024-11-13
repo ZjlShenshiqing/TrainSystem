@@ -30,6 +30,4 @@ public class PageResp<T> implements Serializable {
     public void setList(List<T> list) {
         this.list = list;
     }
-
-
 }

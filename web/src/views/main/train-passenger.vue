@@ -1,7 +1,10 @@
 <template>
   <div class="welcome">
     <h1>常用旅客</h1>
-    <a-button type="primary" @click="showModal">新增</a-button>
+    <p>
+      <a-button type="primary" @click="showModal">新增</a-button>
+    </p>
+    <a-table :data-source="passengers" :columns="columns" />
     <!-- 模态框 -->
     <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
       <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
@@ -9,7 +12,7 @@
           <a-input v-model:value="passenger.name" placeholder="请输入姓名" />
         </a-form-item>
         <a-form-item label="身份证">
-          <a-input v-model:value="passenger.idCard" placeholder="请输入身份证号" />
+          <a-input v-model:value="passenger.idCard" placeholbillder="请输入身份证号" />
         </a-form-item>
         <a-form-item label="类型">
           <a-select v-model:value="passenger.type" placeholder="请选择类型">
@@ -24,7 +27,8 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+// onMonted: 这个方法是Vue生命周期的钩子函数
+import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
@@ -65,6 +69,50 @@ const handleOk = () => {
         notification.error({ description: '保存失败，请重试！' });
       });
 };
+
+const passengers = ref([]);
+
+const columns = ref([
+  {
+    title: '姓名',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: '身份证号',
+    dataIndex: 'idCard',
+    key: 'idCard',
+  },
+  {
+    title: '旅客类型',
+    dataIndex: 'type',
+    key: 'type',
+  },
+]);
+
+const handleQuery = (param) => {
+  axios.get("/member/passenger/query-list" , {
+    // 需要带上分页参数 注意vue的get请求就是这样写的
+    params: {
+      page: param.page,
+      size: param.size
+    }
+  }).then((response) => {
+    let data = response.data;
+    if (data.success) {
+      passengers.value = data.content.list;
+    } else {
+      notification.error({description: data.message})
+    }
+  })
+}
+
+onMounted(() => {
+  handleQuery({
+    page: 1,
+    size: 2
+  })
+})
 </script>
 
 <style scoped>
