@@ -4,7 +4,7 @@
     <p>
       <a-button type="primary" @click="showModal">新增</a-button>
     </p>
-    <a-table :data-source="passengers" :columns="columns" :pagination="pagination"/>
+    <a-table :data-source="passengers" :columns="columns" :pagination="pagination" @change="handleTableChange"/>
     <!-- 模态框 -->
     <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
       <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
@@ -106,6 +106,8 @@ const handleQuery = (param) => {
     let data = response.data;
     if (data.success) {
       passengers.value = data.content.list;
+      // 设置分页控件的值,设置当前的页码
+      pagination.current = param.page;
       pagination.total = data.content.total;
     } else {
       notification.error({description: data.message})
@@ -113,10 +115,17 @@ const handleQuery = (param) => {
   })
 }
 
+const handleTableChange = (pagination) => {
+  handleQuery({
+    page: pagination.current, // 当前点击页
+    size: pagination.pageSize
+  })
+}
+
 onMounted(() => {
   handleQuery({
     page: 1,
-    size: 2
+    size: pagination.pageSize
   })
 })
 </script>
