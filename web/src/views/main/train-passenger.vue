@@ -4,7 +4,7 @@
     <p>
       <a-button type="primary" @click="showModal">新增</a-button>
     </p>
-    <a-table :data-source="passengers" :columns="columns" />
+    <a-table :data-source="passengers" :columns="columns" :pagination="pagination"/>
     <!-- 模态框 -->
     <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
       <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
@@ -71,7 +71,12 @@ const handleOk = () => {
 };
 
 const passengers = ref([]);
-
+// 分页的三个属性名是完全固定的
+const pagination = reactive({
+  total: 0, // 列表的总数
+  current: 1, // 当前的页码
+  pageSize: 2 // 每页条数
+})
 const columns = ref([
   {
     title: '姓名',
@@ -101,6 +106,7 @@ const handleQuery = (param) => {
     let data = response.data;
     if (data.success) {
       passengers.value = data.content.list;
+      pagination.total = data.content.total;
     } else {
       notification.error({description: data.message})
     }
