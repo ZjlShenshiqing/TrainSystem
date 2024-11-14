@@ -2,9 +2,17 @@
   <div class="welcome">
     <h1>常用旅客</h1>
     <p>
-      <a-button type="primary" @click="showModal">新增</a-button>
+      <a-space>
+        <a-button type="primary" @click="handleQuery()">刷新</a-button>
+        <a-button type="primary" @click="showModal">新增</a-button>
+      </a-space>
     </p>
-    <a-table :data-source="passengers" :columns="columns" :pagination="pagination" @change="handleTableChange"/>
+    <!-- 增加loading可以防止用户不断的点击提交 -->
+    <a-table :data-source="passengers"
+             :columns="columns"
+             :pagintypation="pagination"
+             @change="handleTableChange"
+             :loading="loading"/>
     <!-- 模态框 -->
     <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
       <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
@@ -60,6 +68,11 @@ const handleOk = () => {
         if (data.success) {
           notification.success({ description: '保存成功！' });
           visible.value = false;
+          // 刷新列表，刷新一下当前的列表
+          handleQuery({
+            page: pagination.current,
+            size: pagination.pageSize
+          })
         } else {
           notification.error({ description: data.message });
         }
@@ -77,6 +90,7 @@ const pagination = reactive({
   current: 1, // 当前的页码
   pageSize: 2 // 每页条数
 })
+let loading = ref(false);
 const columns = ref([
   {
     title: '姓名',
@@ -96,6 +110,15 @@ const columns = ref([
 ]);
 
 const handleQuery = (param) => {
+  // 不带参数的时候，初始化查第一页
+  if(!param) {
+    param = {
+      page: 1,
+      size: pagination.pageSize
+    };
+  }
+  // 显示loading的效果
+  loading.value = true;
   axios.get("/member/passenger/query-list" , {
     // 需要带上分页参数 注意vue的get请求就是这样写的
     params: {
@@ -103,6 +126,7 @@ const handleQuery = (param) => {
       size: param.size
     }
   }).then((response) => {
+    loading.value = false;
     let data = response.data;
     if (data.success) {
       passengers.value = data.content.list;

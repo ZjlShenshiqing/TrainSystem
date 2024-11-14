@@ -70,6 +70,8 @@ public class PassengerServiceImpl implements PassengerService {
     public PageResp<PassengerQueryResponse> queryList(PassengerQueryReq request) {
         // 查询条件类
         PassengerExample passengerExample = new PassengerExample();
+        // 设置按 'id' 降序排序
+        passengerExample.setOrderByClause("id desc");
         // 创造条件，会重复用到，所以需要提取出来
         PassengerExample.Criteria criteria = passengerExample.createCriteria();
         if (ObjectUtil.isNotNull(request.getMemberId())) {
