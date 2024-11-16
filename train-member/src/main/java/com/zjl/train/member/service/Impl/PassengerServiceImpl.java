@@ -39,11 +39,18 @@ public class PassengerServiceImpl implements PassengerService {
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(req, Passenger.class);
 
+        // 这里判断的是是新增还是编辑
+        if (ObjectUtil.isNotNull(passenger.getId())) {
+            // 设置更新时间，并且更新前端传过来的passenger进入数据库
+            passenger.setUpdateTime(now);
+            passengerMapper.updateByPrimaryKey(passenger);
+        }
+
         // 获取当前登录的用户 ID
         Long memberId = LoginMemberContext.getId();
         if (memberId == null) {
             throw new RuntimeException("用户未登录或登录已过期");
-    }
+        }
 
         // 根据身份证号和 memberId 查询乘车人是否存在
         Passenger existingPassenger = passengerCustomizableMapper.selectByMemberIdAndIdCard(memberId, passenger.getIdCard());
