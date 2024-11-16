@@ -4,7 +4,7 @@
     <p>
       <a-space>
         <a-button type="primary" @click="handleQuery()">刷新</a-button>
-        <a-button type="primary" @click="showModal">新增</a-button>
+        <a-button type="primary" @click="onAdd">新增</a-button>
       </a-space>
     </p>
     <!-- 增加loading可以防止用户不断的点击提交 -->
@@ -12,7 +12,33 @@
              :columns="columns"
              :pagintypation="pagination"
              @change="handleTableChange"
-             :loading="loading"/>
+             :loading="loading">
+    <!--
+
+      增加额外的列，这边是需要增加一个编辑的按钮
+      自定义表格单元格的内容。#bodyCell 是插槽的名字
+
+      { column, record }：插槽传递的参数，其中：
+          column：表示当前单元格所在的列配置对象。
+          record：表示当前行的数据对象。
+
+      v-if="column.dataIndex === 'operation'"：判断当前列是否为 operation（操作列）。如果是，则显示自定义内容。
+      <a-space>：Ant Design Vue 中的 a-space 组件，用于在多个元素之间增加间距。
+
+    -->
+        <template #bodyCell="{ column, record }">
+            <template v-if="column.dataIndex === 'operation'">
+              <a-space>
+                <!--
+                 @click="onEdit(record)"：点击事件绑定了 onEdit 方法，并传入当前行的数据对象 record。
+                  当用户点击 "编辑" 按钮时，会调用 onEdit(record) 方法，
+                  并将当前行的数据对象 record 作为参数传递进去。
+                 -->
+                <a @click="onEdit(record)">编辑</a>
+              </a-space>
+            </template>
+        </template>
+    </a-table>
     <!-- 模态框 -->
     <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
       <a-form :model="passenger" :label-col="{ span: 4 }" :wrapper-col="{ span: 14 }">
@@ -40,8 +66,8 @@ import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
-// 使用 reactive 包装对象，确保 passenger 是响应式的
-const passenger = reactive({
+// 使用 ref
+let passenger = ref({
   id: null,
   name: '',
   idCard: '',
@@ -53,8 +79,14 @@ const passenger = reactive({
 // 模态框的显示状态
 const visible = ref(false);
 
-// 显示模态框
-const showModal = () => {
+// 新增状态：显示模态框
+const onAdd = () => {
+  visible.value = true;
+};
+
+// 修改状态
+const onEdit = (record) => {
+  passenger.value = record;
   visible.value = true;
 };
 
@@ -62,7 +94,7 @@ const showModal = () => {
 const handleOk = () => {
   console.log('提交的数据：', passenger);
   axios
-      .post('/member/passenger/save', passenger)
+      .post('/member/passenger/save', passenger.value)
       .then((response) => {
         let data = response.data;
         if (data.success) {
@@ -70,8 +102,8 @@ const handleOk = () => {
           visible.value = false;
           // 刷新列表，刷新一下当前的列表
           handleQuery({
-            page: pagination.current,
-            size: pagination.pageSize
+            page: pagination.value.current,
+            size: pagination.value.pageSize
           })
         } else {
           notification.error({ description: data.message });
@@ -85,7 +117,7 @@ const handleOk = () => {
 
 const passengers = ref([]);
 // 分页的三个属性名是完全固定的
-const pagination = reactive({
+const pagination = ref({
   total: 0, // 列表的总数
   current: 1, // 当前的页码
   pageSize: 2 // 每页条数
@@ -107,6 +139,10 @@ const columns = ref([
     dataIndex: 'type',
     key: 'type',
   },
+  {
+    title: '操作',
+    dataIndex: 'operation'
+  }
 ]);
 
 const handleQuery = (param) => {
@@ -114,7 +150,7 @@ const handleQuery = (param) => {
   if(!param) {
     param = {
       page: 1,
-      size: pagination.pageSize
+      size: pagination.value.pageSize
     };
   }
   // 显示loading的效果
@@ -131,8 +167,8 @@ const handleQuery = (param) => {
     if (data.success) {
       passengers.value = data.content.list;
       // 设置分页控件的值,设置当前的页码
-      pagination.current = param.page;
-      pagination.total = data.content.total;
+      pagination.value.current = param.page;
+      pagination.value.total = data.content.total;
     } else {
       notification.error({description: data.message})
     }
@@ -149,7 +185,7 @@ const handleTableChange = (pagination) => {
 onMounted(() => {
   handleQuery({
     page: 1,
-    size: pagination.pageSize
+    size: pagination.value.pageSize
   })
 })
 </script>

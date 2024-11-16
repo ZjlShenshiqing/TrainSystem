@@ -1,19 +1,17 @@
-package com.zjl.train.member.req;
+package com.zjl.train.member.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 /**
- * 封装登录请求参数的DTO
+ * 封装发送验证码请求参数的DTO
  * Created By Zhangjilin 2024/11/04
  */
-public class MemberLoginReq {
+public class MemberSendCodeReq {
+
     @NotBlank(message = "[手机号] 不能为空！")
     @Pattern(regexp = "^1\\d{10}$", message = "手机号码格式错误")
     private String mobile;
-
-    @NotBlank(message = "[短信验证码] 不能为空！")
-    private String code;
 
     public String getMobile() {
         return mobile;
@@ -23,19 +21,10 @@ public class MemberLoginReq {
         this.mobile = mobile;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     @Override
     public String toString() {
-        return "MemberLoginReq{" +
+        return "MemberSendCodeReq{" +
                 "mobile='" + mobile + '\'' +
-                ", code='" + code + '\'' +
                 '}';
     }
 }

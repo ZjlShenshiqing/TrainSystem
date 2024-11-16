@@ -1,4 +1,4 @@
-package com.zjl.train.member.req;
+package com.zjl.train.member.request;
 
 import com.zjl.train.common.request.PageRequest;
 

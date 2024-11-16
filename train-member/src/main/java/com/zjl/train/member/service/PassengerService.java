@@ -1,8 +1,8 @@
 package com.zjl.train.member.service;
 
 import com.zjl.train.common.resp.PageResp;
-import com.zjl.train.member.req.PassengerQueryReq;
-import com.zjl.train.member.req.PassengerSaveReq;
+import com.zjl.train.member.request.PassengerQueryReq;
+import com.zjl.train.member.request.PassengerSaveReq;
 import com.zjl.train.member.response.PassengerQueryResponse;
 import org.springframework.stereotype.Service;
 

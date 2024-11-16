@@ -1,8 +1,8 @@
 package com.zjl.train.member.service;
 
-import com.zjl.train.member.req.MemberLoginReq;
-import com.zjl.train.member.req.MemberRegisterReq;
-import com.zjl.train.member.req.MemberSendCodeReq;
+import com.zjl.train.member.request.MemberLoginReq;
+import com.zjl.train.member.request.MemberRegisterReq;
+import com.zjl.train.member.request.MemberSendCodeReq;
 import com.zjl.train.member.response.MemberLoginResponse;
 import org.springframework.stereotype.Service;
 

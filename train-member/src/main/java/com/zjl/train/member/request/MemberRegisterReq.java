@@ -1,4 +1,4 @@
-package com.zjl.train.member.req;
+package com.zjl.train.member.request;
 
 import jakarta.validation.constraints.NotBlank;
 
