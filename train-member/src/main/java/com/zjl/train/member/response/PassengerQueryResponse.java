@@ -1,6 +1,8 @@
 package com.zjl.train.member.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.util.Date;
 
@@ -9,8 +11,11 @@ import java.util.Date;
  * Created By Zhangjilin 2024/11/12
  */
 public class PassengerQueryResponse {
+
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long memberId;
 
     private String name;
