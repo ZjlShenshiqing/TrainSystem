@@ -23,8 +23,18 @@ public class ServerGenerator {
         new File(toPath).mkdirs();
     }
 
-    public static void main(String[] args) throws IOException, TemplateException {
+    public static void main(String[] args) throws IOException, TemplateException, DocumentException {
+        // Generator 的 xml 文件
+        String generatorPath = getGeneratorPath();
 
+        // 读取 Generator 的 xml 文件 的 table 节点
+        Document document = new SAXReader().read("generator/" + generatorPath); // 读取xml文件
+        Node table = document.selectSingleNode("//table"); // 读取table节点
+        System.out.println(table);
+        // <table tableName="passenger" domainObjectName="Passenger"/>
+        Node tableName = table.selectSingleNode("@tableName"); // 通过table节点去查属性
+        Node domainObjectName = table.selectSingleNode("@domainObjectName");
+        System.out.println(tableName.getText() + "/" + domainObjectName.getText());
     }
 
     /**
@@ -49,4 +59,6 @@ public class ServerGenerator {
         System.out.println(node.getText());
         return node.getText();
     }
+
+
 }
