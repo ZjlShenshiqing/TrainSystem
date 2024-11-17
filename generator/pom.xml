@@ -17,6 +17,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- 模板引擎 freemarker 这个不用加版本号，因为Springboot会自带这个依赖-->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!-- mybatis generator 自动生成代码插件 -->
