@@ -81,12 +81,20 @@ const visible = ref(false);
 
 // 新增状态：显示模态框
 const onAdd = () => {
+  // 新增时，将乘客的所有值清空，这样新增的模态框不会显示任何的数据
+  passenger.value = {};
   visible.value = true;
 };
 
 // 修改状态
 const onEdit = (record) => {
-  passenger.value = record;
+  /*
+  * 需要解决的问题：模态框输入会导致表格的数据也会跟着变化
+  * passenger.value = record; 也就是这一行代码需要改进
+  *
+  * 解决方案：复制一个新的对象，copy一下
+  * */
+  passenger.value = window.Tool.copy(record)
   visible.value = true;
 };
 
@@ -185,7 +193,8 @@ const handleTableChange = (pagination) => {
 onMounted(() => {
   handleQuery({
     page: 1,
-    size: pagination.value.pageSize
+    size: 99 // 设置一个足够大的值，确保查询到所有数据
+    // size: pagination.value.pageSize
   })
 })
 </script>
