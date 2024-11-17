@@ -62,9 +62,10 @@
         </a-form-item>
         <a-form-item label="类型">
           <a-select v-model:value="passenger.type" placeholder="请选择类型">
-            <a-select-option value="1">成人</a-select-option>
-            <a-select-option value="2">儿童</a-select-option>
-            <a-select-option value="3">学生</a-select-option>
+            <!-- 通过枚举类来定义乘客人类型下拉框，之前是写死的，现在进行改进，方便以后需要改动 -->
+            <a-select-option v-for="item in PASSENGER_TYPE_ARRAY" :key="item.code" :value="item.code">
+                {{item.value}}}
+            </a-select-option>
           </a-select>
         </a-form-item>
       </a-form>
@@ -77,6 +78,8 @@
 import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+
+const PASSENGER_TYPE_ARRAY = [{key: "1", value: "成人"} , {key: "2", value: "儿童"} , {key: "3", value: "学生"}]
 
 // 使用 ref
 let passenger = ref({

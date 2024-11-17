@@ -1,5 +1,10 @@
 package com.zjl.train.member.enums;
 
+/**
+ * 乘车人类型枚举类
+ *
+ * Created By Zhangjilin 2024/11/16
+ */
 public enum PassengerTypeEnum {
     ADULT("1","成人"),
     CHILDREN("2","儿童"),
