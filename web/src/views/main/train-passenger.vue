@@ -49,6 +49,13 @@
                 </a-popconfirm>
               </a-space>
             </template>
+            <template v-else-if="column.dataIndex === 'type'">
+              <span v-for="item in PASSENGER_TYPE_ARRAY" :key="item.key">
+                <span v-if="item.key === record.type">
+                  {{item.value}}
+                </span>
+              </span>
+            </template>
         </template>
     </a-table>
     <!-- 模态框 -->
@@ -79,7 +86,8 @@ import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
-const PASSENGER_TYPE_ARRAY = [{key: "1", value: "成人"} , {key: "2", value: "儿童"} , {key: "3", value: "学生"}]
+// emum.js 的引入
+const PASSENGER_TYPE_ARRAY = window.PASSENGER_TYPE_ARRAY;
 
 // 使用 ref
 let passenger = ref({

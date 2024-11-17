@@ -6,6 +6,7 @@ import store from './store';
 import 'ant-design-vue/dist/antd.css';
 import * as Icons from '@ant-design/icons-vue';
 import axios from "axios";
+import './assets/js/enums';
 
 // 请求拦截器
 axios.interceptors.request.use(
