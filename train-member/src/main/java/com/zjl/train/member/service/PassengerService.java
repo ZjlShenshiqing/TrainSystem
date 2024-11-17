@@ -24,4 +24,11 @@ public interface PassengerService {
      * 查询列表：查询乘车人列表
      */
     public PageResp<PassengerQueryResponse> queryList(PassengerQueryReq request);
+
+    /**
+     * Created By Zhangjilin 2024/11/16
+     * 根据id删除乘车人信息
+     * @param id
+     */
+    public void delete(Long id);
 }

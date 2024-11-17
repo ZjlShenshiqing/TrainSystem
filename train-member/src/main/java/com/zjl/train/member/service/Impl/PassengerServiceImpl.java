@@ -101,4 +101,9 @@ public class PassengerServiceImpl implements PassengerService {
         passengerPageResp.setList(queryResponses);
         return passengerPageResp;
     }
+
+    @Override
+    public void delete(Long id) {
+        passengerMapper.deleteByPrimaryKey(id);
+    }
 }
