@@ -33,8 +33,20 @@
                  @click="onEdit(record)"：点击事件绑定了 onEdit 方法，并传入当前行的数据对象 record。
                   当用户点击 "编辑" 按钮时，会调用 onEdit(record) 方法，
                   并将当前行的数据对象 record 作为参数传递进去。
+
+                  record: 插槽传递的当前行的数据对象
+
                  -->
                 <a @click="onEdit(record)">编辑</a>
+                <!--
+                  删除按钮外面包裹一层小的确认框，如果点击删除就会弹出
+                -->
+                <a-popconfirm
+                    title="删除后不可恢复，确认删除?"
+                    @confirm="onDelete(record)"
+                    ok-text="确认" cancel-text="取消">
+                   <a style="color: red">删除</a>
+                </a-popconfirm>
               </a-space>
             </template>
         </template>
@@ -182,6 +194,21 @@ const handleQuery = (param) => {
     }
   })
 }
+
+const onDelete = (record) => {
+  axios.delete("/member/passenger/delete/" + record.id).then((response) => {
+    const data = response.data;
+    if (data.success) {
+      notification.success({description: "删除成功！"});
+      handleQuery({
+        page: pagination.value.current,
+        size: pagination.value.pageSize,
+      });
+    } else {
+      notification.error({description: data.message});
+    }
+  });
+};
 
 const handleTableChange = (pagination) => {
   handleQuery({
