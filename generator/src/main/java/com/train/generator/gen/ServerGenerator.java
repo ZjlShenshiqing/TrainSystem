@@ -1,5 +1,6 @@
 package com.train.generator.gen;
 
+import com.train.generator.util.FreemarkerUtil;
 import freemarker.template.TemplateException;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -16,25 +17,49 @@ import java.util.Map;
  * Created By Zhangjilin 2024/11/17
  */
 public class ServerGenerator {
-    static String toPath = "generator\\src\\main\\java\\com\\train\\generator\\gen\\";
+    static String servicePath = "train-[module]/src/main/java/com/zjl/train/[module]/service/";
     // 寻找 Mybatis Generator 的配置文件
     static String pomPath = "generator/pom.xml";
     static {
-        new File(toPath).mkdirs();
+        new File(servicePath).mkdirs();
     }
 
     public static void main(String[] args) throws IOException, TemplateException, DocumentException {
         // Generator 的 xml 文件
+        // 比如：src/main/resources/generator-config-member.xml
         String generatorPath = getGeneratorPath();
+
+        // 获取module名字 将前后删除，只留下模块名
+        String module = generatorPath.replace("src/main/resources/generator-config-", "")
+                     .replace(".xml","");
+
+        servicePath = servicePath.replace("[module]", module);
 
         // 读取 Generator 的 xml 文件 的 table 节点
         Document document = new SAXReader().read("generator/" + generatorPath); // 读取xml文件
         Node table = document.selectSingleNode("//table"); // 读取table节点
         System.out.println(table);
         // <table tableName="passenger" domainObjectName="Passenger"/>
-        Node tableName = table.selectSingleNode("@tableName"); // 通过table节点去查属性
-        Node domainObjectName = table.selectSingleNode("@domainObjectName");
-        System.out.println(tableName.getText() + "/" + domainObjectName.getText());
+        // 表名
+        Node tableName = table.selectSingleNode("@tableName"); // 通过table节点去查属性 passenger
+        // 实体类名称
+        Node domainObjectName = table.selectSingleNode("@domainObjectName"); // Passenger
+
+        String Domain = domainObjectName.getText();
+
+        String domain = Domain.substring(0, 1).toLowerCase() + Domain.substring(1);
+        // a_b -> a-b
+        String do_main = tableName.getText().replaceAll("_", "-");
+
+        // 组装参数
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("Domain", Domain);
+        param.put("domain", domain);
+        param.put("do_main", do_main);
+
+        // 通过模板生成实体类
+        FreemarkerUtil.initConfiguration("service.ftl");
+        FreemarkerUtil.generator(servicePath + Domain + "Service.java", param);
     }
 
     /**
@@ -59,6 +84,4 @@ public class ServerGenerator {
         System.out.println(node.getText());
         return node.getText();
     }
-
-
 }
