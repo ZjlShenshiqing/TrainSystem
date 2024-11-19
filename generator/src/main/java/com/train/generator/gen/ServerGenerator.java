@@ -17,11 +17,11 @@ import java.util.Map;
  * Created By Zhangjilin 2024/11/17
  */
 public class ServerGenerator {
-    static String servicePath = "train-[module]/src/main/java/com/zjl/train/[module]/service/";
+    static String serverPath = "train-[module]/src/main/java/com/zjl/train/[module]/";
     // 寻找 Mybatis Generator 的配置文件
     static String pomPath = "generator/pom.xml";
     static {
-        new File(servicePath).mkdirs();
+        new File(serverPath).mkdirs();
     }
 
     public static void main(String[] args) throws IOException, TemplateException, DocumentException {
@@ -33,7 +33,7 @@ public class ServerGenerator {
         String module = generatorPath.replace("src/main/resources/generator-config-", "")
                      .replace(".xml","");
 
-        servicePath = servicePath.replace("[module]", module);
+        serverPath = serverPath.replace("[module]", module);
 
         // 读取 Generator 的 xml 文件 的 table 节点
         Document document = new SAXReader().read("generator/" + generatorPath); // 读取xml文件
@@ -58,8 +58,36 @@ public class ServerGenerator {
         param.put("do_main", do_main);
 
         // 通过模板生成实体类
-        FreemarkerUtil.initConfiguration("service.ftl");
-        FreemarkerUtil.generator(servicePath + Domain + "Service.java", param);
+        generator(Domain, param, "service");
+        generator(Domain, param, "controller");
+    }
+
+    /**
+     * 通过模板生成代码
+     *
+     * Created By Zhangjilin 2024/11/19
+     * @param Domain
+     * @param param
+     * @param target 生成的是哪个层的代码
+     * @throws IOException
+     * @throws TemplateException
+     */
+    private static void generator(String Domain, HashMap<String, Object> param, String target) throws IOException, TemplateException {
+        // 加载模板
+        FreemarkerUtil.initConfiguration(target + ".ftl");
+
+        // 包的路径
+        String toPath = serverPath + target + "/";
+        new File(toPath).mkdirs();
+
+        // 将小写的改成大写的的
+        String Target = target.substring(0, 1).toUpperCase() + target.substring(1);
+
+        // 生成的代码的路径
+        String fileName = toPath + Domain + Target + ".java";
+
+        // 通过上面这些东西生成代码
+        FreemarkerUtil.generator(fileName, param);
     }
 
     /**
