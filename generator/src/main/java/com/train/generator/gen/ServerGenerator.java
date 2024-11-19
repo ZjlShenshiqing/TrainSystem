@@ -1,5 +1,7 @@
 package com.train.generator.gen;
 
+import com.train.generator.util.DbUtil;
+import com.train.generator.util.Field;
 import com.train.generator.util.FreemarkerUtil;
 import freemarker.template.TemplateException;
 import org.dom4j.Document;
@@ -10,6 +12,7 @@ import org.dom4j.io.SAXReader;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,7 +27,7 @@ public class ServerGenerator {
         new File(serverPath).mkdirs();
     }
 
-    public static void main(String[] args) throws IOException, TemplateException, DocumentException {
+    public static void main(String[] args) throws Exception {
         // Generator 的 xml 文件
         // 比如：src/main/resources/generator-config-member.xml
         String generatorPath = getGeneratorPath();
@@ -45,11 +48,26 @@ public class ServerGenerator {
         // 实体类名称
         Node domainObjectName = table.selectSingleNode("@domainObjectName"); // Passenger
 
+        // 为DBUtil设置数据源
+        Node connectionUrl = document.selectSingleNode("//@connectionURL");
+        Node userId = document.selectSingleNode("//@userId");
+        Node password = document.selectSingleNode("//@password");
+        DbUtil.url = connectionUrl.getText();
+        DbUtil.user = userId.getText();
+        DbUtil.password = password.getText();
+
         String Domain = domainObjectName.getText();
 
         String domain = Domain.substring(0, 1).toLowerCase() + Domain.substring(1);
         // a_b -> a-b
         String do_main = tableName.getText().replaceAll("_", "-");
+
+        // 获取表的中文名
+        String tableChineseName = DbUtil.getTableComment(tableName.getText());
+        System.out.println("表名：" + tableChineseName);
+
+        // 获取表的字段信息
+        List<Field> fieldList = DbUtil.getColumnByTableName(tableName.getText());
 
         // 组装参数
         HashMap<String, Object> param = new HashMap<>();
