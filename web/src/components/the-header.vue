@@ -1,10 +1,6 @@
 <template>
   <a-layout-header class="header">
-    <div class="logo">
-      <router-link to="/welcome" style="color: white;">
-        <span>欢迎使用12306~</span>
-      </router-link>
-    </div>
+    <div class="logo" />
     <div style="float: right; color: white;">
       您好：{{member.mobile}} &nbsp;&nbsp;
       <router-link to="/login" style="color: white">
