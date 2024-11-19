@@ -2,14 +2,11 @@
   <a-layout-header class="header">
     <div class="logo">
       <router-link to="/welcome" style="color: white;">
-        <span>欢迎使用12306~</span>
+        <span>后台管理</span>
       </router-link>
     </div>
     <div style="float: right; color: white;">
-      您好：{{member.mobile}} &nbsp;&nbsp;
-      <router-link to="/login" style="color: white">
-        退出登录
-      </router-link>
+      欢迎使用后台管理控制台
     </div>
     <a-menu
         v-model:selectedKeys="selectedKeys1"
@@ -19,12 +16,12 @@
     >
       <a-menu-item key="/welcome">
         <router-link to="/welcome">
-          <coffee-outlined /> &nbsp; 欢迎
+          <coffee-outlined /> &nbsp 欢迎
         </router-link>
       </a-menu-item>
-      <a-menu-item key="/passenger">
-        <router-link to="/passenger">
-          <user-outlined /> &nbsp; 乘车人管理
+      <a-menu-item key="/about">
+        <router-link to="/about">
+          <user-outlined /> &nbsp; 关于
         </router-link>
       </a-menu-item>
     </a-menu>
@@ -37,9 +34,8 @@ import store from "@/store";
 import router from "@/router";
   // 使用 ref 定义响应式数据
   const selectedKeys1 = ref([]); // 默认选中第一项
-  // 不用设置成响应式变量，因为不会修改member
-  let member = store.state.member;
-  // 监视当前路由的变化，当有变化就执行当前回调函数
+
+  // 监视当前路由的变化，当有变化就执行当前回调函数 更新菜单状态
   watch(() => router.currentRoute.value.path, (newValue) => {
     console.log('watch', newValue);
     selectedKeys1.value = [];
@@ -48,5 +44,11 @@ import router from "@/router";
 </script>
 
 <style scoped>
-
+.logo {
+  float: left;
+  height: 31px;
+  width: 150px;
+  color: white;
+  font-size: 20px;
+}
 </style>
