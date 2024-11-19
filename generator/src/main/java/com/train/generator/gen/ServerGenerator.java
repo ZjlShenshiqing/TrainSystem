@@ -11,9 +11,7 @@ import org.dom4j.io.SAXReader;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 通过 Freemarker 生成代码
@@ -68,16 +66,23 @@ public class ServerGenerator {
 
         // 获取表的字段信息
         List<Field> fieldList = DbUtil.getColumnByTableName(tableName.getText());
+        // 通过表字段的信息，获取所有字段的java类型
+        Set<String> javaTypesSet = getJavaTypes(fieldList);
+
 
         // 组装参数
         HashMap<String, Object> param = new HashMap<>();
         param.put("Domain", Domain);
         param.put("domain", domain);
         param.put("do_main", do_main);
+        param.put("nameCn", tableChineseName);
+        param.put("fieldList", fieldList);
+        param.put("typeSet", javaTypesSet);
 
         // 通过模板生成实体类
-        generator(Domain, param, "service");
-        generator(Domain, param, "controller");
+        // generator(Domain, param, "service");
+        // generator(Domain, param, "controller");
+        generator(Domain, param, "request", "saveReq");
     }
 
     /**
@@ -90,12 +95,12 @@ public class ServerGenerator {
      * @throws IOException
      * @throws TemplateException
      */
-    private static void generator(String Domain, HashMap<String, Object> param, String target) throws IOException, TemplateException {
+    private static void generator(String Domain, HashMap<String, Object> param, String packageName, String target) throws IOException, TemplateException {
         // 加载模板
         FreemarkerUtil.initConfiguration(target + ".ftl");
 
         // 包的路径
-        String toPath = serverPath + target + "/";
+        String toPath = serverPath + packageName + "/";
         new File(toPath).mkdirs();
 
         // 将小写的改成大写的的
@@ -129,5 +134,34 @@ public class ServerGenerator {
         Node node = document.selectSingleNode("//pom:configurationFile");
         System.out.println(node.getText());
         return node.getText();
+    }
+
+    /**
+     * 获取数据库一张表的所有字段中的所有的Java类型，使用Set来去重
+     * Created By Zhangjilin 2024/11/19
+     *
+     *
+     * 先看一下一个fieldList里面的field
+     *     {
+     *         "name": "name",
+     *         "nameHump": "name",
+     *         "nameBigHump": "Name",
+     *         "nameChinese": "姓名",
+     *         "type": "varchar(20)",
+     *         "javaType": "String", 这个是需要去获取的字段
+     *         "comment": "姓名",
+     *         "nullable": false,
+     *         "length": 20,
+     *         "enums": false
+     *     }
+     *
+     */
+    private static Set<String> getJavaTypes(List<Field> fieldList) {
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < fieldList.size(); i++) {
+            Field field = fieldList.get(i);
+            set.add(field.getJavaType());
+        }
+        return set;
     }
 }
