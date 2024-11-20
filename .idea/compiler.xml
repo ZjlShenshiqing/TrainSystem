@@ -8,18 +8,22 @@
         <outputRelativeToContentRoot value="true" />
         <module name="generator" />
         <module name="train-common" />
+        <module name="train-business" />
         <module name="train-member" />
         <module name="train-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="business" target="17" />
       <module name="train-memer" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="TrainSystem" options="" />
+      <module name="business" options="-parameters" />
       <module name="generator" options="-parameters" />
+      <module name="train-business" options="-parameters" />
       <module name="train-common" options="-parameters" />
       <module name="train-gateway" options="-parameters" />
       <module name="train-member" options="-parameters" />

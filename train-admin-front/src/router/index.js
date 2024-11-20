@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
@@ -16,7 +15,7 @@ const routes = [
       },
       {
         path: 'about',
-        component: () => import('../views/main/about.vue'),
+        component: () => import('../views/main/train-about.vue'),
       },
     ],
   },

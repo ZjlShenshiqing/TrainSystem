@@ -20,6 +20,8 @@
         <module>train-common</module>
         <module>train-gateway</module>
         <module>generator</module>
+        <module>business</module>
+        <module>train-business</module>
     </modules>
 
     <properties>
