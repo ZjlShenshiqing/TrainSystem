@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="generator" />
         <module name="train-common" />
+        <module name="train-generator" />
         <module name="train-business" />
         <module name="train-member" />
         <module name="train-gateway" />
@@ -22,10 +22,10 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="TrainSystem" options="" />
       <module name="business" options="-parameters" />
-      <module name="generator" options="-parameters" />
       <module name="train-business" options="-parameters" />
       <module name="train-common" options="-parameters" />
       <module name="train-gateway" options="-parameters" />
+      <module name="train-generator" options="-parameters" />
       <module name="train-member" options="-parameters" />
       <module name="train-memer" options="-parameters" />
     </option>
