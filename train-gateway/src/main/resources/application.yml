@@ -10,6 +10,11 @@ spring:
           predicates:
             - Path=/member/**  # 匹配路径为 /member/** 的请求，并应用此路由
 
+        - id: business  # 新增business模块路由 ID
+          uri: http://127.0.0.1:8002
+          predicates:
+            - Path=/business/**  # 匹配路径为 /business/** 的请求，并应用此路由
+
       # 全局跨域配置，允许跨域访问
       globalcors:
         cors-configurations:
