@@ -29,19 +29,19 @@
         </jdbcConnection>
 
         <!-- entity 类的位置 targetProject是相对pom.xml的路径-->
-        <javaModelGenerator targetProject="../train-businesss/src/main/java"
-                            targetPackage="com.zjl.train.member.entity"/>
+        <javaModelGenerator targetProject="../train-business/src/main/java"
+                            targetPackage="com.zjl.train.business.entity"/>
 
         <!-- mapper.xml 的位置 targetProject是相对pom.xml的路径 -->
-        <sqlMapGenerator targetProject="../train-businesss/src/main/resources"
+        <sqlMapGenerator targetProject="../train-business/src/main/resources"
                          targetPackage="mapper"/>
 
         <!-- mapper 类的位置 targetProject 是相对pom.xml的路径 -->
-        <javaClientGenerator targetProject="../train-businesss/src/main/java"
-                             targetPackage="com.zjl.train.member.mapper"
+        <javaClientGenerator targetProject="../train-business/src/main/java"
+                             targetPackage="com.zjl.train.business.mapper"
                              type="XMLMAPPER"/>
 
-        <!-- <table tableName="member" domainObjectName="Member"/> -->
-        <table tableName="business" domainObjectName="Businesss"/>
+        <table tableName="station" domainObjectName="Station"/>
+        <!-- <table tableName="business" domainObjectName="Businesss"/> -->
     </context>
 </generatorConfiguration>
