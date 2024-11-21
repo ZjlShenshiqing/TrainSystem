@@ -3,14 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve-dev": "vue-cli-service serve --mode dev --port 9002",
-    "serve-prod": "vue-cli-service serve --mode prod --port 9002",
+    "serve-dev": "vue-cli-service serve --mode dev --port 9000",
+    "serve-prod": "vue-cli-service serve --mode prod --port 9000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^3.2.13",
+    "vue": "^3.2.0",
+    "ant-design-vue": "^3.2.2",
+    "@ant-design/icons-vue": "^6.0.0",
+    "axios": "^1.1.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
@@ -37,7 +39,10 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "no-unused-vars": 0,
+      "no-undef": 0
+    }
   },
   "browserslist": [
     "> 1%",

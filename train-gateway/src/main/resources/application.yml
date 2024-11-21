@@ -20,8 +20,10 @@ spring:
         cors-configurations:
           '[/**]':
             allowed-origins:
-              - "http://localhost:9001"
               - "http://localhost:9000"
+              - "http://localhost:9001"
+              - "http://localhost:9002"
+              - "http://localhost:9003"
               - "http://192.168.10.8:9000"
             allowed-headers: "*"
             allowed-methods: "*"

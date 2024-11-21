@@ -7,15 +7,19 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('../views/main.vue'),
+    component: () => import('../views/train-main.vue'),
     children: [
       {
         path: 'welcome',
-        component: () => import('../views/main/welcome.vue'),
+        component: () => import('../views/main/train-welcome.vue'),
       },
       {
         path: 'about',
         component: () => import('../views/main/train-about.vue'),
+      },
+      {
+        path: 'station',
+        component: () => import('../views/main/train-station.vue'),
       },
     ],
   },

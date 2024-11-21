@@ -1,12 +1,8 @@
 <template>
   <a-layout-header class="header">
-    <div class="logo">
-      <router-link to="/welcome" style="color: white;">
-        <span>后台管理</span>
-      </router-link>
-    </div>
+    <div class="logo" />
     <div style="float: right; color: white;">
-      欢迎使用后台管理控制台
+        欢迎使用后台管理控制台
     </div>
     <a-menu
         v-model:selectedKeys="selectedKeys1"
@@ -16,7 +12,7 @@
     >
       <a-menu-item key="/welcome">
         <router-link to="/welcome">
-          <coffee-outlined /> &nbsp 欢迎
+          <coffee-outlined /> &nbsp; 欢迎
         </router-link>
       </a-menu-item>
       <a-menu-item key="/about">
@@ -32,23 +28,19 @@
 import { ref, watch } from "vue";
 import store from "@/store";
 import router from "@/router";
-  // 使用 ref 定义响应式数据
-  const selectedKeys1 = ref([]); // 默认选中第一项
-
-  // 监视当前路由的变化，当有变化就执行当前回调函数 更新菜单状态
-  watch(() => router.currentRoute.value.path, (newValue) => {
-    console.log('watch', newValue);
-    selectedKeys1.value = [];
-    selectedKeys1.value.push(newValue);
-  },{immediate: true})
+// 使用 ref 定义响应式数据
+const selectedKeys1 = ref([]); // 默认选中第一项
+// 不用设置成响应式变量，因为不会修改member
+let member = store.state.member;
+// 监视当前路由的变化，当有变化就执行当前回调函数
+watch(() => router.currentRoute.value.path, (newValue) => {
+  console.log('watch', newValue);
+  selectedKeys1.value = [];
+  selectedKeys1.value.push(newValue);
+},{immediate: true})
 </script>
 
 <style scoped>
-.logo {
-  float: left;
-  height: 31px;
-  width: 150px;
-  color: white;
-  font-size: 20px;
-}
+
 </style>
+

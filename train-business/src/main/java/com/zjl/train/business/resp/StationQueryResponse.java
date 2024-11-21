@@ -1,37 +1,34 @@
-package com.zjl.train.business.request;
+package com.zjl.train.business.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.util.Date;
 
 /**
- * 保存车站信息的DTO
+ * 查询车站列表返回对象
  * Created By Zhangjilin 2024/11/20
  */
-public class StationSaveReq {
-
+public class StationQueryResponse {
     /**
      * id
      */
+    @JsonSerialize(using= ToStringSerializer.class)
     private Long id;
 
     /**
      * 站名
      */
-    @NotBlank(message = "【站名】不能为空")
     private String name;
 
     /**
      * 站名拼音
      */
-    @NotBlank(message = "【站名拼音】不能为空")
     private String namePinyin;
 
     /**
      * 站名拼音首字母
      */
-    @NotBlank(message = "【站名拼音首字母】不能为空")
     private String namePy;
 
     /**
