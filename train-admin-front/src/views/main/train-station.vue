@@ -54,12 +54,15 @@ import axios from 'axios';
 // emum.js 的引入
 const PASSENGER_TYPE_ARRAY = window.PASSENGER_TYPE_ARRAY;
 
-// 使用 ref
-let station = ref({
+// 站点列表，初始化为空数组
+const stations = ref([]);
+
+// 当前操作的站点，用于模态框
+const station = ref({
   id: null,
   name: '',
   namePinyin: '',
-  namePy: '1',
+  namePy: '',
   createTime: null,
   updateTime: null,
 });
@@ -70,7 +73,7 @@ const visible = ref(false);
 // 新增状态：显示模态框
 const onAdd = () => {
   // 新增时，将乘客的所有值清空，这样新增的模态框不会显示任何的数据
-  passenger.value = {};
+  station.value = {};
   visible.value = true;
 };
 
@@ -82,11 +85,10 @@ const onEdit = (record) => {
   *
   * 解决方案：复制一个新的对象，copy一下
   * */
-  passenger.value = window.Tool.copy(record)
+  station.value = window.Tool.copy(record)
   visible.value = true;
 };
 
-const passengers = ref([]);
 // 分页的三个属性名是完全固定的
 const pagination = ref({
   total: 0, // 列表的总数
@@ -149,7 +151,7 @@ const handleQuery = (param) => {
 };
 
 const onDelete = (record) => {
-  axios.delete("/business/station/delete/" + record.id).then((response) => {
+  axios.delete("/business/admin/station/delete/" + record.id).then((response) => {
     const data = response.data;
     if (data.success) {
       notification.success({description: "删除成功！"});
