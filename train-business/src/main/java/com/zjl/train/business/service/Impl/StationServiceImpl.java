@@ -67,8 +67,6 @@ public class StationServiceImpl implements StationService {
         StationExample passengerExample = new StationExample();
         // 设置按 'id' 降序排序
         passengerExample.setOrderByClause("id desc");
-        // 创造条件，会重复用到，所以需要提取出来
-        StationExample.Criteria criteria = passengerExample.createCriteria();
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());

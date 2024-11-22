@@ -3,6 +3,8 @@
 <mapper namespace="com.zjl.train.business.mapper.StationCustomizableMapper">
 
     <select id="selectByUnique" resultType="com.zjl.train.business.entity.Station">
-
+        SELECT *
+        FROM station
+        WHERE name = #{name}
     </select>
 </mapper>
