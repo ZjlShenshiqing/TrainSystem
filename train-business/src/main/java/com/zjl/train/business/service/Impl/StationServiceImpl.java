@@ -94,7 +94,7 @@ public class StationServiceImpl implements StationService {
     @Override
     public List<StationQueryResponse> queryAll() {
         StationExample stationExample = new StationExample();
-        stationExample.setOrderByClause("code asc");
+        stationExample.setOrderByClause("name_py asc");
         List<Station> stationList = stationMapper.selectByExample(stationExample);
         return BeanUtil.copyToList(stationList, StationQueryResponse.class);
     }

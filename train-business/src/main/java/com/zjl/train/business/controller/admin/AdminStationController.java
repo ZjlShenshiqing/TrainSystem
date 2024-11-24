@@ -47,7 +47,7 @@ public class AdminStationController {
      * @return
      */
     @GetMapping("/query-all")
-    public CommonResp<List<StationQueryResponse>> queryList() {
+    public CommonResp<List<StationQueryResponse>> queryAll() {
         List<StationQueryResponse> list = stationService.queryAll();
         return new CommonResp<>(list);
     }
