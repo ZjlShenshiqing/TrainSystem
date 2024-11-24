@@ -32,7 +32,12 @@
              ok-text="确认" cancel-text="取消">
       <a-form :model="trainStation" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
         <a-form-item label="车次编号">
-          <train-select-view v-model="trainStation.trainCode"></train-select-view>
+          <a-select v-model:value="trainStation.trainCode" show-search
+           :filter-option="filterTrainCodeOption">
+            <a-select-option v-for="item in trains" :key="item.code" :value="item.code" :label="item.code + item.start + item.end">
+              {{item.code}}} | {{item.start}}} ~ {{item.end}}}
+            </a-select-option>
+          </a-select>
         </a-form-item>
         <a-form-item label="站序">
           <a-input v-model:value="trainStation.index" />
@@ -239,11 +244,45 @@ const handleOk = () => {
   });
 };
 
+// ---------------------- 车次下拉框 ----------------------
+const trains = ref([]);
+
+/**
+ * 查询所有车次的信息，并返回成下拉框给经停站信息页面
+ * Created By Zhangjilin 2024/11/24
+ */
+const queryTrainCode = () => {
+  axios.get("business/admin/station/query-all").then((response) => {
+    let data = response.data;
+    if (data.success) {
+      trains.value = data.content;
+    } else {
+      notification.error({description: data.message});
+    }
+  });
+};
+
+/**
+ * 车次下拉框筛选
+ * Created By Zhangjilin 2024/11/24
+ * @param input
+ * @param option
+ * @returns {boolean}
+ */
+const filterTrainCodeOption = (input, option) => {
+  console.log(input, option);
+  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+};
+
+
+
 const handleTableChange = (pagination) => {
   handleQuery({
     page: pagination.current, // 当前点击页
     size: pagination.pageSize
-  })
+  });
+  // 初始化进入到这个页面之后就调用一次
+  queryTrainCode();
 }
 
 /**

@@ -90,10 +90,11 @@ public class StationServiceImpl implements StationService {
         stationMapper.deleteByPrimaryKey(id);
     }
 
+
     @Override
     public List<StationQueryResponse> queryAll() {
         StationExample stationExample = new StationExample();
-        stationExample.setOrderByClause("name_pinyin asc");
+        stationExample.setOrderByClause("code asc");
         List<Station> stationList = stationMapper.selectByExample(stationExample);
         return BeanUtil.copyToList(stationList, StationQueryResponse.class);
     }

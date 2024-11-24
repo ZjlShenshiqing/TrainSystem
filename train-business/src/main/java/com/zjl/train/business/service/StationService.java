@@ -35,7 +35,7 @@ public interface StationService {
 
     /**
      * Created By Zhangjilin 2024/11/21
-     * 查询所有站点的信息
+     * 查询所有站点的信息,给前端返回下拉框
      */
     List<StationQueryResponse>  queryAll();
 }
