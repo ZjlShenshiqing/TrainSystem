@@ -41,7 +41,7 @@
                              targetPackage="com.zjl.train.business.mapper"
                              type="XMLMAPPER"/>
 
-        <table tableName="train_station" domainObjectName="TrainStation"/>
+        <table tableName="train_carriage" domainObjectName="TrainCarriage"/>
         <!-- <table tableName="business" domainObjectName="Businesss"/> -->
     </context>
 </generatorConfiguration>
