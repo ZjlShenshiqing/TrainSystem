@@ -35,10 +35,10 @@
           <a-input v-model:value="station.name" />
         </a-form-item>
         <a-form-item label="站名拼音">
-          <a-input v-model:value="station.namePinyin" />
+          <a-input v-model:value="station.namePinyin" disabled/>
         </a-form-item>
         <a-form-item label="拼音首字母">
-          <a-input v-model:value="station.namePy" />
+          <a-input v-model:value="station.namePy" disabled/>
         </a-form-item>
       </a-form>
     </a-modal>
@@ -47,9 +47,10 @@
 
 <script setup>
 // onMonted: 这个方法是Vue生命周期的钩子函数
-import { reactive, ref, onMounted } from 'vue';
+import { reactive, ref, onMounted, watch } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+import {pinyin} from "pinyin-pro";
 
 // 站点列表，初始化为空数组
 const stations = ref([]);
@@ -146,7 +147,11 @@ const handleQuery = (param) => {
     }
   });
 };
-
+/**
+ * 删除车站数据
+ * Created By Zhangjilin 2024/11/23
+ * @param record
+ */
 const onDelete = (record) => {
   axios.delete("/business/admin/station/delete/" + record.id).then((response) => {
     const data = response.data;
@@ -188,6 +193,21 @@ const handleTableChange = (pagination) => {
     size: pagination.pageSize
   })
 }
+
+/**
+ * 当用户输入或修改站点名称（station.value.name）时，自动生成站点名称的拼音（全拼）和拼音首字母
+ * Created By Zhangjilin 2024/11/24
+ */
+// http://pinyin-pro.cn/
+watch(() => station.value.name, ()=>{
+  if (Tool.isNotEmpty(station.value.name)) {
+    station.value.namePinyin = pinyin(station.value.name, { toneType: 'none'}).replaceAll(" ", "");
+    station.value.namePy = pinyin(station.value.name, { pattern: 'first', toneType: 'none'}).replaceAll(" ", "");
+  } else {
+    station.value.namePinyin = "";
+    station.value.namePy = "";
+  }
+}, {immediate: true});
 
 /**
  * 钩子函数，初始化页面时调用

@@ -41,8 +41,13 @@ public class AdminStationController {
         return new CommonResp<>();
     }
 
+    /**
+     * 查询所有车次，返回给前端做子表的下拉框
+     * Created By Zhangjilin 2024/11/24
+     * @return
+     */
     @GetMapping("/query-all")
-    public CommonResp<List<StationQueryResponse>> queryList() {
+    public CommonResp<List<StationQueryResponse>> queryAll() {
         List<StationQueryResponse> list = stationService.queryAll();
         return new CommonResp<>(list);
     }

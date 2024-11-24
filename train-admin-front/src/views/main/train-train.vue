@@ -45,7 +45,7 @@
           <station-select-view v-model="train.start"></station-select-view>
         </a-form-item>
         <a-form-item label="始发站拼音">
-          <a-input v-model:value="train.startPinyin" />
+          <a-input v-model:value="train.startPinyin" disabled/>
         </a-form-item>
         <a-form-item label="出发时间">
           <!-- 时间控件，专门用来填入时间 -->
@@ -55,7 +55,7 @@
           <station-select-view v-model="train.end"></station-select-view>
         </a-form-item>
         <a-form-item label="终点站拼音">
-          <a-input v-model:value="train.endPinyin" />
+          <a-input v-model:value="train.endPinyin" disabled/>
         </a-form-item>
         <a-form-item label="到站时间">
           <a-time-picker v-model:value="train.endTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
@@ -70,6 +70,8 @@
 import { ref, onMounted, watch } from 'vue';
 import {notification} from "ant-design-vue";
 import axios from "axios";
+import {pinyin} from "pinyin-pro";
+import StationSelectView from "@/components/station-select.vue";
 
 // emum.js 的引入
 const TRAIN_TYPE_ARRAY = window.TRAIN_TYPE_ARRAY;
@@ -239,6 +241,26 @@ const handleOk = () => {
     }
   });
 };
+
+/**
+ * 当用户输入或修改始发站和终点站名称（station.value.name）时，自动生成始发站和终点站名称的拼音（全拼）和拼音首字母
+ * Created By Zhangjilin 2024/11/24
+ */
+// http://pinyin-pro.cn/
+watch(() => train.value.start, ()=>{
+  if (Tool.isNotEmpty(train.value.start)) {
+    train.value.startPinyin = pinyin(train.value.start, { toneType: 'none'}).replaceAll(" ", "");
+  } else {
+    train.value.startPinyin = "";
+  }
+}, {immediate: true});
+watch(() => train.value.end, ()=>{
+  if (Tool.isNotEmpty(train.value.end)) {
+    train.value.endPinyin = pinyin(train.value.end, { toneType: 'none'}).replaceAll(" ", "");
+  } else {
+    train.value.endPinyin = "";
+  }
+}, {immediate: true});
 
 const handleTableChange = (pagination) => {
   handleQuery({

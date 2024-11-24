@@ -93,7 +93,7 @@ public class TrainServiceImpl implements TrainService {
     @Override
     public List<TrainQueryResponse> queryAll() {
         TrainExample trainExample = new TrainExample();
-        trainExample.setOrderByClause("name_pinyin asc");
+        trainExample.setOrderByClause("id asc");
         List<Train> trainList = trainMapper.selectByExample(trainExample);
         return BeanUtil.copyToList(trainList, TrainQueryResponse.class);
     }
