@@ -42,7 +42,7 @@
           <station-select-view v-model="trainStation.name"></station-select-view>
         </a-form-item>
         <a-form-item label="站名拼音">
-          <a-input v-model:value="trainStation.namePinyin" />
+          <a-input v-model:value="trainStation.namePinyin" disabled/>
         </a-form-item>
         <a-form-item label="进站时间">
           <a-time-picker v-model:value="trainStation.inTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
@@ -63,9 +63,10 @@
 
 <script setup>
 // onMonted: 这个方法是Vue生命周期的钩子函数
-import { reactive, ref, onMounted } from 'vue';
+import { reactive, ref, onMounted, watch} from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+import {pinyin} from "pinyin-pro";
 
 // 站点列表，初始化为空数组
 const trainStations = ref([]);
@@ -244,6 +245,18 @@ const handleTableChange = (pagination) => {
     size: pagination.pageSize
   })
 }
+
+/**
+ * 当用户输入或修改站名名称时，自动生成拼音（全拼）和拼音首字母
+ * Created By Zhangjilin 2024/11/24
+ */
+watch(() => trainStation.value.name, ()=>{
+  if (Tool.isNotEmpty(trainStation.value.name)) {
+    trainStation.value.namePinyin = pinyin(trainStation.value.name, { toneType: 'none'}).replaceAll(" ", "");
+  } else {
+    trainStation.value.namePinyin = "";
+  }
+}, {immediate: true});
 
 /**
  * 钩子函数，初始化页面时调用
