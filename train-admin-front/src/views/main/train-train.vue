@@ -8,7 +8,7 @@
       </a-space>
     </p>
     <!-- 增加loading可以防止用户不断的点击提交 -->
-    <a-table :dataSource="stations"
+    <a-table :dataSource="trains"
              :columns="columns"
              :pagination="pagination"
              @change="handleTableChange"
@@ -45,16 +45,17 @@
           <station-select-view v-model="train.start"></station-select-view>
         </a-form-item>
         <a-form-item label="始发站拼音">
-          <a-input v-model:value="train.startPinyin" disabled/>
+          <a-input v-model:value="train.startPinyin" />
         </a-form-item>
         <a-form-item label="出发时间">
+          <!-- 时间控件，专门用来填入时间 -->
           <a-time-picker v-model:value="train.startTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
         </a-form-item>
         <a-form-item label="终点站">
           <station-select-view v-model="train.end"></station-select-view>
         </a-form-item>
         <a-form-item label="终点站拼音">
-          <a-input v-model:value="train.endPinyin" disabled/>
+          <a-input v-model:value="train.endPinyin" />
         </a-form-item>
         <a-form-item label="到站时间">
           <a-time-picker v-model:value="train.endTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
@@ -77,7 +78,7 @@ const TRAIN_TYPE_ARRAY = window.TRAIN_TYPE_ARRAY;
 const trains = ref([]);
 
 // 当前操作的车次，用于模态框
-let train = ref({
+const train = ref({
   id: undefined,
   code: undefined,
   type: undefined,
@@ -115,7 +116,7 @@ const onEdit = (record) => {
 const pagination = ref({
   total: 0, // 列表的总数
   current: 1, // 当前的页码
-  pageSize: 2 // 每页条数
+  pageSize: 8 // 每页条数
 })
 let loading = ref(false);
 

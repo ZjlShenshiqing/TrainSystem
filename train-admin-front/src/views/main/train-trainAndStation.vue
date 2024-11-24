@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <h1>站点管理</h1>
+    <h1>火车经停站管理</h1>
     <p>
       <a-space>
         <a-button type="primary" @click="handleQuery()">刷新</a-button>
@@ -8,7 +8,7 @@
       </a-space>
     </p>
     <!-- 增加loading可以防止用户不断的点击提交 -->
-    <a-table :dataSource="stations"
+    <a-table :dataSource="trainStations"
              :columns="columns"
              :pagination="pagination"
              @change="handleTableChange"
@@ -28,17 +28,33 @@
       </template>
     </a-table>
     <!-- 模态框 -->
-    <a-modal v-model:visible="visible" title="车站" @ok="handleOk"
+    <a-modal v-model:visible="visible" title="火车车站" @ok="handleOk"
              ok-text="确认" cancel-text="取消">
-      <a-form :model="station" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
+      <a-form :model="trainStation" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
+        <a-form-item label="车次编号">
+          <train-select-view v-model="trainStation.trainCode"></train-select-view>
+        </a-form-item>
+        <a-form-item label="站序">
+          <a-input v-model:value="trainStation.index" />
+          <span style="color: red">重要：第1站是0，对显示销售图有影响</span>
+        </a-form-item>
         <a-form-item label="站名">
-          <a-input v-model:value="station.name" />
+          <station-select-view v-model="trainStation.name"></station-select-view>
         </a-form-item>
         <a-form-item label="站名拼音">
-          <a-input v-model:value="station.namePinyin" />
+          <a-input v-model:value="trainStation.namePinyin" />
         </a-form-item>
-        <a-form-item label="拼音首字母">
-          <a-input v-model:value="station.namePy" />
+        <a-form-item label="进站时间">
+          <a-time-picker v-model:value="trainStation.inTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
+        </a-form-item>
+        <a-form-item label="出站时间">
+          <a-time-picker v-model:value="trainStation.outTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
+        </a-form-item>
+        <a-form-item label="停站时长">
+          <a-time-picker v-model:value="trainStation.stopTime" valueFormat="HH:mm:ss" placeholder="请选择时间" />
+        </a-form-item>
+        <a-form-item label="里程（公里）">
+          <a-input v-model:value="trainStation.km" />
         </a-form-item>
       </a-form>
     </a-modal>
@@ -52,16 +68,21 @@ import { notification } from 'ant-design-vue';
 import axios from 'axios';
 
 // 站点列表，初始化为空数组
-const stations = ref([]);
+const trainStations = ref([]);
 
 // 当前操作的站点，用于模态框
-const station = ref({
-  id: null,
-  name: '',
-  namePinyin: '',
-  namePy: '',
-  createTime: null,
-  updateTime: null,
+let trainStation = ref({
+  id: undefined,
+  trainCode: undefined,
+  index: undefined,
+  name: undefined,
+  namePinyin: undefined,
+  inTime: undefined,
+  outTime: undefined,
+  stopTime: undefined,
+  km: undefined,
+  createTime: undefined,
+  updateTime: undefined,
 });
 
 // 模态框的显示状态
@@ -70,7 +91,7 @@ const visible = ref(false);
 // 新增状态：显示模态框
 const onAdd = () => {
   // 新增时，将车次的所有值清空，这样新增的模态框不会显示任何的数据
-  station.value = {};
+  trainStation.value = {};
   visible.value = true;
 };
 
@@ -82,7 +103,7 @@ const onEdit = (record) => {
   *
   * 解决方案：复制一个新的对象，copy一下
   * */
-  station.value = window.Tool.copy(record)
+  trainStation.value = window.Tool.copy(record)
   visible.value = true;
 };
 
@@ -92,8 +113,23 @@ const pagination = ref({
   current: 1, // 当前的页码
   pageSize: 8 // 每页条数
 })
+
 let loading = ref(false);
+
+let params = ref({
+  trainCode: null
+});
 const columns = [
+  {
+    title: '车次编号',
+    dataIndex: 'trainCode',
+    key: 'trainCode',
+  },
+  {
+    title: '站序',
+    dataIndex: 'index',
+    key: 'index',
+  },
   {
     title: '站名',
     dataIndex: 'name',
@@ -105,9 +141,24 @@ const columns = [
     key: 'namePinyin',
   },
   {
-    title: '站名拼音首字母',
-    dataIndex: 'namePy',
-    key: 'namePy',
+    title: '进站时间',
+    dataIndex: 'inTime',
+    key: 'inTime',
+  },
+  {
+    title: '出站时间',
+    dataIndex: 'outTime',
+    key: 'outTime',
+  },
+  {
+    title: '停站时长',
+    dataIndex: 'stopTime',
+    key: 'stopTime',
+  },
+  {
+    title: '里程（公里）',
+    dataIndex: 'km',
+    key: 'km',
   },
   {
     title: '操作',
@@ -117,7 +168,7 @@ const columns = [
 
 /**
  * 查询方法
- * Created By Zhangjilin 2024/11/21
+ * Created By Zhangjilin 2024/11/23
  * @param param 传入的页数和size
  */
 const handleQuery = (param) => {
@@ -128,7 +179,7 @@ const handleQuery = (param) => {
     };
   }
   loading.value = true;
-  axios.get("/business/admin/station/query-list", {
+  axios.get("/business/admin/trainStation/query-list", {
     params: {
       page: param.page,
       size: param.size
@@ -137,7 +188,7 @@ const handleQuery = (param) => {
     loading.value = false;
     let data = response.data;
     if (data.success) {
-      stations.value = data.content.list;
+      trainStations.value = data.content.list;
       // 设置分页控件的值
       pagination.value.current = param.page;
       pagination.value.total = data.content.total;
@@ -147,8 +198,13 @@ const handleQuery = (param) => {
   });
 };
 
+/**
+ * 删除数据方法
+ * Created By Zhangjilin 2024/11/23
+ * @param record
+ */
 const onDelete = (record) => {
-  axios.delete("/business/admin/station/delete/" + record.id).then((response) => {
+  axios.delete("/business/admin/trainStation/delete/" + record.id).then((response) => {
     const data = response.data;
     if (data.success) {
       notification.success({description: "删除成功！"});
@@ -163,11 +219,11 @@ const onDelete = (record) => {
 };
 
 /**
- * 保存站点信息
- * Created By Zhangjilin 2024/11/21
+ * 保存车次经停站信息
+ * Created By Zhangjilin 2024/11/23
  */
 const handleOk = () => {
-  axios.post("/business/admin/station/save", station.value).then((response) => {
+  axios.post("/business/admin/trainStation/save", trainStation.value).then((response) => {
     let data = response.data;
     if (data.success) {
       notification.success({description: "保存成功！"});
@@ -191,7 +247,7 @@ const handleTableChange = (pagination) => {
 
 /**
  * 钩子函数，初始化页面时调用
- * Created By Zhangjilin 2024/11/21
+ * Created By Zhangjilin 2024/11/23
  */
 onMounted(() => {
   handleQuery({
