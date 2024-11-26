@@ -51,7 +51,7 @@ import { reactive, ref, onMounted, watch } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
 import {pinyin} from "pinyin-pro";
-
+import TrainSelect from "@/components/train-select.vue";
 // 站点列表，初始化为空数组
 const stations = ref([]);
 

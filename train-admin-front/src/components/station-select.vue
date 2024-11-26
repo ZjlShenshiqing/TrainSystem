@@ -82,6 +82,7 @@ const filterNameCodeOption = (input, option) => {
 
 /**
  * 将当前组件的值响应给父组件
+ * 	用户操作时才触发,主动更新父组件绑定值，并向父组件传递额外信息
  * Created By Zhangjilin 2024/11/24
  * @param value
  */

@@ -66,7 +66,15 @@ public class TrainStationServiceImpl implements TrainStationService {
         // 查询条件类
         TrainStationExample passengerExample = new TrainStationExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("id desc");
+        passengerExample.setOrderByClause("train_code asc, `index` asc");
+
+        /**
+         * 如果请求中提供了 trainCode，则在查询条件中添加 train_code 等于指定值的条件，
+         * 筛选出特定车次的站点信息。
+         */
+        if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
+            passengerExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
+        }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());

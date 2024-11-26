@@ -3,7 +3,8 @@
     <h1>火车经停站管理</h1>
     <p>
       <a-space>
-        <a-button type="primary" @click="handleQuery()">刷新</a-button>
+        <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
+        <a-button type="primary" @click="handleQuery()">查找</a-button>
         <a-button type="primary" @click="onAdd">新增</a-button>
       </a-space>
     </p>
@@ -118,9 +119,11 @@ const pagination = ref({
 
 let loading = ref(false);
 
+// 全局的参数，目前是传递给后端作车次筛选用的
 let params = ref({
   trainCode: null
 });
+
 const columns = [
   {
     title: '车次编号',
@@ -184,7 +187,8 @@ const handleQuery = (param) => {
   axios.get("/business/admin/trainStation/query-list", {
     params: {
       page: param.page,
-      size: param.size
+      size: param.size,
+      trainCode: params.value.trainCode
     }
   }).then((response) => {
     loading.value = false;
