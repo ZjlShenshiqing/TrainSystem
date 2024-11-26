@@ -66,7 +66,14 @@ public class TrainCarriageServiceImpl implements TrainCarriageService {
         // 查询条件类
         TrainCarriageExample passengerExample = new TrainCarriageExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("id desc");
+        passengerExample.setOrderByClause("train_code asc, `index` asc");
+
+        /**
+         * 筛选车次
+         */
+        if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
+            passengerExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
+        }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
