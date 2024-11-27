@@ -282,6 +282,7 @@ const handleTableChange = (pagination) => {
 const autoSeat = (record) => {
   loading.value = true;
   axios.get("/business/admin/train/auto-seat/" + record.code).then(response => {
+    loading.value = false;
     let data = response.data;
     if (data.success) {
       notification.success({description: "座位生成成功！"});
