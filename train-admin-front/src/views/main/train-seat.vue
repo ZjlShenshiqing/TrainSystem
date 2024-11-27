@@ -3,7 +3,8 @@
     <h1>火车座位管理</h1>
     <p>
       <a-space>
-        <a-button type="primary" @click="handleQuery()">刷新</a-button>
+        <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
+        <a-button type="primary" @click="handleQuery()">查询</a-button>
         <a-button type="primary" @click="onAdd">新增</a-button>
       </a-space>
     </p>
@@ -78,6 +79,7 @@
 import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+import TrainSelectView from "@/components/train-select.vue";
 
 const SEAT_COL_ARRAY = window.SEAT_COL_ARRAY;
 
@@ -128,9 +130,11 @@ const pagination = ref({
 
 let loading = ref(false);
 
+// 筛选车次作为查询条件
 let params = ref({
   trainCode: null
 });
+
 const columns = [
   {
     title: '车次编号',
@@ -180,7 +184,8 @@ const handleQuery = (param) => {
   axios.get("/business/admin/trainSeat/query-list", {
     params: {
       page: param.page,
-      size: param.size
+      size: param.size,
+      trainCode: params.value.trainCode
     }
   }).then((response) => {
     loading.value = false;
