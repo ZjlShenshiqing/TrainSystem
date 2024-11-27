@@ -3,6 +3,7 @@ package com.zjl.train.business.controller.admin;
 import com.zjl.train.business.request.TrainQueryReq;
 import com.zjl.train.business.request.TrainSaveReq;
 import com.zjl.train.business.resp.TrainQueryResponse;
+import com.zjl.train.business.service.TrainSeatService;
 import com.zjl.train.business.service.TrainService;
 import com.zjl.train.common.resp.CommonResp;
 import com.zjl.train.common.resp.PageResp;
@@ -22,6 +23,9 @@ public class AdminTrainController {
 
     @Resource
     private TrainService trainService;
+
+    @Resource
+    private TrainSeatService seatService;
 
     @PostMapping("/save")
     public CommonResp<Object> savePassenger(@Valid @RequestBody TrainSaveReq req) {
@@ -45,5 +49,15 @@ public class AdminTrainController {
     public CommonResp<List<TrainQueryResponse>> queryList() {
         List<TrainQueryResponse> list = trainService.queryAll();
         return new CommonResp<>(list);
+    }
+
+    /**
+     * 自动通过车次生成座位功能
+     * Created By Zhangjilin 2024/11/27
+     */
+    @GetMapping("/auto-seat/{trainCode}")
+    public CommonResp<Object> autoSeat(@PathVariable String trainCode) {
+        seatService.autoTrainSeat(trainCode);
+        return new CommonResp<>();
     }
 }

@@ -67,6 +67,7 @@ public enum SeatColEnum {
      */
     public static List<SeatColEnum> getColsByType(String seatType) {
         List<SeatColEnum> colList = new ArrayList<>();
+        // 这个方法返回了一个包含 SeatColEnum 枚举中所有枚举值的集合
         EnumSet<SeatColEnum> seatColEnums = EnumSet.allOf(SeatColEnum.class);
         for (SeatColEnum anEnum : seatColEnums) {
             if (seatType.equals(anEnum.getType())) {

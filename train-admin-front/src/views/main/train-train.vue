@@ -23,6 +23,12 @@
               <a style="color: red">删除</a>
             </a-popconfirm>
             <a @click="onEdit(record)">编辑</a>
+            <a-popconfirm
+                title="生成座位将删除已有记录，确认生成座位？"
+                @confirm="autoSeat(record)"
+                ok-text="确认" cancel-text="取消">
+              <a>生成座位</a>
+            </a-popconfirm>
           </a-space>
         </template>
       </template>
@@ -268,6 +274,24 @@ const handleTableChange = (pagination) => {
     size: pagination.pageSize
   })
 }
+
+/**
+ * 通过车次生成座位
+ * Created By Zhangjilin 2024/11/27
+ */
+const autoSeat = (record) => {
+  loading.value = true;
+  axios.get("/business/admin/train/auto-seat/" + record.code).then(response => {
+    let data = response.data;
+    if (data.success) {
+      notification.success({description: "座位生成成功！"});
+    } else {
+      notification.error({description: data.message});
+    }
+  });
+};
+
+
 
 /**
  * 钩子函数，初始化页面时调用

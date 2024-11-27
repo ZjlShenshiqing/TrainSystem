@@ -38,4 +38,10 @@ public interface TrainSeatService {
      * 查询所有车次座位的信息
      */
     List<TrainSeatQueryResponse>  queryAll();
+
+    /**
+     * Created By Zhangjilin 2024/11/27
+     * 通过车次生成座位
+     */
+    void autoTrainSeat(String trainCode);
 }

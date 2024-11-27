@@ -104,4 +104,14 @@ public class TrainCarriageServiceImpl implements TrainCarriageService {
         List<TrainCarriage> trainList = trainMapper.selectByExample(trainExample);
         return BeanUtil.copyToList(trainList, TrainCarriageQueryResponse.class);
     }
+
+    @Override
+    public List<TrainCarriage> selectByTrainCode(String trainCode) {
+        TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
+        trainCarriageExample.setOrderByClause("`index` asc");
+        TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        List<TrainCarriage> trainCarriages = trainMapper.selectByExample(trainCarriageExample);
+        return trainCarriages;
+    }
 }

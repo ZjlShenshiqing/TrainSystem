@@ -3,15 +3,19 @@ package com.zjl.train.business.service.Impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zjl.train.business.entity.TrainCarriage;
 import com.zjl.train.business.entity.TrainSeat;
 import com.zjl.train.business.entity.TrainSeatExample;
+import com.zjl.train.business.enums.SeatColEnum;
 import com.zjl.train.business.mapper.TrainSeatCustomizableMapper;
 import com.zjl.train.business.mapper.TrainSeatMapper;
 import com.zjl.train.business.request.TrainSeatQueryReq;
 import com.zjl.train.business.request.TrainSeatSaveReq;
 import com.zjl.train.business.resp.TrainSeatQueryResponse;
+import com.zjl.train.business.service.TrainCarriageService;
 import com.zjl.train.business.service.TrainSeatService;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
@@ -19,6 +23,7 @@ import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +39,9 @@ public class TrainSeatServiceImpl implements TrainSeatService {
 
     @Autowired
     private TrainSeatCustomizableMapper trainCustomizableMapper;
+
+    @Autowired
+    private TrainCarriageService trainCarriageService;
 
     @Override
     public void save(TrainSeatSaveReq req) {
@@ -101,5 +109,51 @@ public class TrainSeatServiceImpl implements TrainSeatService {
         trainExample.setOrderByClause("name_pinyin asc");
         List<TrainSeat> trainList = trainMapper.selectByExample(trainExample);
         return BeanUtil.copyToList(trainList, TrainSeatQueryResponse.class);
+    }
+
+    @Override
+    @Transactional
+    public void autoTrainSeat(String trainCode) {
+        // 先清空数据库的座位信息，再生成座位
+        TrainSeatExample trainSeatExample = new TrainSeatExample();
+        TrainSeatExample.Criteria criteria = trainSeatExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        trainMapper.deleteByExample(trainSeatExample);
+
+        // 查询当前车次下的所有车厢
+        List<TrainCarriage> trainCarriages = trainCarriageService.selectByTrainCode(trainCode);
+
+        // 循环生成每个车厢的座位
+        for (TrainCarriage trainCarriage : trainCarriages) {
+            // 拿到车厢数据：行数，座位类型（一等座or二等座）
+            Integer rowCount = trainCarriage.getRowCount();
+            String seatType = trainCarriage.getSeatType();
+
+            // 每个座位的唯一索引
+            int seatIndex = 1;
+
+            // 根据车厢的座位类型来进行筛选 一等座只有ACDF可以选择，二等座有ABCDF可以选择，根据类型来自动填充列
+            List<SeatColEnum> seatColumnType = SeatColEnum.getColsByType(seatType);
+
+            // 循环行数：每一排
+            for (int row = 1; row <= rowCount; row++) {
+                // 循环列数：每个座位
+                for (SeatColEnum seatColEnum : seatColumnType) {
+                    TrainSeat trainSeat = new TrainSeat();
+                    trainSeat.setId(SnowUtil.getSnowflakeNextId());
+                    trainSeat.setTrainCode(trainCode);
+                    trainSeat.setCarriageIndex(trainCarriage.getIndex());
+                    trainSeat.setRow(StrUtil.fillBefore(String.valueOf(row), '0', 2)); // 是两位，不填充，不是两位填充0
+                    trainSeat.setCol(seatColEnum.getCode());
+                    trainSeat.setSeatType(seatType);
+                    trainSeat.setCarriageSeatIndex(seatIndex++);
+                    trainSeat.setCreateTime(DateTime.now());
+                    trainSeat.setUpdateTime(DateTime.now());
+                    trainMapper.insert(trainSeat);
+                }
+            }
+        }
+
+
     }
 }
