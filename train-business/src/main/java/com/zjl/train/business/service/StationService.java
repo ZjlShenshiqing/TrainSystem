@@ -1,5 +1,6 @@
 package com.zjl.train.business.service;
 
+import com.zjl.train.business.entity.Station;
 import com.zjl.train.business.request.StationQueryReq;
 import com.zjl.train.business.request.StationSaveReq;
 import com.zjl.train.business.resp.StationQueryResponse;
@@ -38,4 +39,10 @@ public interface StationService {
      * 查询所有站点的信息,给前端返回下拉框
      */
     List<StationQueryResponse>  queryAll();
+
+    /**
+     * Created By Zhangjilin 2024/11/28
+     * 通过车站名字，查询数据是否存在
+     */
+    Station selectByUnique(String stationName);
 }

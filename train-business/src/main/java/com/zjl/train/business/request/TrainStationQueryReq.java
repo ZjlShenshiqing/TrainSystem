@@ -8,6 +8,9 @@ import com.zjl.train.common.request.PageRequest;
  */
 public class TrainStationQueryReq extends PageRequest {
 
+    /**
+     * 加入车次来进行筛选
+     */
     private String trainCode;
 
     public String getTrainCode() {

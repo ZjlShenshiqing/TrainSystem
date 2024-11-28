@@ -1,75 +1,36 @@
 <template>
   <div class="welcome">
     <h1>火车座位管理</h1>
-    <p>
-      <a-space>
-        <a-button type="primary" @click="handleQuery()">刷新</a-button>
-        <a-button type="primary" @click="onAdd">新增</a-button>
-      </a-space>
-    </p>
-    <!-- 增加loading可以防止用户不断的点击提交 -->
-    <a-table :dataSource="trainSeats"
-             :columns="columns"
-             :pagination="pagination"
-             @change="handleTableChange"
-             :loading="loading">
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'operation'">
-          <a-space>
-            <a-popconfirm
-                title="删除后不可恢复，确认删除?"
-                @confirm="onDelete(record)"
-                ok-text="确认" cancel-text="取消">
-              <a style="color: red">删除</a>
-            </a-popconfirm>
-            <a @click="onEdit(record)">编辑</a>
-          </a-space>
-        </template>
+  <p>
+    <a-space>
+      <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
+      <a-button type="primary" @click="handleQuery()">查找</a-button>
+    </a-space>
+  </p>
+  <a-table :dataSource="trainSeats"
+           :columns="columns"
+           :pagination="pagination"
+           @change="handleTableChange"
+           :loading="loading">
+    <template #bodyCell="{ column, record }">
+      <template v-if="column.dataIndex === 'operation'">
       </template>
-    </a-table>
-    <!-- 模态框 -->
-    <a-modal v-model:visible="visible" title="火车座位" @ok="handleOk"
-             ok-text="确认" cancel-text="取消">
-      <a-form :model="trainSeat" :label-col="{ span: 4 }" :wrapper-col="{ span: 20 }">
-        <!-- 车次编号 -->
-        <a-form-item label="车次编号">
-          <train-select-view v-model="trainSeat.trainCode"></train-select-view>
-        </a-form-item>
-
-        <!-- 厢号 -->
-        <a-form-item label="厢号">
-          <a-input v-model:value="trainSeat.carriageIndex" placeholder="请输入厢号" />
-        </a-form-item>
-
-        <!-- 排号 -->
-        <a-form-item label="排号">
-          <a-input v-model:value="trainSeat.row" placeholder="请输入排号（如01, 02）" />
-        </a-form-item>
-
-        <!-- 列号 -->
-        <a-form-item label="列号">
-          <a-select v-model:value="trainSeat.col" placeholder="请选择列号">
-            <a-select-option v-for="col in ['A', 'B', 'C', 'D', 'E', 'F']" :key="col" :value="col">
-              {{ col }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
-
-        <!-- 座位类型 -->
-        <a-form-item label="座位位置">
-          <a-select v-model:value="trainSeat.seatType" placeholder="请选择座位位置">
-            <a-select-option v-for="item in SEAT_COL_ARRAY" :key="item.code" :value="item.code">
-              {{ item.desc }}
-            </a-select-option>
-          </a-select>
-        </a-form-item>
-
-        <!-- 座位序号 -->
-        <a-form-item label="车厢座位序号">
-          <a-input v-model:value="trainSeat.carriageSeatIndex" placeholder="请输入座位序号" />
-        </a-form-item>
-      </a-form>
-    </a-modal>
+      <template v-else-if="column.dataIndex === 'col'">
+        <span v-for="item in SEAT_COL_ARRAY" :key="item.code">
+          <span v-if="item.code === record.col && item.type === record.seatType">
+            {{item.desc}}
+          </span>
+        </span>
+      </template>
+      <template v-else-if="column.dataIndex === 'seatType'">
+        <span v-for="item in SEAT_TYPE_ARRAY" :key="item.code">
+          <span v-if="item.code === record.seatType">
+            {{item.desc}}
+          </span>
+        </span>
+      </template>
+    </template>
+  </a-table>
   </div>
 </template>
 
@@ -78,6 +39,7 @@
 import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+import TrainSelectView from "@/components/train-select.vue";
 
 const SEAT_COL_ARRAY = window.SEAT_COL_ARRAY;
 
@@ -128,9 +90,11 @@ const pagination = ref({
 
 let loading = ref(false);
 
+// 筛选车次作为查询条件
 let params = ref({
   trainCode: null
 });
+
 const columns = [
   {
     title: '车次编号',
@@ -180,7 +144,8 @@ const handleQuery = (param) => {
   axios.get("/business/admin/trainSeat/query-list", {
     params: {
       page: param.page,
-      size: param.size
+      size: param.size,
+      trainCode: params.value.trainCode
     }
   }).then((response) => {
     loading.value = false;

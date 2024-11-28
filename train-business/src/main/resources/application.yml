@@ -28,4 +28,4 @@ mybatis:
 
 logging:
   level:
-    com.zjl.train.member.mapper: trace
+    com.zjl.train.business.mapper: trace

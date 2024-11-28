@@ -3,7 +3,8 @@
     <h1>火车车厢管理</h1>
     <p>
       <a-space>
-        <a-button type="primary" @click="handleQuery()">刷新</a-button>
+        <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
+        <a-button type="primary" @click="handleQuery()">查询</a-button>
         <a-button type="primary" @click="onAdd">新增</a-button>
       </a-space>
     </p>
@@ -44,15 +45,16 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="座位数">
-          <a-input v-model:value="trainCarriage.seatCount" />
-        </a-form-item>
+        <!-- 改动：去掉所有座位数和列数，让系统自动生成这俩 -->
+<!--        <a-form-item label="座位数">-->
+<!--          <a-input v-model:value="trainCarriage.seatCount" />-->
+<!--        </a-form-item>-->
         <a-form-item label="排数">
           <a-input v-model:value="trainCarriage.rowCount" />
         </a-form-item>
-        <a-form-item label="列数">
-          <a-input v-model:value="trainCarriage.colCount" />
-        </a-form-item>
+<!--        <a-form-item label="列数">-->
+<!--          <a-input v-model:value="trainCarriage.colCount" />-->
+<!--        </a-form-item>-->
       </a-form>
     </a-modal>
   </div>
@@ -63,6 +65,7 @@
 import { reactive, ref, onMounted } from 'vue';
 import { notification } from 'ant-design-vue';
 import axios from 'axios';
+import TrainSelectView from "@/components/train-select.vue";
 
 const SEAT_TYPE_ARRAY = window.SEAT_TYPE_ARRAY;
 
@@ -113,6 +116,7 @@ const pagination = ref({
 
 let loading = ref(false);
 
+// 参数，目前用来筛选车次
 let params = ref({
   trainCode: null
 });
@@ -169,7 +173,8 @@ const handleQuery = (param) => {
   axios.get("/business/admin/trainCarriage/query-list", {
     params: {
       page: param.page,
-      size: param.size
+      size: param.size,
+      trainCode: params.value.trainCode
     }
   }).then((response) => {
     loading.value = false;

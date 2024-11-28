@@ -23,6 +23,12 @@
               <a style="color: red">删除</a>
             </a-popconfirm>
             <a @click="onEdit(record)">编辑</a>
+            <a-popconfirm
+                title="生成座位将删除已有记录，确认生成座位？"
+                @confirm="autoSeat(record)"
+                ok-text="确认" cancel-text="取消">
+              <a>生成座位</a>
+            </a-popconfirm>
           </a-space>
         </template>
       </template>
@@ -32,6 +38,7 @@
              ok-text="确认" cancel-text="取消">
       <a-form :model="train" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
         <a-form-item label="车次编号">
+          <!-- 属性不为空，也就是车次已存在，这是修改，则不允许修改车次编号 -->
           <a-input v-model:value="train.code" :disabled="!!train.id"/>
         </a-form-item>
         <a-form-item label="车次类型">
@@ -268,6 +275,25 @@ const handleTableChange = (pagination) => {
     size: pagination.pageSize
   })
 }
+
+/**
+ * 通过车次生成座位
+ * Created By Zhangjilin 2024/11/27
+ */
+const autoSeat = (record) => {
+  loading.value = true;
+  axios.get("/business/admin/train/auto-seat/" + record.code).then(response => {
+    loading.value = false;
+    let data = response.data;
+    if (data.success) {
+      notification.success({description: "座位生成成功！"});
+    } else {
+      notification.error({description: data.message});
+    }
+  });
+};
+
+
 
 /**
  * 钩子函数，初始化页面时调用

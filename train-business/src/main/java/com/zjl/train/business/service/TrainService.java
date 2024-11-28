@@ -1,5 +1,6 @@
 package com.zjl.train.business.service;
 
+import com.zjl.train.business.entity.Train;
 import com.zjl.train.business.request.TrainQueryReq;
 import com.zjl.train.business.request.TrainSaveReq;
 import com.zjl.train.business.resp.TrainQueryResponse;
@@ -38,4 +39,10 @@ public interface TrainService {
      * 查询所有车次的信息
      */
     List<TrainQueryResponse>  queryAll();
+
+    /**
+     * Created By Zhangjilin 2024/11/28
+     * 通过车次编号，查询数据是否存在
+     */
+    Train selectByUnique(String trainCode);
 }

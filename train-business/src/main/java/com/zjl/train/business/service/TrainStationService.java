@@ -1,5 +1,6 @@
 package com.zjl.train.business.service;
 
+import com.zjl.train.business.entity.TrainStation;
 import com.zjl.train.business.request.TrainStationQueryReq;
 import com.zjl.train.business.request.TrainStationSaveReq;
 import com.zjl.train.business.resp.TrainStationQueryResponse;
@@ -38,4 +39,16 @@ public interface TrainStationService {
      * 查询所有车次经停站的信息
      */
     List<TrainStationQueryResponse>  queryAll();
+
+    /**
+     * Created By Zhangjilin 2024/11/28
+     * 通过车次编号 + 站序 （数据库唯一键），查询数据是否存在
+     */
+    TrainStation selectByUnique(Integer index, String trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/11/28
+     * 通过车次编号 + 站名 （数据库唯一键），查询数据是否存在
+     */
+    TrainStation selectByUnique(String name, String trainCode);
 }

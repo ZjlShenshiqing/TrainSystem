@@ -1,6 +1,7 @@
 package com.zjl.train.business.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
@@ -40,12 +41,20 @@ public class TrainStationServiceImpl implements TrainStationService {
         DateTime now = DateTime.now();
         TrainStation train = BeanUtil.copyProperties(req, TrainStation.class);
         if (ObjectUtil.isNull(train.getId())) {
-            //TODO 保存之前，先校验唯一键是否存在
-            TrainStation trainDB = trainCustomizableMapper.selectByUnique(req.getTrainCode());
+            // 保存之前，先校验车站是否存在 (校验1 车站名)
+            TrainStation trainStationDB1 = selectByUnique(req.getName(), req.getTrainCode());
 
-            // 首先判断是否已经有同名的车站
-            if (ObjectUtil.isNotEmpty(trainDB)) {
+            // 不为空，抛出异常
+            if (ObjectUtil.isNotEmpty(trainStationDB1)) {
                 throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
+            }
+
+            // 保存之前，先校验车站是否存在 (校验2 站序)
+            TrainStation trainStationDB2 = selectByUnique(req.getIndex(), req.getTrainCode());
+
+            // 不为空，抛出异常
+            if (ObjectUtil.isNotEmpty(trainStationDB2)) {
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_STATION_INDEX_UNIQUE_ERROR);
             }
 
             // 开始保存的操作，将信息插入到数据库中
@@ -66,7 +75,15 @@ public class TrainStationServiceImpl implements TrainStationService {
         // 查询条件类
         TrainStationExample passengerExample = new TrainStationExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("id desc");
+        passengerExample.setOrderByClause("train_code asc, `index` asc");
+
+        /**
+         * 如果请求中提供了 trainCode，则在查询条件中添加 train_code 等于指定值的条件，
+         * 筛选出特定车次的站点信息。
+         */
+        if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
+            passengerExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
+        }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
@@ -96,5 +113,33 @@ public class TrainStationServiceImpl implements TrainStationService {
         trainExample.setOrderByClause("name_pinyin asc");
         List<TrainStation> trainList = trainMapper.selectByExample(trainExample);
         return BeanUtil.copyToList(trainList, TrainStationQueryResponse.class);
+    }
+
+    @Override
+    public TrainStation selectByUnique(Integer index, String trainCode) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.createCriteria()
+                .andTrainCodeEqualTo(trainCode)
+                .andIndexEqualTo(index);
+        List<TrainStation> trainStations = trainMapper.selectByExample(trainStationExample);
+        if (CollUtil.isNotEmpty(trainStations)) {
+            return trainStations.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public TrainStation selectByUnique(String name, String trainCode) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.createCriteria()
+                .andTrainCodeEqualTo(trainCode)
+                .andNameEqualTo(name);
+        List<TrainStation> trainStations = trainMapper.selectByExample(trainStationExample);
+        if (CollUtil.isNotEmpty(trainStations)) {
+            return trainStations.get(0);
+        } else {
+            return null;
+        }
     }
 }
