@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
 /**
- * 会员模块启动类
+ * 会员（后台管理）模块启动类
  * Created By Zhangjilin 2024/11/20
  */
 @SpringBootApplication
