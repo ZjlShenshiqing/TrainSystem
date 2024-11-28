@@ -40,10 +40,10 @@ public class StationServiceImpl implements StationService {
         DateTime now = DateTime.now();
         Station station = BeanUtil.copyProperties(req, Station.class);
         if (ObjectUtil.isNull(station.getId())) {
-            // 保存之前，先校验唯一键是否存在
-            Station stationDB = stationCustomizableMapper.selectByUnique(req.getName());
+            // 保存之前，先校验车站是否存在
+            Station stationDB = selectByUnique(req.getName());
 
-            // 首先判断是否已经有同名的车站
+            // 不为空，抛出异常
             if (ObjectUtil.isNotEmpty(stationDB)) {
                 throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
             }
@@ -97,5 +97,18 @@ public class StationServiceImpl implements StationService {
         stationExample.setOrderByClause("name_py asc");
         List<Station> stationList = stationMapper.selectByExample(stationExample);
         return BeanUtil.copyToList(stationList, StationQueryResponse.class);
+    }
+
+    @Override
+    public Station selectByUnique(String stationName) {
+        StationExample stationExample = new StationExample();
+        stationExample.createCriteria().andNameEqualTo(stationName);
+        List<Station> stationList = stationMapper.selectByExample(stationExample);
+        // 如果不为空，那么就只有一条数据
+        if (stationList != null && stationList.size() > 0) {
+            return stationList.get(0);
+        } else {
+            return null;
+        }
     }
 }

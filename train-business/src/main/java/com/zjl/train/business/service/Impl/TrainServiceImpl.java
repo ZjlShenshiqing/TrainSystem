@@ -40,12 +40,13 @@ public class TrainServiceImpl implements TrainService {
         DateTime now = DateTime.now();
         Train train = BeanUtil.copyProperties(req, Train.class);
         if (ObjectUtil.isNull(train.getId())) {
-            //TODO 保存之前，先校验唯一键是否存在
-            Train trainDB = trainCustomizableMapper.selectByUnique(req.getEnd());
 
-            // 首先判断是否已经有同名的车站
+            // 保存之前，先校验车站是否存在
+            Train trainDB = selectByUnique(req.getCode());
+
+            // 不为空，抛出异常
             if (ObjectUtil.isNotEmpty(trainDB)) {
-                throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_CODE_UNIQUE_ERROR);
             }
 
             // 开始保存的操作，将信息插入到数据库中
@@ -96,5 +97,17 @@ public class TrainServiceImpl implements TrainService {
         trainExample.setOrderByClause("id asc");
         List<Train> trainList = trainMapper.selectByExample(trainExample);
         return BeanUtil.copyToList(trainList, TrainQueryResponse.class);
+    }
+
+    @Override
+    public Train selectByUnique(String trainCode) {
+        TrainExample trainExample = new TrainExample();
+        trainExample.createCriteria().andCodeEqualTo(trainCode);
+        List<Train> trainList = trainMapper.selectByExample(trainExample);
+        if (ObjectUtil.isNotEmpty(trainList)) {
+            return trainList.get(0);
+        } else {
+            return null;
+        }
     }
 }

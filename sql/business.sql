@@ -56,7 +56,7 @@ create table `train_carriage` (
   `col_count` int not null comment '列数',
   `create_time` datetime(3) comment '新增时间',
   `update_time` datetime(3) comment '修改时间',
-  unique key `train_code_index_unique` (`train_code`, `index`),
+  unique key `train_code_index_unique` (`train_code`, `index`), -- 车次编号 + 车厢号组成唯一键
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='火车车厢';
 

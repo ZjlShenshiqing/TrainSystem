@@ -17,8 +17,6 @@ import com.zjl.train.business.request.TrainSeatSaveReq;
 import com.zjl.train.business.resp.TrainSeatQueryResponse;
 import com.zjl.train.business.service.TrainCarriageService;
 import com.zjl.train.business.service.TrainSeatService;
-import com.zjl.train.common.exception.BusinessException;
-import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,28 +41,24 @@ public class TrainSeatServiceImpl implements TrainSeatService {
     @Autowired
     private TrainCarriageService trainCarriageService;
 
+    /**
+     * 方案已弃用，该成由车次自动生成
+     * Created By Zhangjilin 2024/11/28
+     * @param req
+     */
     @Override
+    @Deprecated
     public void save(TrainSeatSaveReq req) {
         DateTime now = DateTime.now();
-        TrainSeat train = BeanUtil.copyProperties(req, TrainSeat.class);
-        if (ObjectUtil.isNull(train.getId())) {
-            //TODO 保存之前，先校验唯一键是否存在
-            TrainSeat trainDB = trainCustomizableMapper.selectByUnique(req.getTrainCode());
-
-            // 首先判断是否已经有同名的车站
-            if (ObjectUtil.isNotEmpty(trainDB)) {
-                throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
-            }
-
-            // 开始保存的操作，将信息插入到数据库中
-            train.setId(SnowUtil.getSnowflakeNextId());
-            train.setCreateTime(now);
-            train.setUpdateTime(now);
-            trainMapper.insert(train);
+        TrainSeat trainSeat = BeanUtil.copyProperties(req, TrainSeat.class);
+        if (ObjectUtil.isNull(trainSeat.getId())) {
+            trainSeat.setId(SnowUtil.getSnowflakeNextId());
+            trainSeat.setCreateTime(now);
+            trainSeat.setUpdateTime(now);
+            trainMapper.insert(trainSeat);
         } else {
-            // 更新操作
-            train.setUpdateTime(now);
-            trainMapper.updateByPrimaryKey(train);
+            trainSeat.setUpdateTime(now);
+            trainMapper.updateByPrimaryKey(trainSeat);
         }
     }
 
