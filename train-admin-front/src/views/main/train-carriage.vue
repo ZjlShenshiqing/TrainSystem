@@ -45,15 +45,16 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="座位数">
-          <a-input v-model:value="trainCarriage.seatCount" />
-        </a-form-item>
+        <!-- 改动：去掉所有座位数和列数，让系统自动生成这俩 -->
+<!--        <a-form-item label="座位数">-->
+<!--          <a-input v-model:value="trainCarriage.seatCount" />-->
+<!--        </a-form-item>-->
         <a-form-item label="排数">
           <a-input v-model:value="trainCarriage.rowCount" />
         </a-form-item>
-        <a-form-item label="列数">
-          <a-input v-model:value="trainCarriage.colCount" />
-        </a-form-item>
+<!--        <a-form-item label="列数">-->
+<!--          <a-input v-model:value="trainCarriage.colCount" />-->
+<!--        </a-form-item>-->
       </a-form>
     </a-modal>
   </div>

@@ -7,14 +7,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.TrainCarriage;
 import com.zjl.train.business.entity.TrainCarriageExample;
+import com.zjl.train.business.enums.SeatColEnum;
 import com.zjl.train.business.mapper.TrainCarriageCustomizableMapper;
 import com.zjl.train.business.mapper.TrainCarriageMapper;
 import com.zjl.train.business.request.TrainCarriageQueryReq;
 import com.zjl.train.business.request.TrainCarriageSaveReq;
 import com.zjl.train.business.resp.TrainCarriageQueryResponse;
 import com.zjl.train.business.service.TrainCarriageService;
-import com.zjl.train.common.exception.BusinessException;
-import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,25 +37,25 @@ public class TrainCarriageServiceImpl implements TrainCarriageService {
     @Override
     public void save(TrainCarriageSaveReq req) {
         DateTime now = DateTime.now();
-        TrainCarriage train = BeanUtil.copyProperties(req, TrainCarriage.class);
-        if (ObjectUtil.isNull(train.getId())) {
-            //TODO 保存之前，先校验唯一键是否存在
-            TrainCarriage trainDB = trainCustomizableMapper.selectByUnique(req.getTrainCode());
 
-            // 首先判断是否已经有同名的车站
-            if (ObjectUtil.isNotEmpty(trainDB)) {
-                throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
-            }
+        // 自动计算出列数 + 总座位数
+        List<SeatColEnum> seatColEnums = SeatColEnum.getColsByType(req.getSeatType()); // 通过座位类型知道有几列
+        req.setColCount(seatColEnums.size());
 
-            // 开始保存的操作，将信息插入到数据库中
-            train.setId(SnowUtil.getSnowflakeNextId());
-            train.setCreateTime(now);
-            train.setUpdateTime(now);
-            trainMapper.insert(train);
-        } else {
-            // 更新操作
-            train.setUpdateTime(now);
-            trainMapper.updateByPrimaryKey(train);
+        // 计算座位数
+        req.setSeatCount(req.getColCount() * req.getRowCount());
+
+        TrainCarriage trainCarriage = BeanUtil.copyProperties(req, TrainCarriage.class);
+
+        if (ObjectUtil.isNull(trainCarriage.getId())) {
+            trainCarriage.setId(SnowUtil.getSnowflakeNextId());
+            trainCarriage.setCreateTime(now);
+            trainCarriage.setUpdateTime(now);
+            trainMapper.insert(trainCarriage);
+        }
+        else {
+            trainCarriage.setUpdateTime(now);
+            trainMapper.updateByPrimaryKeySelective(trainCarriage);
         }
     }
 
