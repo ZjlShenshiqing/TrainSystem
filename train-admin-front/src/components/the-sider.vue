@@ -16,31 +16,51 @@
           <user-outlined /> &nbsp; 关于
         </router-link>
       </a-menu-item>
-      <a-menu-item key="/station">
-        <router-link to="/station">
-          <user-outlined /> &nbsp; 车站管理
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/train">
-        <router-link to="/train">
-          <user-outlined /> &nbsp; 车次管理
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/train-station">
-        <router-link to="/train-station">
-          <user-outlined /> &nbsp; 火车经停站管理
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/train-carriage">
-        <router-link to="/train-carriage">
-          <user-outlined /> &nbsp; 火车车厢管理
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/train-seat">
-        <router-link to="/train-seat">
-          <user-outlined /> &nbsp; 火车座位管理
-        </router-link>
-      </a-menu-item>
+      <a-sub-menu key="batch">
+        <template #title>
+          <span>
+            <UnorderedListOutLined />
+            后台任务管理
+          </span>
+        </template>
+        <a-menu-item key="/batch/job">
+          <router-link to="/batch/job">
+            <UnorderedListOutLined /> &nbsp; 任务管理
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu>
+        <template>
+          <span>
+            <UnorderedListOutLined /> &nbsp; 基础数据
+          </span>
+        </template>
+        <a-menu-item key="/station">
+          <router-link to="/station">
+            <user-outlined /> &nbsp; 车站管理
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/train">
+          <router-link to="/train">
+            <user-outlined /> &nbsp; 车次管理
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/train-station">
+          <router-link to="/train-station">
+            <user-outlined /> &nbsp; 火车经停站管理
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/train-carriage">
+          <router-link to="/train-carriage">
+            <user-outlined /> &nbsp; 火车车厢管理
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/train-seat">
+          <router-link to="/train-seat">
+            <user-outlined /> &nbsp; 火车座位管理
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
     </a-menu>
   </a-layout-sider>
 </template>

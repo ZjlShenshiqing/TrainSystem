@@ -21,6 +21,7 @@
         <module>train-gateway</module>
         <module>train-generator</module>
         <module>train-business</module>
+        <module>train-batchtask</module>
     </modules>
 
     <properties>

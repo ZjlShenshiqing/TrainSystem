@@ -1,0 +1,31 @@
+server:
+  port: 8003
+  servlet:
+    context-path: /batchtask
+
+spring:
+  datasource:
+    url: jdbc:mysql://rm-wz9st1995248til6f1o.rwlb.rds.aliyuncs.com/train_batchtask?characterEncoding=UTF-8&autoReconnect=true
+    username: root                    # 用户名
+    password: 123456Po*                # 密码
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL驱动
+
+  data:
+    redis:
+      host: 192.168.10.100                   # Redis 服务器地址
+      port: 6379                        # Redis 端口
+      password:                         # 如果 Redis 设置了密码，请在这里填写；没有密码可以留空
+      timeout: 6000ms                   # 连接超时时间（毫秒）
+      lettuce:
+        pool:
+          max-active: 8                 # 最大活跃连接数
+          max-idle: 8                   # 最大空闲连接数
+          min-idle: 0                   # 最小空闲连接数
+          max-wait: -1ms                # 连接最大等待时间（毫秒）
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+
+logging:
+  level:
+    com.zjl.train.batchtask.mapper: trace

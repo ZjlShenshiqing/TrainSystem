@@ -15,6 +15,11 @@ spring:
           predicates:
             - Path=/business/**  # 匹配路径为 /business/** 的请求，并应用此路由
 
+        - id: batchtask  # 新增batchtask模块路由 ID
+          uri: http://127.0.0.1:8003
+          predicates:
+            - Path=/batchtask/**  # 匹配路径为 /batchtask/** 的请求，并应用此路由
+
       # 全局跨域配置，允许跨域访问
       globalcors:
         cors-configurations:
@@ -24,6 +29,7 @@ spring:
               - "http://localhost:9001"
               - "http://localhost:9002"
               - "http://localhost:9003"
+              - "http://localhost:9004"
               - "http://192.168.10.8:9000"
             allowed-headers: "*"
             allowed-methods: "*"
