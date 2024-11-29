@@ -1,7 +1,7 @@
 package com.zjl.train.batchtask.config;
 
-import com.zjl.train.batchtask.job.TestJob;
-import org.quartz.*;
+import org.quartz.JobDetail;
+import org.quartz.Trigger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,10 +17,7 @@ public class QuartzConfig {
       */
      @Bean
      public JobDetail jobDetail() {
-         return JobBuilder.newJob(TestJob.class)
-                 .withIdentity("TestJob", "test")
-                 .storeDurably()
-                 .build();
+         return null;
      }
 
      /**
@@ -29,11 +26,6 @@ public class QuartzConfig {
       */
      @Bean
      public Trigger trigger() {
-         return TriggerBuilder.newTrigger()
-                 .forJob(jobDetail())
-                 .withIdentity("trigger", "trigger")
-                 .startNow()
-                 .withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ?"))
-                 .build();
+         return null;
      }
 }
