@@ -96,6 +96,10 @@ const TRAIN_TYPE_ARRAY = window.TRAIN_TYPE_ARRAY;
 const visible = ref(false);
 let loading = ref(false);
 
+/**
+ * 定义查询的筛选参数
+ * @type {Ref<UnwrapRef<{code: null}>, UnwrapRef<{code: null}> | {code: null}>}
+ */
 let params = ref({
   code: null
 });

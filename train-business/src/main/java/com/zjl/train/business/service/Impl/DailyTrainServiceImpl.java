@@ -61,13 +61,24 @@ public class DailyTrainServiceImpl implements DailyTrainService {
     @Override
     public PageResp<DailyTrainQueryResponse> queryList(DailyTrainQueryReq request) {
         // 查询条件类
-        DailyTrainExample passengerExample = new DailyTrainExample();
+        DailyTrainExample dailyTrainExample = new DailyTrainExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("id desc");
+        dailyTrainExample.setOrderByClause("date desc, code asc");
+        DailyTrainExample.Criteria criteria = dailyTrainExample.createCriteria();
+        
+        // 加入日期作为筛选条件
+        if (ObjectUtil.isNotNull(request.getDate())) {
+            criteria.andDateEqualTo(request.getDate());
+        }
+        
+        // 加入车次作为搜索条件
+        if (ObjectUtil.isNotEmpty(request.getCode())) {
+            criteria.andCodeEqualTo(request.getCode());
+        }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
-        List<DailyTrain> dailyTrains = dailyTrainMapper.selectByExample(passengerExample);
+        List<DailyTrain> dailyTrains = dailyTrainMapper.selectByExample(dailyTrainExample);
 
         // 获取总条数
         PageInfo<DailyTrain> pageInfo = new PageInfo<>(dailyTrains);

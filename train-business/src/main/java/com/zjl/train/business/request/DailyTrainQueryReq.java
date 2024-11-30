@@ -11,6 +11,10 @@ import java.util.Date;
  */
 public class DailyTrainQueryReq extends PageRequest {
 
+    /**
+     * 查询参数加入日期查询和车次作为筛选
+     * 注意：这里的日期是get请求，是拼接到url里面的，不能使用JSONTimeFormat的注解，只能使用这个DateTimeFormat注解
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
