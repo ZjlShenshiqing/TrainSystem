@@ -53,6 +53,16 @@ const routes = [
      },
     ],
    },
+   // 业务相关：每日生成车次等数据
+   {
+    path: 'business/',
+    children: [
+     {
+      path: 'daily-train',
+      component: () => import('../views/main/business/daily-train.vue'),
+     },
+    ],
+   },
   ],
  },
 ];

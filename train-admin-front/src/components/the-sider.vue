@@ -2,7 +2,7 @@
   <a-layout-sider width="200" style="background: #fff">
     <a-menu
         v-model:selectedKeys="selectedKeys2"
-        :openKeys="['batch' , 'base']"
+        :openKeys="['batch' , 'base' , 'business']"
         mode="inline"
         :style="{ height: '100%', borderRight: 0 }"
     >
@@ -59,6 +59,19 @@
         <a-menu-item key="/base/train-seat">
           <router-link to="/base/train-seat">
             <user-outlined /> &nbsp; 火车座位管理
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="business">
+        <template #title>
+          <span>
+            <UnorderedListOutlined />
+            业务管理
+          </span>
+        </template>
+        <a-menu-item key="/business/daily-train">
+          <router-link to="/business/daily-train">
+            <user-outlined /> &nbsp; 每日车次管理
           </router-link>
         </a-menu-item>
       </a-sub-menu>

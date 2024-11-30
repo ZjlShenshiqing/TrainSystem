@@ -31,6 +31,12 @@ public class JobController {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
+    /**
+     * 手动执行任务
+     * @param cronJobReq
+     * @return
+     * @throws SchedulerException
+     */
     @RequestMapping(value = "/run")
     public CommonResp<Object> run(@RequestBody CronJobReq cronJobReq) throws SchedulerException {
         String jobClassName = cronJobReq.getName();
