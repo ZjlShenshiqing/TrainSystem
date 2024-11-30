@@ -64,6 +64,7 @@ const queryAllTrain = async () => {
     return;
   }
 
+  // 查询所有车次
   try {
     const response = await axios.get('/business/admin/train/query-all');
     const data = response.data;

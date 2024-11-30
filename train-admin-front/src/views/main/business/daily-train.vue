@@ -294,11 +294,15 @@ const onClickGenDaily = () => {
 };
 
 /**
- * 处理车次选择变化
+ * 处理车次选择变化，当下拉框选择车次的时候，能自动填充车次其他的信息
+ * train: 车次信息，通过/business/admin/train/query-all查询出来
  * Created By Zhangjilin 2024/11/30
  */
 const onChangeCode = (train) => {
-
+  let t = Tool.copy(train);
+  delete t.id;
+  // 将传入的 train 对象的内容复制到 dailyTrain 这个响应式对象中
+  dailyTrain.value = Object.assign(dailyTrain.value, t);
 }
 
 /**
