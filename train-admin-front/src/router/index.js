@@ -1,3 +1,5 @@
+import { createRouter, createWebHistory } from 'vue-router'
+
 const routes = [
  {
   path: '',
@@ -17,40 +19,47 @@ const routes = [
    },
    // 分类: 基础设置相关
    {
-    path: 'base/',
+    path: 'base/', // 将基础设置相关的路径统一放入 base 路由下
     children: [
      {
       path: 'station',
-      component: () => import('../views/main/train-station.vue'),
+      component: () => import('../views/main/base/train-station.vue'),
      },
      {
       path: 'train',
-      component: () => import('../views/main/train-train.vue'),
+      component: () => import('../views/main/base/train-train.vue'),
      },
      {
       path: 'train-station',
-      component: () => import('../views/main/train-trainAndStation.vue'),
+      component: () => import('../views/main/base/train-trainAndStation.vue'),
      },
      {
       path: 'train-carriage',
-      component: () => import('../views/main/train-carriage.vue'),
+      component: () => import('../views/main/base/train-carriage.vue'),
      },
      {
       path: 'train-seat',
-      component: () => import('../views/main/train-seat.vue'),
+      component: () => import('../views/main/base/train-seat.vue'),
      },
     ],
    },
    // 分类: 批量任务相关
    {
-    path: 'batch/',
+    path: 'batch/', // 将批量任务相关的路径统一放入 batch 路由下
     children: [
      {
       path: 'job',
-      component: () => import('../views/main/train-job.vue'),
+      component: () => import('../views/main/batch/train-job.vue'),
      },
     ],
    },
   ],
  },
 ];
+
+const router = createRouter({
+ history: createWebHistory(process.env.BASE_URL),
+ routes,
+});
+
+export default router;

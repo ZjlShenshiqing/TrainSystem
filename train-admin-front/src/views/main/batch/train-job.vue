@@ -1,19 +1,14 @@
 <template>
-<div class="welcome">
+<div class="job">
   <h1>火车任务管理</h1>
   <p>
     <a-button type="primary" @click="handleAdd()">
       新增
-    </a-button>
+    </a-button>&nbsp;
     <a-button type="primary" @click="handleQuery()">
       刷新
     </a-button>
   </p>
-  <a-table :data-source="jobs"
-           :columns="columns"
-           :loading="loading">
-
-  </a-table>
   <a-table :dataSource="jobs"
            :columns="columns"
            :loading="loading">
@@ -69,9 +64,9 @@
   </a-table>
   <a-modal
       title="用户"
-      v-model:visible="modalVisible"
-      :confirm-loading="modalLoading"
-      @ok="handleModalOk"
+      v-model:visible="modelVisible"
+      :confirm-loading="modelLoading"
+      @ok="handleModelOk"
   >
     <a-form :model="job" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
       <a-form-item label="类名">
@@ -101,7 +96,7 @@ import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { notification } from 'ant-design-vue';
 // 定时任务
-const jobs = ref();
+const jobs = ref([]);
 // 加载效果
 const loading = ref();
 
@@ -133,7 +128,7 @@ const columns = [{
 
 // --------------------- 表单 ---------------------
 const job = ref();
-jobs.value = {};
+jobs.value = [];
 const modelVisible = ref(false); // 是否可见
 const modelLoading = ref(false); // 是否在加载中
 
@@ -285,7 +280,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.welcome {
+.job {
   text-align: center;
   margin-top: 20px;
 }
