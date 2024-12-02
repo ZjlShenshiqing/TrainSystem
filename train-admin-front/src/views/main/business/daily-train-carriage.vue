@@ -1,4 +1,5 @@
 <template class="dailyTrainCarriage">
+  <div class="dailyTrainCarriage">
   <p>
     <a-space>
       <a-date-picker v-model:value="params.date" valueFormat="YYYY-MM-DD" placeholder="请选择日期" />
@@ -63,6 +64,7 @@
       <!--</a-form-item>-->
     </a-form>
   </a-modal>
+  </div>
 </template>
 
 <script setup>
@@ -72,6 +74,7 @@ import axios from "axios";
 import TrainSelectView from "@/components/train-select";
 
 const SEAT_TYPE_ARRAY = window.SEAT_TYPE_ARRAY;
+const visible = ref(false);
 
 let dailyTrainCarriage = ref({
   id: undefined,
@@ -260,7 +263,6 @@ onMounted(() => {
     size: pagination.value.pageSize
   });
 });
-
 
 </script>
 

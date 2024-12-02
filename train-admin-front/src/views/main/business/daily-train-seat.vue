@@ -1,4 +1,5 @@
-<template class="dailyTrainSeat">
+<template>
+  <div class="dailyTrainSeat">
   <p>
     <a-space>
       <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
@@ -29,6 +30,7 @@
       </template>
     </template>
   </a-table>
+  </div>
 </template>
 
 <script setup>

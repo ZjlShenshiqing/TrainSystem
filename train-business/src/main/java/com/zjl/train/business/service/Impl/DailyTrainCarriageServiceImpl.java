@@ -21,6 +21,7 @@ import com.zjl.train.common.util.SnowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,7 +49,7 @@ public class DailyTrainCarriageServiceImpl implements DailyTrainCarriageService 
         DailyTrainCarriage trainCarriage = BeanUtil.copyProperties(req, DailyTrainCarriage.class);
         if (ObjectUtil.isNull(trainCarriage.getId())) {
             // 保存之前，先校验车厢是否存在
-            DailyTrainCarriage trainCarriageDB = selectByUnique(req.getTrainCode(), req.getIndex());
+            DailyTrainCarriage trainCarriageDB = selectByUnique(req.getDate(), req.getTrainCode(), req.getIndex());
 
             // 不为空，抛出异常
             if (ObjectUtil.isNotEmpty(trainCarriageDB)) {
@@ -70,32 +71,41 @@ public class DailyTrainCarriageServiceImpl implements DailyTrainCarriageService 
     @Override
     public PageResp<DailyTrainCarriageQueryResponse> queryList(DailyTrainCarriageQueryReq request) {
         // 查询条件类
-        DailyTrainCarriageExample passengerExample = new DailyTrainCarriageExample();
+        DailyTrainCarriageExample carriageExample = new DailyTrainCarriageExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("train_code asc, `index` asc");
+        carriageExample.setOrderByClause("date asc, train_code asc, `index` asc");
+
+        DailyTrainCarriageExample.Criteria criteria = carriageExample.createCriteria();
+
+        /**
+         * 筛选时间
+         */
+        if (ObjectUtil.isNotEmpty(request.getDate())) {
+            carriageExample.createCriteria().andDateEqualTo(request.getDate());
+        }
 
         /**
          * 筛选车次
          */
         if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
-            passengerExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
+            carriageExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
         }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
-        List<DailyTrainCarriage> passengers = trainMapper.selectByExample(passengerExample);
+        List<DailyTrainCarriage> carriages = trainMapper.selectByExample(carriageExample);
 
         // 获取总条数
-        PageInfo<DailyTrainCarriage> pageInfo = new PageInfo<>(passengers);
+        PageInfo<DailyTrainCarriage> pageInfo = new PageInfo<>(carriages);
 
         // 封装成查询的响应值
-        List<DailyTrainCarriageQueryResponse> queryResponses = BeanUtil.copyToList(passengers, DailyTrainCarriageQueryResponse.class);
-        PageResp<DailyTrainCarriageQueryResponse> passengerPageResp = new PageResp<>();
+        List<DailyTrainCarriageQueryResponse> queryResponses = BeanUtil.copyToList(carriages, DailyTrainCarriageQueryResponse.class);
+        PageResp<DailyTrainCarriageQueryResponse> carriagePageResp = new PageResp<>();
 
         // 将查询的响应值和总条数封装成分页的响应值
-        passengerPageResp.setTotal(pageInfo.getTotal());
-        passengerPageResp.setList(queryResponses);
-        return passengerPageResp;
+        carriagePageResp.setTotal(pageInfo.getTotal());
+        carriagePageResp.setList(queryResponses);
+        return carriagePageResp;
     }
 
     @Override
@@ -122,9 +132,12 @@ public class DailyTrainCarriageServiceImpl implements DailyTrainCarriageService 
     }
 
     @Override
-    public DailyTrainCarriage selectByUnique(String trainCode, Integer index) {
+    public DailyTrainCarriage selectByUnique(Date date, String trainCode, Integer index) {
         DailyTrainCarriageExample trainCarriageExample = new DailyTrainCarriageExample();
-        trainCarriageExample.createCriteria().andIndexEqualTo(index).andTrainCodeEqualTo(trainCode);
+        trainCarriageExample.createCriteria()
+                .andDateEqualTo(date)
+                .andIndexEqualTo(index)
+                .andTrainCodeEqualTo(trainCode);
         List<DailyTrainCarriage> trainCarriage = trainMapper.selectByExample(trainCarriageExample);
         if (CollUtil.isNotEmpty(trainCarriage)){
             return trainCarriage.get(0);
