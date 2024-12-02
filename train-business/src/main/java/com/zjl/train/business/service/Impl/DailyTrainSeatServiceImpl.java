@@ -33,9 +33,6 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
     @Autowired
     private DailyTrainSeatMapper trainMapper;
 
-    @Autowired
-    private DailyTrainSeatService dailyTrainSeatService;
-
     /**
      * 方案已弃用，该成由车次自动生成
      * Created By Zhangjilin 2024/11/28
@@ -112,7 +109,7 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
         trainMapper.deleteByExample(trainSeatExample);
 
         // 查询当前车次下的所有车厢 TODO
-        List<DailyTrainCarriage> trainCarriages = dailyTrainSeatService.selectByTrainCode(trainCode);
+        List<DailyTrainCarriage> trainCarriages = null;
 
         // 循环生成每个车厢的座位
         for (DailyTrainCarriage trainCarriage : trainCarriages) {
