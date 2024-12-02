@@ -1,6 +1,7 @@
 server:
   port: 8000  # 设置网关服务的端口号为 8000
 
+
 spring:
   cloud:
     gateway:
@@ -35,4 +36,7 @@ spring:
             allowed-methods: "*"
             allow-credentials: true
             max-age: 3600
+  application:
+    name: train-gateway
+
 
