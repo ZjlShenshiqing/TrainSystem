@@ -1,12 +1,14 @@
 package com.zjl.train.business.service;
 
 import com.zjl.train.business.entity.DailyTrain;
+import com.zjl.train.business.entity.Train;
 import com.zjl.train.business.request.DailyTrainQueryReq;
 import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.resp.DailyTrainQueryResponse;
 import com.zjl.train.common.resp.PageResp;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,4 +47,16 @@ public interface DailyTrainService {
      * 通过车次编号，查询每日车次数据是否存在
      */
     DailyTrain selectByUnique(String trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/12/2
+     * 自动生成某日所有车次的数据，包括车次，车站，车厢，座位等
+     */
+    void genDaily(Date date);
+
+    /**
+     * Created By Zhangjilin 2024/12/2
+     * 生成某日某车次的数据
+     */
+    void genDailyTrain(Date date, Train train);
 }

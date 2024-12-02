@@ -1,24 +1,30 @@
 package com.zjl.train.business.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.DailyTrain;
 import com.zjl.train.business.entity.DailyTrainExample;
+import com.zjl.train.business.entity.Train;
 import com.zjl.train.business.mapper.DailyTrainMapper;
 import com.zjl.train.business.request.DailyTrainQueryReq;
 import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.resp.DailyTrainQueryResponse;
 import com.zjl.train.business.service.DailyTrainService;
+import com.zjl.train.business.service.TrainService;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,8 +34,13 @@ import java.util.List;
 @Service
 public class DailyTrainServiceImpl implements DailyTrainService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DailyTrainServiceImpl.class);
+
     @Autowired
     private DailyTrainMapper dailyTrainMapper;
+
+    @Autowired
+    private TrainService trainService;
 
     @Override
     public void save(DailyTrainSaveReq req) {
@@ -116,5 +127,39 @@ public class DailyTrainServiceImpl implements DailyTrainService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void genDaily(Date date) {
+        // 拿到数据库所有车次的信息
+        List<Train> trains = trainService.selectAll();
+        // 注意：以后遇到List，要学会判空！  这样不会出现空指针异常
+        if (CollUtil.isEmpty(trains)) {
+            LOG.info("没有基础车次数据，任务结束");
+            return;
+        }
+
+        for (Train train : trains) {
+            genDailyTrain(date, train);
+        }
+    }
+
+    @Override
+    public void genDailyTrain(Date date, Train train) {
+        // 重复生成前，应该把数据库清空（删除已有的数据）
+        DailyTrainExample dailyTrainExample = new DailyTrainExample();
+        DailyTrainExample.Criteria criteria = dailyTrainExample.createCriteria();
+        criteria.andDateEqualTo(date)
+                .andCodeEqualTo(train.getCode());
+        dailyTrainMapper.deleteByExample(dailyTrainExample);
+
+        // 生成某一车次的数据
+        DateTime now = DateTime.now();
+        DailyTrain dailyTrain = BeanUtil.copyProperties(train, DailyTrain.class);
+        dailyTrain.setId(SnowUtil.getSnowflakeNextId());
+        dailyTrain.setCreateTime(now);
+        dailyTrain.setUpdateTime(now);
+        dailyTrain.setDate(date);
+        dailyTrainMapper.insert(dailyTrain);
     }
 }

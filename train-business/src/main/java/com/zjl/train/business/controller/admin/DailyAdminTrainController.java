@@ -9,8 +9,10 @@ import com.zjl.train.common.resp.CommonResp;
 import com.zjl.train.common.resp.PageResp;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,12 +54,12 @@ public class DailyAdminTrainController {
     }
 
     /**
-     * 自动通过车次生成座位功能
-     * Created By Zhangjilin 2024/11/30
+     * 自动通过车次生成某日所有车次功能
+     * Created By Zhangjilin 2024/12/2
      */
-    @GetMapping("/auto-seat/{trainCode}")
-    public CommonResp<Object> autoSeat(@PathVariable String trainCode) {
-        seatService.autoTrainSeat(trainCode);
+    @GetMapping("/genDaily/{date}")
+    public CommonResp<Object> genDaily(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        dailyTrainService.genDaily(date);
         return new CommonResp<>();
     }
 }
