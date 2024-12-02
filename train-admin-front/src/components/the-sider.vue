@@ -79,6 +79,16 @@
             <user-outlined /> &nbsp; 每日车次经停站管理
           </router-link>
         </a-menu-item>
+        <a-menu-item key="/business/daily-train-carriage">
+          <router-link to="/business/daily-train-carriage">
+            <user-outlined /> &nbsp; 每日车次车厢管理
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/business/daily-train-seat">
+          <router-link to="/business/daily-train-seat">
+            <user-outlined /> &nbsp; 每日车次座位管理
+          </router-link>
+        </a-menu-item>
       </a-sub-menu>
     </a-menu>
   </a-layout-sider>
