@@ -14,7 +14,6 @@ import com.zjl.train.business.mapper.DailyTrainSeatMapper;
 import com.zjl.train.business.request.DailyTrainSeatQueryReq;
 import com.zjl.train.business.request.DailyTrainSeatSaveReq;
 import com.zjl.train.business.resp.DailyTrainSeatQueryResponse;
-import com.zjl.train.business.service.DailyTrainCarriageService;
 import com.zjl.train.business.service.DailyTrainSeatService;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
@@ -35,7 +34,7 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
     private DailyTrainSeatMapper trainMapper;
 
     @Autowired
-    private DailyTrainCarriageService trainCarriageService;
+    private DailyTrainSeatService dailyTrainSeatService;
 
     /**
      * 方案已弃用，该成由车次自动生成
@@ -62,30 +61,31 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
     @Override
     public PageResp<DailyTrainSeatQueryResponse> queryList(DailyTrainSeatQueryReq request) {
         // 查询条件类
-        DailyTrainSeatExample passengerExample = new DailyTrainSeatExample();
+        DailyTrainSeatExample dailySeatExample = new DailyTrainSeatExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("train_code asc, carriage_index asc, carriage_seat_index asc");
+        dailySeatExample.setOrderByClause("train_code asc, carriage_index asc, carriage_seat_index asc");
 
+        DailyTrainSeatExample.Criteria criteria = dailySeatExample.createCriteria();
         // 判断是否有车次信息
         if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
-            passengerExample.createCriteria().andTrainCodeEqualTo(request.getTrainCode());
+            criteria.andTrainCodeEqualTo(request.getTrainCode());
         }
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
-        List<DailyTrainSeat> passengers = trainMapper.selectByExample(passengerExample);
+        List<DailyTrainSeat> dailySeats = trainMapper.selectByExample(dailySeatExample);
 
         // 获取总条数
-        PageInfo<DailyTrainSeat> pageInfo = new PageInfo<>(passengers);
+        PageInfo<DailyTrainSeat> pageInfo = new PageInfo<>(dailySeats);
 
         // 封装成查询的响应值
-        List<DailyTrainSeatQueryResponse> queryResponses = BeanUtil.copyToList(passengers, DailyTrainSeatQueryResponse.class);
-        PageResp<DailyTrainSeatQueryResponse> passengerPageResp = new PageResp<>();
+        List<DailyTrainSeatQueryResponse> queryResponses = BeanUtil.copyToList(dailySeats, DailyTrainSeatQueryResponse.class);
+        PageResp<DailyTrainSeatQueryResponse> dailySeatPageResp = new PageResp<>();
 
         // 将查询的响应值和总条数封装成分页的响应值
-        passengerPageResp.setTotal(pageInfo.getTotal());
-        passengerPageResp.setList(queryResponses);
-        return passengerPageResp;
+        dailySeatPageResp.setTotal(pageInfo.getTotal());
+        dailySeatPageResp.setList(queryResponses);
+        return dailySeatPageResp;
     }
 
     @Override
@@ -101,6 +101,7 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
         return BeanUtil.copyToList(trainList, DailyTrainSeatQueryResponse.class);
     }
 
+
     @Override
     @Transactional
     public void autoTrainSeat(String trainCode) {
@@ -110,8 +111,8 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
         criteria.andTrainCodeEqualTo(trainCode);
         trainMapper.deleteByExample(trainSeatExample);
 
-        // 查询当前车次下的所有车厢
-        List<DailyTrainCarriage> trainCarriages = trainCarriageService.selectByTrainCode(trainCode);
+        // 查询当前车次下的所有车厢 TODO
+        List<DailyTrainCarriage> trainCarriages = dailyTrainSeatService.selectByTrainCode(trainCode);
 
         // 循环生成每个车厢的座位
         for (DailyTrainCarriage trainCarriage : trainCarriages) {
@@ -143,5 +144,10 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
                 }
             }
         }
+    }
+
+    @Override
+    public List<DailyTrainCarriage> selectByTrainCode(String trainCode) {
+        return List.of();
     }
 }

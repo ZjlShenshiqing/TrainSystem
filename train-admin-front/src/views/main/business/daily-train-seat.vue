@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { defineComponent, ref, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import axios from "axios";
 import TrainSelectView from "@/components/train-select";
