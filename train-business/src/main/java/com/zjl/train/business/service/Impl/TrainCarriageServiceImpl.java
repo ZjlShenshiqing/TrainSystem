@@ -9,7 +9,6 @@ import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.TrainCarriage;
 import com.zjl.train.business.entity.TrainCarriageExample;
 import com.zjl.train.business.enums.SeatColEnum;
-import com.zjl.train.business.mapper.TrainCarriageCustomizableMapper;
 import com.zjl.train.business.mapper.TrainCarriageMapper;
 import com.zjl.train.business.request.TrainCarriageQueryReq;
 import com.zjl.train.business.request.TrainCarriageSaveReq;
@@ -33,9 +32,6 @@ public class TrainCarriageServiceImpl implements TrainCarriageService {
 
     @Autowired
     private TrainCarriageMapper trainMapper;
-
-    @Autowired
-    private TrainCarriageCustomizableMapper trainCustomizableMapper;
 
     @Override
     public void save(TrainCarriageSaveReq req) {

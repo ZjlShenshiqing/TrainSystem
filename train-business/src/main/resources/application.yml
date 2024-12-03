@@ -23,6 +23,9 @@ spring:
           min-idle: 0                   # 最小空闲连接数
           max-wait: -1ms                # 连接最大等待时间（毫秒）
 
+  application:
+    name: train-business
+
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
 

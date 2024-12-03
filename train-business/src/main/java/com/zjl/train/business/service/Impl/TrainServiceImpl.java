@@ -110,4 +110,11 @@ public class TrainServiceImpl implements TrainService {
             return null;
         }
     }
+
+    @Override
+    public List<Train> selectAll() {
+        TrainExample trainExample = new TrainExample();
+        trainExample.setOrderByClause("code asc");
+        return trainMapper.selectByExample(trainExample);
+    }
 }

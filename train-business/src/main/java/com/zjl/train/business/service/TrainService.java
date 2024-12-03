@@ -45,4 +45,10 @@ public interface TrainService {
      * 通过车次编号，查询数据是否存在
      */
     Train selectByUnique(String trainCode);
+
+    /**
+     * (查询所有车次)直接查询数据库并返回，方便服务间调用
+     * Created By Zhangjilin 2024/12/2
+     */
+    List<Train> selectAll();
 }
