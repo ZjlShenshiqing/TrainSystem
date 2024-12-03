@@ -1,12 +1,12 @@
 package com.zjl.train.business.service;
 
-import com.zjl.train.business.entity.DailyTrainCarriage;
 import com.zjl.train.business.request.DailyTrainSeatQueryReq;
 import com.zjl.train.business.request.DailyTrainSeatSaveReq;
 import com.zjl.train.business.resp.DailyTrainSeatQueryResponse;
 import com.zjl.train.common.resp.PageResp;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,12 +44,5 @@ public interface DailyTrainSeatService {
      * Created By Zhangjilin 2024/12/2
      * 通过车次生成座位
      */
-    void autoTrainSeat(String trainCode);
-
-    /**
-     * Created By Zhangjilin 2024/12/2
-     * @param trainCode
-     * @return
-     */
-    List<DailyTrainCarriage> selectByTrainCode(String trainCode);
+    void autoTrainSeat(String trainCode , Date date);
 }

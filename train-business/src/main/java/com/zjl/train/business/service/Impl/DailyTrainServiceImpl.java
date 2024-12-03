@@ -14,10 +14,7 @@ import com.zjl.train.business.mapper.DailyTrainMapper;
 import com.zjl.train.business.request.DailyTrainQueryReq;
 import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.resp.DailyTrainQueryResponse;
-import com.zjl.train.business.service.DailyTrainCarriageService;
-import com.zjl.train.business.service.DailyTrainService;
-import com.zjl.train.business.service.DailyTrainStationService;
-import com.zjl.train.business.service.TrainService;
+import com.zjl.train.business.service.*;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
 import com.zjl.train.common.resp.PageResp;
@@ -50,6 +47,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
     @Autowired
     private DailyTrainCarriageService dailyTrainCarriageService;
+
+    @Autowired
+    private DailyTrainSeatService dailyTrainSeatService;
 
     @Override
     public void save(DailyTrainSaveReq req) {
@@ -172,11 +172,14 @@ public class DailyTrainServiceImpl implements DailyTrainService {
         dailyTrain.setDate(date);
         dailyTrainMapper.insert(dailyTrain);
 
-        // 生成车次经停站信息
+        // 生成每日车次经停站信息
         dailyTrainStationService.autoDailyTrainStation(date, train.getCode());
 
-        // 生成车次车厢信息
+        // 生成每日车次车厢信息
         dailyTrainCarriageService.autoDailyTrainCarriage(date, train.getCode());
+
+        // 生成每日车次座位信息
+        dailyTrainSeatService.autoTrainSeat(train.getCode() , date);
 
         LOG.info("结束生成每日车次信息，日期：{}", DateUtil.formatDate(date));
     }

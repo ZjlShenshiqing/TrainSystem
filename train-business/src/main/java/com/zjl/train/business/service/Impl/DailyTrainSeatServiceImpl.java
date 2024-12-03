@@ -1,26 +1,32 @@
 package com.zjl.train.business.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zjl.train.business.entity.DailyTrainCarriage;
 import com.zjl.train.business.entity.DailyTrainSeat;
 import com.zjl.train.business.entity.DailyTrainSeatExample;
-import com.zjl.train.business.enums.SeatColEnum;
+import com.zjl.train.business.entity.TrainSeat;
+import com.zjl.train.business.entity.TrainStation;
 import com.zjl.train.business.mapper.DailyTrainSeatMapper;
 import com.zjl.train.business.request.DailyTrainSeatQueryReq;
 import com.zjl.train.business.request.DailyTrainSeatSaveReq;
 import com.zjl.train.business.resp.DailyTrainSeatQueryResponse;
 import com.zjl.train.business.service.DailyTrainSeatService;
+import com.zjl.train.business.service.TrainSeatService;
+import com.zjl.train.business.service.TrainStationService;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,8 +36,16 @@ import java.util.List;
 @Service
 public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DailyTrainServiceImpl.class);
+
     @Autowired
     private DailyTrainSeatMapper trainMapper;
+
+    @Autowired
+    private TrainSeatService trainSeatService;
+
+    @Autowired
+    private TrainStationService trainStationService;
 
     /**
      * 方案已弃用，该成由车次自动生成
@@ -99,52 +113,45 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
     }
 
 
+    /**
+     * 注意：需要增加售卖信息
+     * @param trainCode
+     * @param date
+     */
     @Override
-    @Transactional
-    public void autoTrainSeat(String trainCode) {
+    public void autoTrainSeat(String trainCode, Date date) {
+        LOG.info("开始自动生成每日车次座位信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
         // 先清空数据库的座位信息，再生成座位
         DailyTrainSeatExample trainSeatExample = new DailyTrainSeatExample();
         DailyTrainSeatExample.Criteria criteria = trainSeatExample.createCriteria();
-        criteria.andTrainCodeEqualTo(trainCode);
+        criteria
+                .andTrainCodeEqualTo(trainCode)
+                .andDateEqualTo(date);
         trainMapper.deleteByExample(trainSeatExample);
 
-        // 查询当前车次下的所有车厢 TODO
-        List<DailyTrainCarriage> trainCarriages = null;
+        // 查询当前车次下的所有经停站
+        List<TrainStation> trainStations = trainStationService.selectByTrainCode(trainCode);
+        // 生成售卖信息
+        String sell = StrUtil.fillBefore("",'0',trainStations.size() - 1);
 
-        // 循环生成每个车厢的座位
-        for (DailyTrainCarriage trainCarriage : trainCarriages) {
-            // 拿到车厢数据：行数，座位类型（一等座or二等座）
-            Integer rowCount = trainCarriage.getRowCount();
-            String seatType = trainCarriage.getSeatType();
-
-            // 每个座位的唯一索引
-            int seatIndex = 1;
-
-            // 根据车厢的座位类型来进行筛选 一等座只有ACDF可以选择，二等座有ABCDF可以选择，根据类型来自动填充列
-            List<SeatColEnum> seatColumnType = SeatColEnum.getColsByType(seatType);
-
-            // 循环行数：每一排
-            for (int row = 1; row <= rowCount; row++) {
-                // 循环列数：每个座位
-                for (SeatColEnum seatColEnum : seatColumnType) {
-                    DailyTrainSeat trainSeat = new DailyTrainSeat();
-                    trainSeat.setId(SnowUtil.getSnowflakeNextId());
-                    trainSeat.setTrainCode(trainCode);
-                    trainSeat.setCarriageIndex(trainCarriage.getIndex());
-                    trainSeat.setRow(StrUtil.fillBefore(String.valueOf(row), '0', 2)); // 是两位，不填充，不是两位填充0
-                    trainSeat.setCol(seatColEnum.getCode());
-                    trainSeat.setSeatType(seatType);
-                    trainSeat.setCarriageSeatIndex(seatIndex++);
-                    trainSeat.setCreateTime(DateTime.now());
-                    trainSeat.setUpdateTime(DateTime.now());
-                    trainMapper.insert(trainSeat);
-                }
-            }
+        // 查询当前车次下的所有车厢
+        List<TrainSeat> trainSeats = trainSeatService.selectByTrainCode(trainCode);
+        if (CollUtil.isEmpty(trainSeats)) {
+            LOG.info("车次：{}，没有座位信息", trainCode);
+            return;
         }
-    }
 
-    @Override
-    public List<DailyTrainCarriage> selectByTrainCode(String trainCode) {
-        return List.of();
+        // 生成座位信息
+        for (TrainSeat trainSeat : trainSeats) {
+            DateTime now = DateTime.now();
+            DailyTrainSeat dailyTrainSeat = BeanUtil.copyProperties(trainSeat, DailyTrainSeat.class);
+            dailyTrainSeat.setId(SnowUtil.getSnowflakeNextId());
+            dailyTrainSeat.setDate(date);
+            dailyTrainSeat.setCreateTime(now);
+            dailyTrainSeat.setUpdateTime(now);
+            dailyTrainSeat.setSell(sell);
+            trainMapper.insert(dailyTrainSeat);
+        }
+        LOG.info("开始自动生成每日车次座位信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
     }
 }
