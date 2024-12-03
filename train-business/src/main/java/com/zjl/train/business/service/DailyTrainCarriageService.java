@@ -52,4 +52,10 @@ public interface DailyTrainCarriageService {
      * 通过车次编号 + 车厢号 （数据库唯一键），查询数据是否存在
      */
     DailyTrainCarriage selectByUnique(Date date, String index, Integer trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/12/3
+     * 通过日期 + 车次编号生成每日车次车厢信息
+     */
+    void autoDailyTrainCarriage(Date date, String trainCode);
 }

@@ -14,6 +14,7 @@ import com.zjl.train.business.mapper.DailyTrainMapper;
 import com.zjl.train.business.request.DailyTrainQueryReq;
 import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.resp.DailyTrainQueryResponse;
+import com.zjl.train.business.service.DailyTrainCarriageService;
 import com.zjl.train.business.service.DailyTrainService;
 import com.zjl.train.business.service.DailyTrainStationService;
 import com.zjl.train.business.service.TrainService;
@@ -46,6 +47,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
     @Autowired
     private DailyTrainStationService dailyTrainStationService;
+
+    @Autowired
+    private DailyTrainCarriageService dailyTrainCarriageService;
 
     @Override
     public void save(DailyTrainSaveReq req) {
@@ -170,6 +174,10 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
         // 生成车次经停站信息
         dailyTrainStationService.autoDailyTrainStation(date, train.getCode());
+
+        // 生成车次车厢信息
+        dailyTrainCarriageService.autoDailyTrainCarriage(date, train.getCode());
+
         LOG.info("结束生成每日车次信息，日期：{}", DateUtil.formatDate(date));
     }
 }
