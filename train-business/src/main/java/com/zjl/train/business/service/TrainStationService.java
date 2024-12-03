@@ -51,4 +51,10 @@ public interface TrainStationService {
      * 通过车次编号 + 站名 （数据库唯一键），查询数据是否存在
      */
     TrainStation selectByUnique(String name, String trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/12/3
+     * 通过车次编号查询车次经停站的信息
+     */
+    List<TrainStation> selectByTrainCode(String trainCode);
 }

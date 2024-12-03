@@ -8,7 +8,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.TrainStation;
 import com.zjl.train.business.entity.TrainStationExample;
-import com.zjl.train.business.mapper.TrainStationCustomizableMapper;
 import com.zjl.train.business.mapper.TrainStationMapper;
 import com.zjl.train.business.request.TrainStationQueryReq;
 import com.zjl.train.business.request.TrainStationSaveReq;
@@ -32,9 +31,6 @@ public class TrainStationServiceImpl implements TrainStationService {
 
     @Autowired
     private TrainStationMapper trainMapper;
-
-    @Autowired
-    private TrainStationCustomizableMapper trainCustomizableMapper;
 
     @Override
     public void save(TrainStationSaveReq req) {
@@ -141,5 +137,18 @@ public class TrainStationServiceImpl implements TrainStationService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<TrainStation> selectByTrainCode(String trainCode) {
+        TrainStationExample trainStationExample = new TrainStationExample();
+        trainStationExample.setOrderByClause("`index` asc");
+        trainStationExample.createCriteria().andTrainCodeEqualTo(trainCode);
+        /**
+         * Mybatis查询列表，如果没数据返回的是空列表，而不是null
+         * 这样可以避免空指针异常，省得我们再去判断List是否为空了
+         */
+        List<TrainStation> trainStations = trainMapper.selectByExample(trainStationExample);
+        return trainStations;
     }
 }

@@ -3,23 +3,28 @@ package com.zjl.DailyTrain.business.service.Impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.DailyTrainStation;
 import com.zjl.train.business.entity.DailyTrainStationExample;
+import com.zjl.train.business.entity.TrainStation;
 import com.zjl.train.business.mapper.DailyTrainStationMapper;
 import com.zjl.train.business.request.DailyTrainStationQueryReq;
 import com.zjl.train.business.request.DailyTrainStationSaveReq;
 import com.zjl.train.business.resp.DailyTrainStationQueryResponse;
 import com.zjl.train.business.service.DailyTrainStationService;
-import com.zjl.train.common.exception.BusinessException;
-import com.zjl.train.common.exception.BusinessExceptionEnum;
+import com.zjl.train.business.service.Impl.DailyTrainServiceImpl;
+import com.zjl.train.business.service.TrainStationService;
 import com.zjl.train.common.resp.PageResp;
 import com.zjl.train.common.util.SnowUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,8 +34,13 @@ import java.util.List;
 @Service
 public class DailyTrainStationServiceImpl implements DailyTrainStationService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DailyTrainServiceImpl.class);
+
     @Autowired
-    private DailyTrainStationMapper DailyTrainMapper;
+    private DailyTrainStationMapper dailyTrainMapper;
+
+    @Autowired
+    private TrainStationService trainStationService;
 
     @Override
     public void save(DailyTrainStationSaveReq req) {
@@ -57,11 +67,11 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
             DailyTrain.setId(SnowUtil.getSnowflakeNextId());
             DailyTrain.setCreateTime(now);
             DailyTrain.setUpdateTime(now);
-            DailyTrainMapper.insert(DailyTrain);
+            dailyTrainMapper.insert(DailyTrain);
         } else {
             // 更新操作
             DailyTrain.setUpdateTime(now);
-            DailyTrainMapper.updateByPrimaryKey(DailyTrain);
+            dailyTrainMapper.updateByPrimaryKey(DailyTrain);
         }
     }
 
@@ -83,7 +93,7 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
 
         // 分页：参数1：查第几页 ，参数2：查第几条
         PageHelper.startPage(request.getPage(),request.getSize());
-        List<DailyTrainStation> passengers = DailyTrainMapper.selectByExample(passengerExample);
+        List<DailyTrainStation> passengers = dailyTrainMapper.selectByExample(passengerExample);
 
         // 获取总条数
         PageInfo<DailyTrainStation> pageInfo = new PageInfo<>(passengers);
@@ -100,14 +110,14 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
 
     @Override
     public void delete(Long id) {
-        DailyTrainMapper.deleteByPrimaryKey(id);
+        dailyTrainMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public List<DailyTrainStationQueryResponse> queryAll() {
         DailyTrainStationExample DailyTrainExample = new DailyTrainStationExample();
         DailyTrainExample.setOrderByClause("name_pinyin asc");
-        List<DailyTrainStation> DailyTrainList = DailyTrainMapper.selectByExample(DailyTrainExample);
+        List<DailyTrainStation> DailyTrainList = dailyTrainMapper.selectByExample(DailyTrainExample);
         return BeanUtil.copyToList(DailyTrainList, DailyTrainStationQueryResponse.class);
     }
 
@@ -117,7 +127,7 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
         DailyTrainStationExample.createCriteria()
                 .andTrainCodeEqualTo(DailyTrainCode)
                 .andIndexEqualTo(index);
-        List<DailyTrainStation> DailyTrainStations = DailyTrainMapper.selectByExample(DailyTrainStationExample);
+        List<DailyTrainStation> DailyTrainStations = dailyTrainMapper.selectByExample(DailyTrainStationExample);
         if (CollUtil.isNotEmpty(DailyTrainStations)) {
             return DailyTrainStations.get(0);
         } else {
@@ -131,11 +141,44 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
         DailyTrainStationExample.createCriteria()
                 .andTrainCodeEqualTo(DailyTrainCode)
                 .andNameEqualTo(name);
-        List<DailyTrainStation> DailyTrainStations = DailyTrainMapper.selectByExample(DailyTrainStationExample);
+        List<DailyTrainStation> DailyTrainStations = dailyTrainMapper.selectByExample(DailyTrainStationExample);
         if (CollUtil.isNotEmpty(DailyTrainStations)) {
             return DailyTrainStations.get(0);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void autoDailyTrainStation(Date date, String trainCode) {
+        LOG.info("自动生成每日车次经停站信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
+        // 先清空数据库的站点信息(某日车次)，再生成站点
+        DailyTrainStationExample dailyTrainStationExample = new DailyTrainStationExample();
+        dailyTrainStationExample.createCriteria()
+                .andTrainCodeEqualTo(trainCode)
+                .andDateEqualTo(date);
+        dailyTrainMapper.deleteByExample(dailyTrainStationExample);
+
+        // 查询当前车次下的所有站点信息
+        List<TrainStation> trainStations = trainStationService.selectByTrainCode(trainCode);
+
+        //查到经停站信息后，判断是否为空
+        if (CollUtil.isEmpty(trainStations)) {
+            LOG.info("没有经停站信息，无法生成每日车次经停站信息，日期：{}，车次：{}", date, trainCode);
+            return;
+        }
+
+        for (TrainStation trainStation : trainStations) {
+            // 生成每日车次经停站信息
+            Date now = DateTime.now();
+            DailyTrainStation dailyTrainStation = BeanUtil.copyProperties(trainStation, DailyTrainStation.class);
+            dailyTrainStation.setId(SnowUtil.getSnowflakeNextId());
+            dailyTrainStation.setUpdateTime(now);
+            dailyTrainStation.setCreateTime(now);
+            dailyTrainStation.setDate(date);
+            dailyTrainMapper.insert(dailyTrainStation);
+        }
+
+        LOG.info("结束生成每日车次经停站信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
     }
 }

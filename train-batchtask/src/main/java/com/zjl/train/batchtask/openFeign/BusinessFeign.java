@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 
+/**
+ * openFeign实现服务之间的调用 （batchTask -> business）
+ * Created By Zhangjilin 2024/12/2
+ */
 @FeignClient(name = "business", url = "http://127.0.0.1:8002/business")
 public interface BusinessFeign {
 

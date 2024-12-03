@@ -3,6 +3,7 @@ package com.zjl.train.business.service.Impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -14,6 +15,7 @@ import com.zjl.train.business.request.DailyTrainQueryReq;
 import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.resp.DailyTrainQueryResponse;
 import com.zjl.train.business.service.DailyTrainService;
+import com.zjl.train.business.service.DailyTrainStationService;
 import com.zjl.train.business.service.TrainService;
 import com.zjl.train.common.exception.BusinessException;
 import com.zjl.train.common.exception.BusinessExceptionEnum;
@@ -41,6 +43,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
     @Autowired
     private TrainService trainService;
+
+    @Autowired
+    private DailyTrainStationService dailyTrainStationService;
 
     @Override
     public void save(DailyTrainSaveReq req) {
@@ -146,6 +151,7 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
     @Override
     public void genDailyTrain(Date date, Train train) {
+        LOG.info("开始生成每日车次信息，日期：{}", DateUtil.formatDate(date));
         // 重复生成前，应该把数据库清空（删除已有的数据）
         DailyTrainExample dailyTrainExample = new DailyTrainExample();
         DailyTrainExample.Criteria criteria = dailyTrainExample.createCriteria();
@@ -161,5 +167,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
         dailyTrain.setUpdateTime(now);
         dailyTrain.setDate(date);
         dailyTrainMapper.insert(dailyTrain);
+
+        // 生成车次经停站信息
+        dailyTrainStationService.autoDailyTrainStation(date, train.getCode());
+        LOG.info("结束生成每日车次信息，日期：{}", DateUtil.formatDate(date));
     }
 }
