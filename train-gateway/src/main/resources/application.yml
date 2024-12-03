@@ -19,7 +19,7 @@ spring:
         - id: batchtask  # 新增batchtask模块路由 ID
           uri: http://127.0.0.1:8003
           predicates:
-            - Path=/batchtask/**  # 匹配路径为 /batchtask/** 的请求，并应用此路由
+            - Path=/batch/**  # 匹配路径为 /batch/** 的请求，并应用此路由
 
       # 全局跨域配置，允许跨域访问
       globalcors:

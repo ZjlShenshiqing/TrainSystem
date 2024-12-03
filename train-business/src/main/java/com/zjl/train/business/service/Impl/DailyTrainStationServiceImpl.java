@@ -81,7 +81,7 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
         // 查询条件类
         DailyTrainStationExample passengerExample = new DailyTrainStationExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("DailyTrain_code asc, `index` asc");
+        passengerExample.setOrderByClause("train_code asc, `index` asc");
 
         /**
          * 如果请求中提供了 DailyTrainCode，则在查询条件中添加 DailyTrain_code 等于指定值的条件，
