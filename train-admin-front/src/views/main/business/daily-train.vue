@@ -311,11 +311,23 @@ const onChangeCode = (train) => {
 
 /**
  * 生成每日车次，按这个就会自动生成
- * TODO
- * Created By Zhangjilin 2024/11/30
+ * Created By Zhangjilin 2024/12/3
  */
-const handleGenDetailOk = () => {
-
+const handleGenDailyOk = () => {
+  let date = dayjs(genDaily.value.date).format("YYYY-MM-DD");
+  axios.get("/business/admin/daily-train/genDaily/" + date).then((response) => {
+    let data = response.data;
+    if (data.success) {
+      notification.success({description: "生成成功！"});
+      genDailyVisible.value = false;
+      handleQuery({
+        page: pagination.value.current,
+        size: pagination.value.pageSize
+      });
+    } else {
+      notification.error({description: data.message})
+    }
+  })
 }
 
 /**
