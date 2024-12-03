@@ -315,6 +315,7 @@ const onChangeCode = (train) => {
  */
 const handleGenDailyOk = () => {
   let date = dayjs(genDaily.value.date).format("YYYY-MM-DD");
+  genDailyVisible.value = true;
   axios.get("/business/admin/daily-train/genDaily/" + date).then((response) => {
     let data = response.data;
     if (data.success) {
