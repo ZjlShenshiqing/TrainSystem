@@ -118,7 +118,12 @@ const pagination = ref({
 
 let loading = ref(false);
 
-const params = ref({});
+const params = ref({
+  trainCode: '',
+  date: '',
+  start: '',
+  end: ''
+});
 
 const columns = [
   {

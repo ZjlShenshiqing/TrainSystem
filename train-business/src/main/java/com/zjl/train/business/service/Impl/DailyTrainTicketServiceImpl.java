@@ -77,6 +77,9 @@ public class DailyTrainTicketServiceImpl implements DailyTrainTicketService {
         dailyTrainTicketExample.setOrderByClause("id desc");
         DailyTrainTicketExample.Criteria criteria = dailyTrainTicketExample.createCriteria();
 
+        /**
+         * 查询的条件，有如下四个
+         */
         if (ObjUtil.isNotNull(request.getDate())) {
             criteria.andDateEqualTo(request.getDate());
         }

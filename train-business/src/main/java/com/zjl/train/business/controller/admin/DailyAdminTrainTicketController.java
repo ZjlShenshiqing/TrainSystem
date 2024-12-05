@@ -24,7 +24,7 @@ import java.util.List;
  * Created By Zhangjilin 2024/12/4
  */
 @RestController
-@RequestMapping("/admin/daily-train")
+@RequestMapping("/admin/daily-ticket-train")
 public class DailyAdminTrainTicketController {
 
     @Resource
