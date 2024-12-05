@@ -163,6 +163,11 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
                 .andDateEqualTo(date)
                 .andSeatTypeEqualTo(seatType);
         int count = (int) trainMapper.countByExample(trainSeatExample);
+        /**
+         * 这里是为了区分是没有座位还是没有售卖
+         * 0：表示没有售卖的票了
+         * 0：表示没有座位 （没有这种类型的座位）
+         */
         if (count == 0) {
             return -1;
         }

@@ -125,6 +125,12 @@ public class DailyTrainTicketServiceImpl implements DailyTrainTicketService {
 
         DateTime now = DateTime.now();
 
+        /**
+         * 生成每日余票信息
+         * 业务1：计算里程
+         * 业务2：计算票价
+         * 业务3：生成座位信息
+         */
         // 使用单向嵌套循环来生成 因为不能反过来
         for (int i = 0; i < trainStations.size(); i++) {
             // 得到出发站
@@ -154,6 +160,7 @@ public class DailyTrainTicketServiceImpl implements DailyTrainTicketService {
                 dailyTrainTicket.setEndPinyin(trainStationEnd.getNamePinyin());
                 dailyTrainTicket.setEndTime(trainStationEnd.getInTime());
                 dailyTrainTicket.setEndIndex(trainStationEnd.getIndex());
+
                 // 下面是和座位的信息产生了强关联 ，所以要查座位信息
                 // 通过dailyTrainService的count方法，查出四种不同的座位类型的信息
                 int ydz = Math.toIntExact(dailyTrainSeatService.countSeat(date, trainCode, SeatTypeEnum.YDZ.getCode()));
@@ -166,19 +173,20 @@ public class DailyTrainTicketServiceImpl implements DailyTrainTicketService {
 
                 // 获取指定车次类型的字段 - 车次类型系数
                 BigDecimal priceRate = EnumUtil.getFieldBy(TrainTypeEnum::getPriceRate, TrainTypeEnum::getCode, trainType);
+
                 BigDecimal ydzPrice = sumKM.multiply(SeatTypeEnum.YDZ.getPrice()).multiply(priceRate).setScale(2, RoundingMode.HALF_UP);
                 BigDecimal edzPrice = sumKM.multiply(SeatTypeEnum.EDZ.getPrice()).multiply(priceRate).setScale(2, RoundingMode.HALF_UP);
                 BigDecimal rwPrice = sumKM.multiply(SeatTypeEnum.RW.getPrice()).multiply(priceRate).setScale(2, RoundingMode.HALF_UP);
                 BigDecimal ywPrice = sumKM.multiply(SeatTypeEnum.YW.getPrice()).multiply(priceRate).setScale(2, RoundingMode.HALF_UP);
 
                 dailyTrainTicket.setYdz(ydz);
-                dailyTrainTicket.setYdzPrice(BigDecimal.valueOf(0));
+                dailyTrainTicket.setYdzPrice(ydzPrice);
                 dailyTrainTicket.setEdz(edz);
-                dailyTrainTicket.setEdzPrice(BigDecimal.valueOf(0));
+                dailyTrainTicket.setEdzPrice(edzPrice);
                 dailyTrainTicket.setRw(rw);
-                dailyTrainTicket.setRwPrice(BigDecimal.valueOf(0));
+                dailyTrainTicket.setRwPrice(rwPrice);
                 dailyTrainTicket.setYw(yw);
-                dailyTrainTicket.setYwPrice(BigDecimal.valueOf(0));
+                dailyTrainTicket.setYwPrice(rwPrice);
                 dailyTrainTicket.setCreateTime(now);
                 dailyTrainTicket.setUpdateTime(now);
                 dailyTrainTicketMapper.insert(dailyTrainTicket);
