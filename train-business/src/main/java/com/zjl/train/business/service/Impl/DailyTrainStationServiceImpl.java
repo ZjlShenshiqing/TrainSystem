@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -150,6 +151,7 @@ public class DailyTrainStationServiceImpl implements DailyTrainStationService {
     }
 
     @Override
+    @Transactional
     public void autoDailyTrainStation(Date date, String trainCode) {
         LOG.info("开始自动生成每日车次经停站信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
         // 先清空数据库的站点信息(某日车次)，再生成站点

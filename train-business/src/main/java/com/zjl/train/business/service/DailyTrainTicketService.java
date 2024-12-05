@@ -1,19 +1,13 @@
 package com.zjl.train.business.service;
 
 import com.zjl.train.business.entity.DailyTrain;
-import com.zjl.train.business.entity.DailyTrainTicket;
-import com.zjl.train.business.entity.Train;
-import com.zjl.train.business.request.DailyTrainQueryReq;
-import com.zjl.train.business.request.DailyTrainSaveReq;
 import com.zjl.train.business.request.DailyTrainTicketQueryReq;
 import com.zjl.train.business.request.DailyTrainTicketSaveReq;
-import com.zjl.train.business.resp.DailyTrainQueryResponse;
 import com.zjl.train.business.resp.DailyTrainTicketQueryResponse;
 import com.zjl.train.common.resp.PageResp;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * 每日余票信息服务接口
@@ -45,5 +39,5 @@ public interface DailyTrainTicketService {
      * Created By Zhangjilin 2024/12/4
      * 生成某日某车次车票的数据
      */
-    void genDailyTicket(Date date, Train train);
+    void autoDailyTicket(DailyTrain dailyTrain, Date date, String trainCode);
 }

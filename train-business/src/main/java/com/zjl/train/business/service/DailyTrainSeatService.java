@@ -45,4 +45,10 @@ public interface DailyTrainSeatService {
      * 通过车次生成座位
      */
     void autoTrainSeat(String trainCode , Date date);
+
+    /**
+     * Created By Zhangjilin 2024/12/5
+     * 查询座位数
+     */
+    int countSeat(Date date, String trainCode, String seatType);
 }

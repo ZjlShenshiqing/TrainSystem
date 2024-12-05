@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -50,6 +51,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
     @Autowired
     private DailyTrainSeatService dailyTrainSeatService;
+
+    @Autowired
+    private DailyTrainTicketService dailyTrainTicketService;
 
     @Override
     public void save(DailyTrainSaveReq req) {
@@ -154,6 +158,7 @@ public class DailyTrainServiceImpl implements DailyTrainService {
     }
 
     @Override
+    @Transactional
     public void genDailyTrain(Date date, Train train) {
         LOG.info("开始生成每日车次信息，日期：{}", DateUtil.formatDate(date));
         // 重复生成前，应该把数据库清空（删除已有的数据）
@@ -180,6 +185,9 @@ public class DailyTrainServiceImpl implements DailyTrainService {
 
         // 生成每日车次座位信息
         dailyTrainSeatService.autoTrainSeat(train.getCode() , date);
+
+        // 生成每日余票信息
+        dailyTrainTicketService.autoDailyTicket(dailyTrain, date, train.getCode());
 
         LOG.info("结束生成每日车次信息，日期：{}", DateUtil.formatDate(date));
     }

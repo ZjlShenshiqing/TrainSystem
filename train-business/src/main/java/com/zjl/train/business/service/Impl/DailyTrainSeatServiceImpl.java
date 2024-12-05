@@ -8,10 +8,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zjl.train.business.entity.DailyTrainSeat;
-import com.zjl.train.business.entity.DailyTrainSeatExample;
-import com.zjl.train.business.entity.TrainSeat;
-import com.zjl.train.business.entity.TrainStation;
+import com.zjl.train.business.entity.*;
 import com.zjl.train.business.mapper.DailyTrainSeatMapper;
 import com.zjl.train.business.request.DailyTrainSeatQueryReq;
 import com.zjl.train.business.request.DailyTrainSeatSaveReq;
@@ -25,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -119,6 +117,7 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
      * @param date
      */
     @Override
+    @Transactional
     public void autoTrainSeat(String trainCode, Date date) {
         LOG.info("开始自动生成每日车次座位信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
         // 先清空数据库的座位信息，再生成座位
@@ -153,5 +152,20 @@ public class DailyTrainSeatServiceImpl implements DailyTrainSeatService {
             trainMapper.insert(dailyTrainSeat);
         }
         LOG.info("开始自动生成每日车次座位信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
+    }
+
+    @Override
+    public int countSeat(Date date, String trainCode, String seatType) {
+        // 查询已售数量
+        DailyTrainSeatExample trainSeatExample = new DailyTrainSeatExample();
+        trainSeatExample.createCriteria()
+                .andTrainCodeEqualTo(trainCode)
+                .andDateEqualTo(date)
+                .andSeatTypeEqualTo(seatType);
+        int count = (int) trainMapper.countByExample(trainSeatExample);
+        if (count == 0) {
+            return -1;
+        }
+        return count;
     }
 }

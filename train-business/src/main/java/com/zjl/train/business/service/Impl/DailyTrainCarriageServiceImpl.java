@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -157,6 +158,7 @@ public class DailyTrainCarriageServiceImpl implements DailyTrainCarriageService 
     }
 
     @Override
+    @Transactional
     public void autoDailyTrainCarriage(Date date, String trainCode) {
         LOG.info("开始自动生成每日车次车厢信息，日期：{}，车次：{}", DateUtil.formatDate(date), trainCode);
         // 删除某日某车次车厢信息
