@@ -28,19 +28,19 @@ public class AdminTrainController {
     private TrainSeatService seatService;
 
     @PostMapping("/save")
-    public CommonResp<Object> savePassenger(@Valid @RequestBody TrainSaveReq req) {
+    public CommonResp<Object> saveTrain(@Valid @RequestBody TrainSaveReq req) {
         trainService.save(req);
         return new CommonResp<>();
     }
 
     @GetMapping("/query-list")
-    public CommonResp<PageResp<TrainQueryResponse>> queryPassengerList(@Valid TrainQueryReq req) {
+    public CommonResp<PageResp<TrainQueryResponse>> queryTrainList(@Valid TrainQueryReq req) {
         PageResp<TrainQueryResponse> trainList = trainService.queryList(req);
         return new CommonResp<>(trainList);
     }
 
     @DeleteMapping("/delete/{id}")
-    public CommonResp<Object> deletePassenger(@PathVariable Long id){
+    public CommonResp<Object> deleteTrain(@PathVariable Long id){
         trainService.delete(id);
         return new CommonResp<>();
     }

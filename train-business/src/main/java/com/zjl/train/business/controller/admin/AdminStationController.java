@@ -24,19 +24,19 @@ public class AdminStationController {
     private StationService stationService;
 
     @PostMapping("/save")
-    public CommonResp<Object> savePassenger(@Valid @RequestBody StationSaveReq req) {
+    public CommonResp<Object> saveStation(@Valid @RequestBody StationSaveReq req) {
         stationService.save(req);
         return new CommonResp<>();
     }
 
     @GetMapping("/query-list")
-    public CommonResp<PageResp<StationQueryResponse>> queryPassengerList(@Valid StationQueryReq req) {
+    public CommonResp<PageResp<StationQueryResponse>> queryStationList(@Valid StationQueryReq req) {
         PageResp<StationQueryResponse> stationList = stationService.queryList(req);
         return new CommonResp<>(stationList);
     }
 
     @DeleteMapping("/delete/{id}")
-    public CommonResp<Object> deletePassenger(@PathVariable Long id){
+    public CommonResp<Object> deleteStation(@PathVariable Long id){
         stationService.delete(id);
         return new CommonResp<>();
     }

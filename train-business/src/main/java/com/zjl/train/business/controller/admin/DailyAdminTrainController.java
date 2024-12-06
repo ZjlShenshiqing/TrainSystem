@@ -30,19 +30,19 @@ public class DailyAdminTrainController {
     private TrainSeatService seatService;
 
     @PostMapping("/save")
-    public CommonResp<Object> savePassenger(@Valid @RequestBody DailyTrainSaveReq req) {
+    public CommonResp<Object> saveTrain(@Valid @RequestBody DailyTrainSaveReq req) {
         dailyTrainService.save(req);
         return new CommonResp<>();
     }
 
     @GetMapping("/query-list")
-    public CommonResp<PageResp<DailyTrainQueryResponse>> queryPassengerList(@Valid DailyTrainQueryReq req) {
+    public CommonResp<PageResp<DailyTrainQueryResponse>> queryTrainList(@Valid DailyTrainQueryReq req) {
         PageResp<DailyTrainQueryResponse> trainList = dailyTrainService.queryList(req);
         return new CommonResp<>(trainList);
     }
 
     @DeleteMapping("/delete/{id}")
-    public CommonResp<Object> deletePassenger(@PathVariable Long id){
+    public CommonResp<Object> deleteTrain(@PathVariable Long id){
         dailyTrainService.delete(id);
         return new CommonResp<>();
     }
