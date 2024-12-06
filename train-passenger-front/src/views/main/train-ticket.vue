@@ -2,7 +2,6 @@
 <div class="dailyTrainTicket">
   <p>
     <a-space>
-      <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
       <a-date-picker v-model:value="params.date" valueFormat="YYYY-MM-DD" placeholder="请选择日期"></a-date-picker>
       <station-select-view v-model="params.start" width="200px"></station-select-view>
       <station-select-view v-model="params.end" width="200px"></station-select-view>
@@ -79,7 +78,6 @@
 import { ref, onMounted } from 'vue';
 import {notification} from "ant-design-vue";
 import axios from "axios";
-import TrainSelectView from "@/components/train-select";
 import StationSelectView from "@/components/station-select";
 import dayjs from "dayjs";
 
@@ -119,18 +117,12 @@ const pagination = ref({
 let loading = ref(false);
 
 const params = ref({
-  trainCode: '',
   date: '',
   start: '',
   end: ''
 });
 
 const columns = [
-  {
-    title: '日期',
-    dataIndex: 'date',
-    key: 'date',
-  },
   {
     title: '车次编号',
     dataIndex: 'trainCode',
@@ -148,94 +140,47 @@ const columns = [
     title: '历时',
     dataIndex: 'duration',
   },
-  // {
-  //   title: '出发站',
-  //   dataIndex: 'start',
-  //   key: 'start',
-  // },
-  // {
-  //   title: '出发站拼音',
-  //   dataIndex: 'startPinyin',
-  //   key: 'startPinyin',
-  // },
-  // {
-  //   title: '出发时间',
-  //   dataIndex: 'startTime',
-  //   key: 'startTime',
-  // },
-  // {
-  //   title: '出发站序',
-  //   dataIndex: 'startIndex',
-  //   key: 'startIndex',
-  // },
-  // {
-  //   title: '到达站',
-  //   dataIndex: 'end',
-  //   key: 'end',
-  // },
-  // {
-  //   title: '到达站拼音',
-  //   dataIndex: 'endPinyin',
-  //   key: 'endPinyin',
-  // },
-  // {
-  //   title: '到站时间',
-  //   dataIndex: 'endTime',
-  //   key: 'endTime',
-  // },
-  // {
-  //   title: '到站站序',
-  //   dataIndex: 'endIndex',
-  //   key: 'endIndex',
-  // },
   {
     title: '一等座',
     dataIndex: 'ydz',
     key: 'ydz',
   },
-  // {
-  //   title: '一等座票价',
-  //   dataIndex: 'ydzPrice',
-  //   key: 'ydzPrice',
-  // },
   {
     title: '二等座',
     dataIndex: 'edz',
     key: 'edz',
   },
-  // {
-  //   title: '二等座票价',
-  //   dataIndex: 'edzPrice',
-  //   key: 'edzPrice',
-  // },
   {
     title: '软卧',
     dataIndex: 'rw',
     key: 'rw',
   },
-  // {
-  //   title: '软卧票价',
-  //   dataIndex: 'rwPrice',
-  //   key: 'rwPrice',
-  // },
   {
     title: '硬卧',
     dataIndex: 'yw',
     key: 'yw',
   },
-  // {
-  //   title: '硬卧票价',
-  //   dataIndex: 'ywPrice',
-  //   key: 'ywPrice',
-  // },
 ];
 
 /**
- * 查询方法
- * Created By Zhangjilin 2024/12/4
+ * 查询方法，提交到后端接口进行校验
+ * Created By Zhangjilin 2024/12/6
  * @param param
  */
 const handleQuery = (param) => {
+  // 查询前，先校验三个参数是否为空
+  if (Tool.isEmpty(params.value.date)) {
+    notification.error({description: "请选择日期!"});
+    return;
+  }
+  if (Tool.isEmpty(params.value.start)) {
+    notification.error({description: "请选择出发地"});
+    return;
+  }
+  if (Tool.isEmpty(params.value.end)) {
+    notification.error({description: "请选择目的地"});
+    return;
+  }
   if (!param) {
     param = {
       page: 1,
@@ -247,7 +192,6 @@ const handleQuery = (param) => {
     params: {
       page: param.page,
       size: param.size,
-      trainCode: params.value.trainCode,
       date: params.value.date,
       start: params.value.start,
       end: params.value.end
@@ -268,7 +212,7 @@ const handleQuery = (param) => {
 
 /**
  * 页数发生变化时调用
- * Created By Zhangjilin 2024/12/4
+ * Created By Zhangjilin 2024/12/6
  * @param page
  */
 const handleTableChange = (page) => {
@@ -282,7 +226,7 @@ const handleTableChange = (page) => {
 
 /**
  * 通过dayjs计算起始站到到达站的时间
- * Created By Zhangjilin 2024/12/4
+ * Created By Zhangjilin 2024/12/6
  */
 const calDuration = (startTime, endTime) => {
   let diff = dayjs(endTime, 'HH:mm:ss').diff(dayjs(startTime, 'HH:mm:ss'), 'seconds');
@@ -291,13 +235,13 @@ const calDuration = (startTime, endTime) => {
 
 /**
  * 钩子函数，初始化页面的时候调用
- * Created By Zhangjilin 2024/12/4
+ * Created By Zhangjilin 2024/12/6
  */
 onMounted(() => {
-  handleQuery({
-    page: 1,
-    size: pagination.value.pageSize
-  });
+  // handleQuery({
+  //   page: 1,
+  //   size: pagination.value.pageSize
+  // });
 });
 
 </script>
