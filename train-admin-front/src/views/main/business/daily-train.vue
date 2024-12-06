@@ -290,14 +290,6 @@ const handleTableChange = (pagination) => {
 }
 
 /**
- * 点击每日生成车次数据的时候调用的函数
- * Created By Zhangjilin 2024/11/30
- */
-const onClickGenDaily = () => {
-  genDailyVisible.value = true;
-};
-
-/**
  * 处理车次选择变化，当下拉框选择车次的时候，能自动填充车次其他的信息
  * train: 车次信息，通过/business/admin/train/query-all查询出来
  * Created By Zhangjilin 2024/11/30
@@ -310,13 +302,22 @@ const onChangeCode = (train) => {
 }
 
 /**
+ * 点击每日生成车次数据的时候调用的函数
+ * Created By Zhangjilin 2024/11/30
+ */
+const onClickGenDaily = () => {
+  genDailyVisible.value = true;
+};
+
+/**
  * 生成每日车次，按这个就会自动生成
  * Created By Zhangjilin 2024/12/3
  */
 const handleGenDailyOk = () => {
   let date = dayjs(genDaily.value.date).format("YYYY-MM-DD");
-  genDailyVisible.value = true;
+  genDailyLoading.value = true;
   axios.get("/business/admin/daily-train/genDaily/" + date).then((response) => {
+    genDailyLoading.value = false;
     let data = response.data;
     if (data.success) {
       notification.success({description: "生成成功！"});

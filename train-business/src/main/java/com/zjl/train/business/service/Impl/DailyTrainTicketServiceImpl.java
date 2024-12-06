@@ -8,6 +8,7 @@ import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zjl.train.business.entity.DailyTrain;
 import com.zjl.train.business.entity.DailyTrainTicket;
 import com.zjl.train.business.entity.DailyTrainTicketExample;
@@ -93,12 +94,23 @@ public class DailyTrainTicketServiceImpl implements DailyTrainTicketService {
             criteria.andEndEqualTo(request.getEnd());
         }
 
+        /**
+         * 取出查询请求中的关于分页的参数
+         */
         LOG.info("查询页码：{}", request.getPage());
         LOG.info("每页条数：{}", request.getSize());
         PageHelper.startPage(request.getPage(), request.getSize());
-        // TODO
         List<DailyTrainTicket> dailyTrainTicketList = dailyTrainTicketMapper.selectByExample(dailyTrainTicketExample);
-        return null;
+
+        PageInfo<DailyTrainTicket> pageInfo = new PageInfo<>(dailyTrainTicketList);
+        LOG.info("总行数：{}", pageInfo.getTotal());
+        LOG.info("总页数：{}", pageInfo.getPages());
+
+        List<DailyTrainTicketQueryResponse> list = BeanUtil.copyToList(dailyTrainTicketList, DailyTrainTicketQueryResponse.class);
+        PageResp<DailyTrainTicketQueryResponse> pageResp = new PageResp<>();
+        pageResp.setTotal(pageInfo.getTotal());
+        pageResp.setList(list);
+        return pageResp;
     }
 
     @Override
