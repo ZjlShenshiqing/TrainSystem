@@ -15,6 +15,7 @@
            :loading="loading">
     <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
+        <a-button type="primary" @click="toOrder(record)">预订</a-button>
       </template>
       <template v-else-if="column.dataIndex === 'station'">
         {{record.start}}<br/>
@@ -80,6 +81,7 @@ import {notification} from "ant-design-vue";
 import axios from "axios";
 import StationSelectView from "@/components/station-select";
 import dayjs from "dayjs";
+import router from "@/router";
 
 const visible = ref(false);
 let dailyTrainTicket = ref({
@@ -160,6 +162,10 @@ const columns = [
     dataIndex: 'yw',
     key: 'yw',
   },
+  {
+    title: '操作',
+    dataIndex: 'operation',
+  },
 ];
 
 /**
@@ -187,6 +193,10 @@ const handleQuery = (param) => {
       size: pagination.value.pageSize
     };
   }
+
+  // 保存查询参数
+  SessionStorage.set(SESSION_TICKET_PARAMS, params.value);
+
   loading.value = true;
   axios.get("/business/daily-train-ticket/query-list", {
     params: {
@@ -234,14 +244,28 @@ const calDuration = (startTime, endTime) => {
 };
 
 /**
+ * 点击预订按钮，跳转到订单
+ * Created By Zhangjilin 2024/12/6
+ */
+const toOrder = (record) => {
+  dailyTrainTicket.value = Tool.copy(record);
+  SessionStorage.set(SESSION_ORDER, dailyTrainTicket.value);
+  router.push("/order")
+}
+
+/**
  * 钩子函数，初始化页面的时候调用
  * Created By Zhangjilin 2024/12/6
  */
 onMounted(() => {
-  // handleQuery({
-  //   page: 1,
-  //   size: pagination.value.pageSize
-  // });
+  //  "|| {}"是常用技巧，可以避免空指针异常
+  params.value = SessionStorage.get(SESSION_TICKET_PARAMS) || {};
+  if (Tool.isNotEmpty(params.value)) {
+    handleQuery({
+      page: 1,
+      size: pagination.value.pageSize
+    });
+  }
 });
 
 </script>
