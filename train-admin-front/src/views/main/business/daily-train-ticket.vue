@@ -148,86 +148,86 @@ const columns = [
     title: '历时',
     dataIndex: 'duration',
   },
-  {
-    title: '出发站',
-    dataIndex: 'start',
-    key: 'start',
-  },
-  {
-    title: '出发站拼音',
-    dataIndex: 'startPinyin',
-    key: 'startPinyin',
-  },
-  {
-    title: '出发时间',
-    dataIndex: 'startTime',
-    key: 'startTime',
-  },
-  {
-    title: '出发站序',
-    dataIndex: 'startIndex',
-    key: 'startIndex',
-  },
-  {
-    title: '到达站',
-    dataIndex: 'end',
-    key: 'end',
-  },
-  {
-    title: '到达站拼音',
-    dataIndex: 'endPinyin',
-    key: 'endPinyin',
-  },
-  {
-    title: '到站时间',
-    dataIndex: 'endTime',
-    key: 'endTime',
-  },
-  {
-    title: '到站站序',
-    dataIndex: 'endIndex',
-    key: 'endIndex',
-  },
+  // {
+  //   title: '出发站',
+  //   dataIndex: 'start',
+  //   key: 'start',
+  // },
+  // {
+  //   title: '出发站拼音',
+  //   dataIndex: 'startPinyin',
+  //   key: 'startPinyin',
+  // },
+  // {
+  //   title: '出发时间',
+  //   dataIndex: 'startTime',
+  //   key: 'startTime',
+  // },
+  // {
+  //   title: '出发站序',
+  //   dataIndex: 'startIndex',
+  //   key: 'startIndex',
+  // },
+  // {
+  //   title: '到达站',
+  //   dataIndex: 'end',
+  //   key: 'end',
+  // },
+  // {
+  //   title: '到达站拼音',
+  //   dataIndex: 'endPinyin',
+  //   key: 'endPinyin',
+  // },
+  // {
+  //   title: '到站时间',
+  //   dataIndex: 'endTime',
+  //   key: 'endTime',
+  // },
+  // {
+  //   title: '到站站序',
+  //   dataIndex: 'endIndex',
+  //   key: 'endIndex',
+  // },
   {
     title: '一等座',
     dataIndex: 'ydz',
     key: 'ydz',
   },
-  {
-    title: '一等座票价',
-    dataIndex: 'ydzPrice',
-    key: 'ydzPrice',
-  },
+  // {
+  //   title: '一等座票价',
+  //   dataIndex: 'ydzPrice',
+  //   key: 'ydzPrice',
+  // },
   {
     title: '二等座',
     dataIndex: 'edz',
     key: 'edz',
   },
-  {
-    title: '二等座票价',
-    dataIndex: 'edzPrice',
-    key: 'edzPrice',
-  },
+  // {
+  //   title: '二等座票价',
+  //   dataIndex: 'edzPrice',
+  //   key: 'edzPrice',
+  // },
   {
     title: '软卧',
     dataIndex: 'rw',
     key: 'rw',
   },
-  {
-    title: '软卧票价',
-    dataIndex: 'rwPrice',
-    key: 'rwPrice',
-  },
+  // {
+  //   title: '软卧票价',
+  //   dataIndex: 'rwPrice',
+  //   key: 'rwPrice',
+  // },
   {
     title: '硬卧',
     dataIndex: 'yw',
     key: 'yw',
   },
-  {
-    title: '硬卧票价',
-    dataIndex: 'ywPrice',
-    key: 'ywPrice',
-  },
+  // {
+  //   title: '硬卧票价',
+  //   dataIndex: 'ywPrice',
+  //   key: 'ywPrice',
+  // },
 ];
 
 /**
@@ -281,7 +281,7 @@ const handleTableChange = (page) => {
 };
 
 /**
- * 通过dayjs计算经过的时间
+ * 通过dayjs计算起始站到到达站的时间
  * Created By Zhangjilin 2024/12/4
  */
 const calDuration = (startTime, endTime) => {
