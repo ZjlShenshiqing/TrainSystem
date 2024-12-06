@@ -36,9 +36,6 @@ public class TrainSeatServiceImpl implements TrainSeatService {
     private TrainSeatMapper trainMapper;
 
     @Autowired
-    private TrainSeatCustomizableMapper trainCustomizableMapper;
-
-    @Autowired
     private TrainCarriageService trainCarriageService;
 
     /**
@@ -68,7 +65,7 @@ public class TrainSeatServiceImpl implements TrainSeatService {
         // 查询条件类
         TrainSeatExample passengerExample = new TrainSeatExample();
         // 设置按 'id' 降序排序
-        passengerExample.setOrderByClause("train_code asc, carriage_index asc, carriage_seat_index asc");
+        passengerExample.setOrderByClause("carriage_index asc, carriage_seat_index asc");
 
         // 判断是否有车次信息
         if (ObjectUtil.isNotEmpty(request.getTrainCode())) {
@@ -147,5 +144,14 @@ public class TrainSeatServiceImpl implements TrainSeatService {
                 }
             }
         }
+    }
+
+    @Override
+    public List<TrainSeat> selectByTrainCode(String trainCode) {
+        TrainSeatExample trainSeatExample = new TrainSeatExample();
+        trainSeatExample.setOrderByClause("`id` asc");
+        TrainSeatExample.Criteria criteria = trainSeatExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode);
+        return trainMapper.selectByExample(trainSeatExample);
     }
 }

@@ -7,6 +7,7 @@ import com.zjl.train.business.resp.DailyTrainStationQueryResponse;
 import com.zjl.train.common.resp.PageResp;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,4 +52,10 @@ public interface DailyTrainStationService {
      * 通过每日车次编号 + 站名 （数据库唯一键），查询数据是否存在
      */
     DailyTrainStation selectByUnique(String name, String trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/12/3
+     * 通过日期 + 车次编号生成每日车次经停站信息
+     */
+    void autoDailyTrainStation(Date date, String trainCode);
 }

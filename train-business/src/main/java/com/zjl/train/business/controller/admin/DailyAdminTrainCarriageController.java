@@ -24,19 +24,19 @@ public class DailyAdminTrainCarriageController {
     private DailyTrainCarriageService dailyTrainCarriageService;
 
     @PostMapping("/save")
-    public CommonResp<Object> savePassenger(@Valid @RequestBody DailyTrainCarriageSaveReq req) {
+    public CommonResp<Object> saveCarriage(@Valid @RequestBody DailyTrainCarriageSaveReq req) {
         dailyTrainCarriageService.save(req);
         return new CommonResp<>();
     }
 
     @GetMapping("/query-list")
-    public CommonResp<PageResp<DailyTrainCarriageQueryResponse>> queryPassengerList(@Valid DailyTrainCarriageQueryReq req) {
+    public CommonResp<PageResp<DailyTrainCarriageQueryResponse>> queryCarriageList(@Valid DailyTrainCarriageQueryReq req) {
         PageResp<DailyTrainCarriageQueryResponse> trainCarriageList = dailyTrainCarriageService.queryList(req);
         return new CommonResp<>(trainCarriageList);
     }
 
     @DeleteMapping("/delete/{id}")
-    public CommonResp<Object> deletePassenger(@PathVariable Long id){
+    public CommonResp<Object> deleteCarriage(@PathVariable Long id){
         dailyTrainCarriageService.delete(id);
         return new CommonResp<>();
     }

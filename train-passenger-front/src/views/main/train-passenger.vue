@@ -51,8 +51,8 @@
             </template>
             <template v-else-if="column.dataIndex === 'type'">
               <span v-for="item in PASSENGER_TYPE_ARRAY" :key="item.key">
-                <span v-if="item.key === record.type">
-                  {{item.value}}
+                <span v-if="item.code === record.type">
+                  {{item.desc}}
                 </span>
               </span>
             </template>
@@ -71,7 +71,7 @@
           <a-select v-model:value="passenger.type" placeholder="请选择类型">
             <!-- 通过枚举类来定义乘客人类型下拉框，之前是写死的，现在进行改进，方便以后需要改动 -->
             <a-select-option v-for="item in PASSENGER_TYPE_ARRAY" :key="item.code" :value="item.code">
-                {{item.value}}}
+                {{item.desc}}}
             </a-select-option>
           </a-select>
         </a-form-item>

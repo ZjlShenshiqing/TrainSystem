@@ -24,7 +24,12 @@ const routes = [
       {
         path: 'passenger',
         component: () => import('../views/main/train-passenger.vue')
-      }]
+      },
+      {
+        path: 'ticket',
+        component: () => import('../views/main/train-ticket.vue')
+      },
+      ]
   },
   {
     path: '', // 外层空路径配置

@@ -95,6 +95,7 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import { notification } from 'ant-design-vue';
+
 // 定时任务
 const jobs = ref([]);
 // 加载效果
@@ -146,8 +147,8 @@ const handleModelOk = () => {
   if (job.value.state) {
     url = "reschedule";
   }
-  // 添加定时任务
-  axios.post('/batchtask/admin/job/' + url, job.value).then((response) => {
+  // 添加定时
+  axios.post('/batch/admin/job/' + url, job.value).then((response) => {
     modelLoading.value = false;
     const data = response.data;
     if (data.success) {
@@ -168,7 +169,7 @@ const handleModelOk = () => {
 const handleQuery = () => {
   loading.value = true;
   jobs.value = [];
-  axios.get('/batchtask/admin/job/query').then((response) => {
+  axios.get('/batch/admin/job/query').then((response) => {
     loading.value = false;
     const data = response.data;
     if (data.success) {
@@ -204,7 +205,7 @@ const handleAdd = () => {
  * Created By Zhangjilin 2024/11/29
  */
 const handleDelete = (record) => {
-  axios.post('/batchtask/admin/job/delete',{
+  axios.post('/batch/admin/job/delete',{
     name: record.name,
     group: record.group
   }).then((response) => {
@@ -222,7 +223,7 @@ const handleDelete = (record) => {
  * Created By Zhangjilin 2024/11/29
  */
 const handleRun = (record) => {
-  axios.post('batchtask/admin/job/run', record).then((response) => {
+  axios.post('batch/admin/job/run', record).then((response) => {
     const data = response.data;
     if (data.success) {
       notification.success({description: "手动执行成功！"})
@@ -253,13 +254,14 @@ const handlePause = (record) => {
 
 /**
  * 重启定时任务
+ * Created By Zhangjilin 2024/11/29
  */
 const handleResume = (record) => {
-  axios.post('/batchtask/admin/job/reschedule', record).then((response) => {
-    modalLoading.value = false;
+  axios.post('/batch/admin/job/reschedule', record).then((response) => {
+    modelLoading.value = false;
     const data = response.data;
     if (data.success) {
-      modalVisible.value = false;
+      modelVisible.value = false;
       notification.success({description: "重启成功！"});
       handleQuery();
     } else {
@@ -267,7 +269,6 @@ const handleResume = (record) => {
     }
   });
 };
-
 
 /**
  * 钩子函数，初始化页面时调用

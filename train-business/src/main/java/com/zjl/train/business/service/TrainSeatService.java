@@ -1,5 +1,6 @@
 package com.zjl.train.business.service;
 
+import com.zjl.train.business.entity.TrainSeat;
 import com.zjl.train.business.request.TrainSeatQueryReq;
 import com.zjl.train.business.request.TrainSeatSaveReq;
 import com.zjl.train.business.resp.TrainSeatQueryResponse;
@@ -44,4 +45,10 @@ public interface TrainSeatService {
      * 通过车次生成座位
      */
     void autoTrainSeat(String trainCode);
+
+    /**
+     * Created By Zhangjilin 2024/12/3
+     * 通过车次号查找座位
+     */
+    List<TrainSeat> selectByTrainCode(String trainCode);
 }
