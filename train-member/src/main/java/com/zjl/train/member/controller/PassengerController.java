@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 乘车人模块控制层
  * Created By Zhangjilin 2024/11/08
@@ -39,5 +41,11 @@ public class PassengerController {
     public CommonResp<Object> deletePassenger(@PathVariable Long id){
         passengerService.delete(id);
         return new CommonResp<>();
+    }
+
+    @GetMapping("query-mine")
+    public CommonResp<List<PassengerQueryResponse>> queryPassengerMine() {
+        List<PassengerQueryResponse> passengerQueryResponses = passengerService.queryMinePassenger();
+        return new CommonResp<>(passengerQueryResponses);
     }
 }

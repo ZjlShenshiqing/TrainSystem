@@ -6,6 +6,8 @@ import com.zjl.train.member.request.PassengerSaveReq;
 import com.zjl.train.member.response.PassengerQueryResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 乘客服务层接口
  * Created By Zhangjilin 2024/11/08
@@ -31,4 +33,11 @@ public interface PassengerService {
      * @param id
      */
     public void delete(Long id);
+
+
+    /**
+     * Created By Zhangjilin 2024/12/7
+     * 根据用户id查找所有的乘客
+     */
+    public List<PassengerQueryResponse> queryMinePassenger();
 }
