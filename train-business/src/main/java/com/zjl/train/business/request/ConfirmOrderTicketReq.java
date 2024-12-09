@@ -4,8 +4,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 /**
- * 确认订单时，乘客的购票信息
+ * 确认订单时，乘客买的票的信息
  * Created By Zhangjilin 2024/12/9
+ *
+ *
+ * 只是用来描述一张票的，多张票就是复数！ 也就是要做成list
  */
 public class ConfirmOrderTicketReq {
     /**

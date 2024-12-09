@@ -51,6 +51,7 @@ public class ConfirmOrderDoReq {
 
     /**
      * 车票
+     * 确认订单时，乘客买的票的信息
      */
     @NotEmpty(message = "【车票】不能为空")
     private List<ConfirmOrderTicketReq> tickets;

@@ -110,9 +110,9 @@
 </template>
 
 <script setup>
-import {ref, onMounted, watch, computed} from "vue";
-import {notification} from "ant-design-vue";
+import {ref, onMounted, watch, computed} from 'vue';
 import axios from "axios";
+import {notification} from "ant-design-vue";
 
 // 从后端接口获取的原始乘客数据列表
 const passengers = ref([]);
@@ -218,6 +218,7 @@ watch(() => SEAT_COL_ARRAY.value, () => {
   }
   console.log("初始化两排座位，都是未选中：", chooseSeatObj.value);
 }, {immediate: true});
+
 
 /**
  * Created By Zhangjilin 2024/12/7
@@ -350,6 +351,9 @@ const handleOk = () => {
 
   console.log("最终购票：", tickets.value);
 
+  /**
+   * 推送给后端接口
+   */
   axios.post("/business/confirm-order/do", {
     dailyTrainTicketId: dailyTrainTicket.id,
     date: dailyTrainTicket.date,

@@ -40,7 +40,7 @@ public interface ConfirmOrderService {
     /**
      * Created By Zhangjilin 2024/12/9
      */
-    void doConfirm();
+    void doConfirm(ConfirmOrderDoReq confirmOrderDoReq);
 
     /**
      * 更新订单状态
