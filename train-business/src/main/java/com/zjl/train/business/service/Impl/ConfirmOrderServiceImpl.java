@@ -2,15 +2,18 @@ package com.zjl.train.business.service.Impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.util.EnumUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSON;
 import com.zjl.train.business.entity.ConfirmOrder;
 import com.zjl.train.business.entity.DailyTrainSeat;
 import com.zjl.train.business.entity.DailyTrainTicket;
 import com.zjl.train.business.enums.ConfirmOrderStatusEnum;
+import com.zjl.train.business.enums.SeatTypeEnum;
 import com.zjl.train.business.mapper.ConfirmOrderMapper;
 import com.zjl.train.business.request.ConfirmOrderDoReq;
 import com.zjl.train.business.request.ConfirmOrderQueryReq;
+import com.zjl.train.business.request.ConfirmOrderTicketReq;
 import com.zjl.train.business.resp.ConfirmOrderQueryResponse;
 import com.zjl.train.business.service.ConfirmOrderService;
 import com.zjl.train.business.service.DailyTrainTicketService;
@@ -90,7 +93,17 @@ public class ConfirmOrderServiceImpl implements ConfirmOrderService {
                 confirmOrderDoReq.getEnd());
 
         LOG.info("查出余票记录：{}", dailyTrainTicket);
-        // 扣减余票数量，并判断余票是否足够
+
+        // 预扣减余票数量，并判断余票是否足够
+        for (ConfirmOrderTicketReq ticketReq : confirmOrderDoReq.getTickets()) {
+            String seatTypeCode = ticketReq.getSeatTypeCode();
+            SeatTypeEnum seatTypeEnum = EnumUtil.getBy(SeatTypeEnum::getCode, seatTypeCode);
+            switch (seatTypeEnum) {
+                case RW -> {
+
+                }
+            }
+        }
 
         // 选座
 
