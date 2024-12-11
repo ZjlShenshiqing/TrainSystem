@@ -1,6 +1,7 @@
 package com.zjl.train.business.service;
 
 import com.zjl.train.business.entity.DailyTrain;
+import com.zjl.train.business.entity.DailyTrainTicket;
 import com.zjl.train.business.request.DailyTrainTicketQueryReq;
 import com.zjl.train.business.request.DailyTrainTicketSaveReq;
 import com.zjl.train.business.resp.DailyTrainTicketQueryResponse;
@@ -40,4 +41,11 @@ public interface DailyTrainTicketService {
      * 生成某日某车次车票的数据
      */
     void autoDailyTicket(DailyTrain dailyTrain, Date date, String trainCode);
+
+
+    /**
+     * Created By Zhangjilin 2024/12/11
+     * 根据日期，车次，起始站和终点站查询车票信息
+     */
+    DailyTrainTicket selectByUnique(Date date, String trainCode, String start, String end);
 }
